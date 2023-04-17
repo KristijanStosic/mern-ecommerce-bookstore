@@ -55,7 +55,7 @@ const ProductsPage = () => {
               </div>
               <div className='col-5 d-flex justify-content-end'>
                 <select
-                  className='form-select mw-180 float-start'
+                  className='form-select mw-210 float-start'
                   aria-label='Default select'
                   onChange={(e) => setSort(e.target.value)}
                   value={sort}

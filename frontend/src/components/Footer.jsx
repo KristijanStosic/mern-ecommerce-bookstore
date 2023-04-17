@@ -3,231 +3,109 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <>
-      <footer>
-        <div className='container-fluid bg-primary'>
-          <div className='row '>
-            <div className='col-md-9 py-3 text-white'>
-              Get connected with us on social networks!
-            </div>
-            <div className='col-md-3 py-3 text-center text-white'>
-              <Link to='/' title='Apple'>
-                Icon Apple
+    <footer className='bg-dark text-white pt-5'>
+      <div className="container text-center text-md-left">
+        <div className="row text-center text-md-left">
+          <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 className='text-uppercase mb-4 font-weight-bold text-warning'>About us</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, nemo? Porro maxime eligendi inventore, explicabo aperiam cupiditate laboriosam! Iste delectus molestias possimus tenetur quos. Animi et ut possimus sunt ab?</p>
+          </div>
+
+          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h5 className='text-uppercase mb-4 font-weight-bold text-warning'>Let us help</h5>
+            <p>
+              <Link to='#' className='text-white' style={{ textDecoration: 'none'}}>About Us
               </Link>
-              <Link to='/' title='Windows'>
-                Icon Windows
+            </p>
+            <p>
+              <Link to='#' className='text-white' style={{ textDecoration: 'none'}}>Contact
               </Link>
-              <Link to='/' title='Android'>
-                Icon Android
+            </p>
+            <p>
+              <Link to='#' className='text-white' style={{ textDecoration: 'none'}}>Pricing
               </Link>
-              |
-              <Link to='/' title='Twitter'>
-                Icon Twitter
+            </p>
+            <p>
+              <Link to='#' className='text-white' style={{ textDecoration: 'none'}}>FAQ
               </Link>
-              <Link to='/' title='Facebook'>
-                Icon Facebook
+            </p>
+          </div>
+
+          <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 className='text-uppercase mb-4 font-weight-bold text-warning'>Links</h5>
+          <p>
+              <Link to='#' className='text-white' style={{ textDecoration: 'none'}}>Blog
               </Link>
-              <Link to='/' title='Instagram'>
-                Icon Instagram
+            </p>
+            <p>
+              <Link to='#' className='text-white' style={{ textDecoration: 'none'}}>eBooks
               </Link>
-              <Link to='/' title='Youtube'>
-                Icon Youtube
+            </p>
+            <p>
+              <Link to='#' className='text-white' style={{ textDecoration: 'none'}}>Help
               </Link>
-            </div>
+            </p>
+          </div>
+
+        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 className='text-uppercase mb-4 font-weight-bold text-warning'>Contact</h5>
+          <p>
+            <i className='fas fa-home mr-3'></i> Novi Sad, NS 21000, Serbia
+          </p>
+          <p>
+            <i className='fas fa-envelope mr-3'></i> bookstore@gmail.com
+          </p>
+          <p>
+            <i className='fas fa-phone mr-3'></i> +381 6885 996
+          </p>
+          <p>
+            <i className='fas fa-print mr-3'></i> +021 668997
+          </p>
           </div>
         </div>
-        <div className='container-fluid bg-dark text-white'>
-          <div className='row '>
-            <div className='col-md-3 py-3'>
-              <div className='h6'>Bookstore</div>
-              <hr />
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </p>
-            </div>
-            <div className='col-md-3 py-3'>
-              <div className='h6'>Products</div>
-              <hr />
-              <ul className='list-group list-group-flush'>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Electronics
-                  </Link>
+
+        <hr className='mb-4' />
+
+        <div className="row d-flex justify-content-center align-items-center">
+            <p>Copyright <strong className='text-warning'>Bookstore</strong> &copy; 2023. All rights reserved.</p>
+        </div>
+
+        <div className="row d-flex justify-content-center">
+            <div className="text-center text-md-right">
+
+              <ul className='list-unstyled list-inline'>
+                <li className='list-inline-item'>
+                  <p to='#' className='btn-floating btn-sm text-white' style={{ fontSize: '23px'}}>
+                    <i className='fab fa-facebook mx-2'></i>
+                    </p>
                 </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Mobiles
-                  </Link>
+                <li className='list-inline-item'>
+                  <p to='#' className='btn-floating btn-sm text-white' style={{ fontSize: '23px'}}>
+                    <i className='fab fa-twitter mx-2'></i>
+                    </p>
                 </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Car & bike
-                  </Link>
+                <li className='list-inline-item'>
+                  <p to='#' className='btn-floating btn-sm text-white' style={{ fontSize: '23px'}}>
+                    <i className='fab fa-google-plus mx-2'></i>
+                    </p>
                 </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Super Market
-                  </Link>
+                <li className='list-inline-item'>
+                  <p to='#' className='btn-floating btn-sm text-white' style={{ fontSize: '23px'}}>
+                    <i className='fab fa-linkedin-in mx-2'></i>
+                    </p>
                 </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Travel Cards
-                  </Link>
+                <li className='list-inline-item'>
+                  <p to='#' className='btn-floating btn-sm text-white' style={{ fontSize: '23px'}}>
+                    <i className='fab fa-youtube mx-2'></i>
+                    </p>
                 </li>
               </ul>
-            </div>
-            <div className='col-md-3 py-3'>
-              <div className='h6'>Policy</div>
-              <hr />
-              <ul className='list-group list-group-flush'>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Return Policy
-                  </Link>
-                </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Terms Of Use
-                  </Link>
-                </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Security
-                  </Link>
-                </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    Privacy
-                  </Link>
-                </li>
-                <li className='list-group-item bg-dark text-white border-light'>
-                  <Link
-                    to='/'
-                    className='text-decoration-none text-white stretched-link'
-                  >
-                    EPR Compliance
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className='col-md-3 py-3'>
-              <div className='h6'>Address</div>
-              <hr />
-              <address>
-                <strong>Twitter, Inc.</strong>
-                <br />
-                1355 Market St, Suite 900
-                <br />
-                San Francisco, CA 94103
-                <br />
-                <abbr title='Phone'>P:</abbr> (123) 456-7890
-              </address>
-              <div className='h6'>Customer Care</div>
-              <hr />
-             Icon Telephone +1800 100 1000
-              <br />
-              Icon Envelope info@email.com
+
             </div>
           </div>
-        </div>
-        <div className='container-fluid bg-secondary text-white text-center'>
-          <div className='row'>
-            <div className='col-md-2 py-2'>
-              <Link to='/' className='text-white text-decoration-none'>
-                Icon Briefcase Partner with us
-              </Link>
-            </div>
-            <div className='col-md-2 py-2'>
-              <Link to='/' className='text-white text-decoration-none'>
-                Icon Badge Add Advertise
-              </Link>
-            </div>
-            <div className='col-md-2 py-2'>
-              <Link to='/' className='text-white text-decoration-none'>
-                Icon Gift
-              </Link>
-            </div>
-            <div className='col-md-3 py-2'>
-              © 2009-{new Date().getFullYear()} React-E-Commerce.com
-            </div>
-            <div className='col-md-3 py-2 bg-white'>
-              <img
-                src='../../images/payment/american_express.webp'
-                width='32'
-                alt='American Express'
-                className='me-2'
-              />
-              <img
-                src='../../images/payment/maestro.webp'
-                width='32'
-                alt='Maestro'
-                className='me-2'
-              />
-              <img
-                src='../../images/payment/netbanking.webp'
-                width='32'
-                alt='Net Banking'
-                className='me-2'
-              />
-              <img
-                src='../../images/payment/paypal.webp'
-                width='32'
-                alt='Paypal'
-                className='me-2'
-              />
-              <img
-                src='../../images/payment/rupay.webp'
-                width='32'
-                alt='Rupay'
-                className='me-2'
-              />
-              <img
-                src='../../images/payment/upi.webp'
-                width='32'
-                alt='UPI'
-                className='me-2'
-              />
-              <img
-                src='../../images/payment/visa.webp'
-                width='32'
-                alt='Visa'
-                className='me-2'
-              />
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
+
+      </div>
+    </footer>
   )
 }
 
