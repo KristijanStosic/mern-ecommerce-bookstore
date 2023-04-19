@@ -1,6 +1,6 @@
 import { lazy, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getProducts } from '../redux/products/productActions'
 import useTitle from '../hooks/useTitle'
 import Spinner from '../components/Spinner'

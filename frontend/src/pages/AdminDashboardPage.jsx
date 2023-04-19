@@ -1,0 +1,130 @@
+import { Link } from 'react-router-dom'
+
+import Sidebar from '../components/Sidebar'
+
+const AdminDashboardPage = () => {
+  /*let outOfStock = 0
+  products.forEach((product) => {
+    if (product.stock === 0) {
+      outOfStock += 1
+    }
+  })*/
+
+  return (
+    <>
+      <div className='row m-0'>
+        <div className='col-12 col-md-2 p-0' >
+          <Sidebar />
+        </div>
+
+        <div className='col-12 col-md-10'>
+          <h1 className='my-3 mx-3'>Dashboard</h1>
+
+          {/* {loading ? (
+            <Loader />
+          ) : ( */}
+            <>
+              <div className='row pr-4 mx-2'>
+                <div className='col-xl-12 col-sm-12 mb-3'>
+                  <div className='card bg-primary o-hidden h-100'>
+                    <div className='card-body text-white'>
+                      <div className='text-center'>
+                        <h5 class="card-title">Total Profit</h5>
+                        <p class="card-text fs-5">$66924</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className='row pr-4 mx-2'>
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-success o-hidden h-100'>
+                    <div className='card-body text-white'>
+                    <div className='text-center'>
+                        <h5 class="card-title">Products</h5>
+                        <p class="card-text fs-3">24</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/products'
+                    >
+                     <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-danger o-hidden h-100'>
+                    <div className='card-body text-white'>
+                      <div className='text-center'>
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text fs-3">15</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/orders'
+                    >
+                      <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-info o-hidden h-100'>
+                    <div className='card-body text-white'>
+                      <div className='text-center'>
+                        <h5 class="card-title">Users</h5>
+                        <p class="card-text fs-3">245</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/users'
+                    >
+                      <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-warning o-hidden h-100'>
+                    <div className='card-body text-white'>
+                    <div className='text-center'>
+                        <h5 class="card-title">Out of Stock</h5>
+                        <p class="card-text fs-3">5</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/products'
+                    >
+                      <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              
+            </>
+          {/* )} */}
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default AdminDashboardPage

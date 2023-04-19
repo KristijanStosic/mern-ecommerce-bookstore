@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { register, resetErrorState } from '../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
@@ -46,7 +46,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/')
+      navigate(redirect)
       toast.success(`Account created. Welcome aboard ${user.name}`)
     }
   }, [dispatch, user, error, navigate])
@@ -101,16 +101,16 @@ const RegisterForm = () => {
         />
       </div>
       <div className='d-grid'>
-        <button
-          type='submit'
-          className='btn btn-primary mb-3'
-        >
+        <button type='submit' className='btn btn-primary mb-3'>
           Register
         </button>
       </div>
-      <Link className='float-start' to='/login' title='Sign Up'>
-        Already have an account?
+      <div className="d-flex justify-content-center align-items-center">
+
+      <Link className='float-start' to='/login'>
+        Already have an account? Login here
       </Link>
+      </div>
       <div className='clearfix'></div>
       <hr></hr>
       <div className='row'>

@@ -40,7 +40,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (user) {
-      toast.success('Login successfull')
+      toast.success('Logged in successfully!')
       if (location.state?.from) {
         navigate(location.state.from)
       } else {
@@ -86,16 +86,13 @@ const LoginForm = () => {
           Login
         </button>
       </div>
+      <div className="d-flex justify-content-center align-items-center">
+
       <Link className='float-start' to='/register' title='Sign Up'>
-        Don't have an account? Create one
+        Don't have an account? Register here
       </Link>
-      <Link
-        className='float-end'
-        to='/account/forgotpassword'
-        title='Forgot Password'
-      >
-        Forgot password?
-      </Link>
+      </div>
+
       <div className='clearfix'></div>
       <hr></hr>
       <div className='row'>

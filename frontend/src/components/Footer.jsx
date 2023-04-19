@@ -64,7 +64,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr className='mb-4' />
+        <hr className='mb-4 text-warning' />
 
         <div className="row d-flex justify-content-center align-items-center">
             <p>Copyright <strong className='text-warning'>Bookstore</strong> &copy; 2023. All rights reserved.</p>
