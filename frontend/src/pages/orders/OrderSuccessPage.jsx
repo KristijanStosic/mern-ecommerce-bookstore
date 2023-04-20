@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { logout } from '../redux/auth/authActions'
+import { logout } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 
 const OrderSuccessPage = () => {
@@ -16,7 +16,7 @@ const OrderSuccessPage = () => {
   }
   return (
     <div className='d-flex justify-content-center align-items-center'>
-        <div className="card col-md-4 bg-success shadow-md py-5 my-5 ">
+        <div className="card col-md-6 bg-success shadow-md py-5 my-5">
             <div className="mb-4 text-center text-white">
                 <span><i className='fas fa-check-circle fs-3'></i></span>
                 <h4>Thank you for your payment!</h4>

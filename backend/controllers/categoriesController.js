@@ -96,7 +96,7 @@ const deleteCategory = async (req, res) => {
 
   await category.deleteOne()
 
-  return res.status(200).json({ message: 'Success! Category removed.' })
+  return res.status(200).json(category)
 }
 
 export {

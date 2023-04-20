@@ -96,7 +96,7 @@ const deleteGenre = async (req, res) => {
 
   await genre.remove()
 
-  return res.status(200).json({ message: 'Success! Genre removed.' })
+  return res.status(200).json(genre)
 }
 
 export { getGenres, createGenre, getGenreById, updateGenre, deleteGenre }

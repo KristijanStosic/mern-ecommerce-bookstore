@@ -96,7 +96,7 @@ const deletePublisher = async (req, res) => {
 
   await publisher.remove()
 
-  return res.status(200).json({ message: 'Success! Publisher removed.' })
+  return res.status(200).json(publisher)
 }
 
 export {

@@ -100,7 +100,7 @@ const deleteOrder = async (req, res) => {
 
   await order.remove()
 
-  return res.status(200).json({ message: 'Success! Order removed.' })
+  return res.status(200).json(order)
 }
 
 

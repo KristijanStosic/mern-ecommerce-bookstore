@@ -1,18 +1,17 @@
-import React, { lazy, } from 'react'
+import { lazy, } from "react"
 
-const LoginForm = lazy(() => import('../components/LoginForm'))
+const RegisterForm = lazy(() => import("../../components/auth/RegisterForm"))
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <div className='d-flex justify-content-center align-items-center my-3 py-2'>
       <div className='border border-1 border-muted rounded'>
         <div className='m-4 p-4'>
-          <h4 className='text-center'>Login</h4>
-          <LoginForm  />
+          <RegisterForm  />
         </div>
       </div>
     </div>
   )
 }
 
-export default LoginPage
+export default RegisterPage

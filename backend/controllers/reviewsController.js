@@ -72,7 +72,7 @@ const deleteReview = async (req, res) => {
 
   await review.remove()
 
-  res.status(200).json({ message: 'Review deleted'})
+  res.status(200).json(review)
 }
 
 const getProductReviews = async (req, res) => {

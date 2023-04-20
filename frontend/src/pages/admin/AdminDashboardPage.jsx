@@ -1,14 +1,24 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllCategories } from '../../redux/categories/categoryActions'
 
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/admin/Sidebar'
 
 const AdminDashboardPage = () => {
+  const dispatch = useDispatch()
+  const { categories } = useSelector((state) => state.categories)
+
   /*let outOfStock = 0
   products.forEach((product) => {
     if (product.stock === 0) {
       outOfStock += 1
     }
   })*/
+
+  useEffect(() => {
+    dispatch(getAllCategories())
+  }, [dispatch])
 
   return (
     <>
@@ -49,6 +59,26 @@ const AdminDashboardPage = () => {
                     <Link
                       className='card-footer text-white clearfix small z-1'
                       to='/admin/products'
+                    >
+                     <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-success o-hidden h-100'>
+                    <div className='card-body text-white'>
+                    <div className='text-center'>
+                        <h5 class="card-title">Categories</h5>
+                        <p class="card-text fs-3">{categories && categories.length}</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/categories'
                     >
                      <div className="d-flex justify-content-between">
                         <span className='text-small'>View Details</span>

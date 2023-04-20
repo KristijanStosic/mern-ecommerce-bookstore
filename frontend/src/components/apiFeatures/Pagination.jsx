@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Pagination = ({ page, pages, isAdmin = false, keyword = '' }) => {
   return (

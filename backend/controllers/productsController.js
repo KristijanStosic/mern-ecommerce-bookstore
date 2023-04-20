@@ -97,7 +97,7 @@ const deleteProduct = async (req, res) => {
 
   await product.remove()
 
-  res.status(200).json({ message: 'Product deleted'})
+  res.status(200).json(product)
 }
 
 export { getProducts, createProduct, getProduct, updateProduct, deleteProduct }

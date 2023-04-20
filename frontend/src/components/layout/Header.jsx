@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { logout } from '../redux/auth/authActions'
+import { logout } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
-import Search from './Search'
+import Search from '../apiFeatures/Search'
 
 const Header = () => {
   const navigate = useNavigate()

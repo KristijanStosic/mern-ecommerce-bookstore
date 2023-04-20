@@ -1,27 +1,29 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { login, resetErrorState } from '../redux/auth/authActions'
+import { useNavigate } from 'react-router-dom'
+import { register, resetErrorState } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
+import { validateEmail } from '../../utils/utils'
 import PasswordInput from './PasswordInput'
-import Alert from './Alert'
-import Spinner from './Spinner'
+import Alert from '../Alert'
+import Spinner from '../Spinner'
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
+    confirmPassword: ''
   })
 
-  const { email, password } = formData
-
-  const { loading, error, user } = useSelector((state) => state.auth)
+  const { name, email, password, confirmPassword } = formData
 
   const navigate = useNavigate()
-  const location = useLocation()
   const dispatch = useDispatch()
   const redirect = '/products'
+
+  const { loading, error, user } = useSelector((state) => state.auth)
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -32,7 +34,20 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(login({ email, password }))
+    const userData = {
+      name,
+      email,
+      password,
+    }
+
+    if (!name) return toast.error('Name is required')
+    if (!email) return toast.error('Email is required')
+    if (!validateEmail(email)) return toast.error('Email invalid')
+    if (!password || !confirmPassword) return toast.error('Password is required')
+    if (password !== confirmPassword) return toast.error('Passwords not match')
+    if (password.length <= 7) return toast.error('Password must be at least 8 characters')
+
+    dispatch(register(userData))
     setTimeout(() => {
       dispatch(resetErrorState())
     }, 3500)
@@ -40,32 +55,47 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (user) {
-      toast.success('Logged in successfully!')
-      if (location.state?.from) {
-        navigate(location.state.from)
-      } else {
-        navigate(redirect)
-      }
+      navigate(redirect)
+      toast.success(`Account created. Welcome aboard ${user.name}`)
     }
-  }, [user, redirect, error, navigate, location.state])
+  }, [dispatch, user, error, navigate])
 
   if (loading) return <Spinner />
 
   return (
+    <>
+    {error && <Alert type='danger'>{error}</Alert>}
     <form className='needs-validation' noValidate onSubmit={handleSubmit}>
-      {error && <Alert type='danger'>{error}</Alert>}
+      <h4 className='text-center'>Register</h4>
+      <label htmlFor='name'>Name</label>
+      <div className='input-group mb-3'>
+        <span className='input-group-text' id='inputGroupPrepend'>
+          <span><i className='fas fa-user'></i></span>
+        </span>
+        <input
+          name='name'
+          id='name'
+          type='text'
+          label='Your name'
+          placeholder='Name'
+          className='form-control'
+          onChange={onChange}
+        />
+        <div className='invalid-feedback'> Please fill the user name. </div>
+      </div>
       <label htmlFor='email'>Email</label>
       <div className='input-group mb-3'>
         <span className='input-group-text'>
         <span><i className='fas fa-envelope'></i></span>
         </span>
         <input
-          className='form-control'
           name='email'
           id='email'
           type='text'
-          onChange={onChange}
+          label='Your email'
           placeholder='Email'
+          className='form-control'
+          onChange={onChange}
         />
       </div>
       <label htmlFor='password'>Password</label>
@@ -81,18 +111,30 @@ const LoginForm = () => {
           }}
         />
       </div>
+      <label htmlFor='confirmPassword'>Confirm Password</label>
+      <div className='input-group mb-3'>
+        <PasswordInput
+          placeholder='Confirm Password'
+          name='confirmPassword'
+          value={confirmPassword}
+          onChange={onChange}
+          onPaste={(e) => {
+            e.preventDefault()
+            return false
+          }}
+        />
+      </div>
       <div className='d-grid'>
         <button type='submit' className='btn btn-primary mb-3'>
-          Login
+          Register
         </button>
       </div>
       <div className="d-flex justify-content-center align-items-center">
 
-      <Link className='float-start' to='/register' title='Sign Up'>
-        Don't have an account? Register here
+      <Link className='float-start' to='/login'>
+        Already have an account? Login here
       </Link>
       </div>
-
       <div className='clearfix'></div>
       <hr></hr>
       <div className='row'>
@@ -101,7 +143,7 @@ const LoginForm = () => {
         </div>
         <div className='col- text-center'>
           <Link to='/' className='btn btn-light text-white bg-twitter me-3'>
-            <span><i className='fab fa-twitter'></i></span>
+           <span><i className='fab fa-twitter'></i></span>
           </Link>
           <Link to='/' className='btn btn-light text-white me-3 bg-facebook'>
           <span><i className='fab fa-facebook'></i></span>
@@ -112,7 +154,8 @@ const LoginForm = () => {
         </div>
       </div>
     </form>
+    </>
   )
 }
 
-export default LoginForm
+export default RegisterForm

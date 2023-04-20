@@ -116,7 +116,7 @@ const deleteUser = async (req, res) => {
 
   await user.remove()
 
-  return res.status(200).json({ message: 'Success! User removed.' })
+  return res.status(200).json(user)
 }
 
 export {

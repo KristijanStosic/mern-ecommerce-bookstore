@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
 import {  useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { getProduct } from '../redux/products/productActions'
-import ShippingReturns from "../components/other/ShippingReturns"
-import RatingReviews from "../components/other/RatingReviews"
-import Rating from "../components/Rating"
-import Spinner from '../components/Spinner'
-import Alert from '../components/Alert'
+import { getProduct } from '../../redux/products/productActions'
+import ShippingReturns from "../../components/products/ShippingReturns"
+import RatingReviews from "../../components/products/RatingReviews"
+import Rating from "../../components/products/Rating"
+import Spinner from '../../components/Spinner'
+import Alert from '../../components/Alert'
 
 const ProductPage = () => {
   const [quantity, setQuantity] = useState(1)

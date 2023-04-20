@@ -1,27 +1,28 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { register, resetErrorState } from '../redux/auth/authActions'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { login, resetErrorState } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
+import { validateEmail } from '../../utils/utils'
 import PasswordInput from './PasswordInput'
-import Alert from './Alert'
-import Spinner from './Spinner'
+import Alert from '../Alert'
+import Spinner from '../Spinner'
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
   })
 
-  const { name, email, password } = formData
-
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const redirect = '/products'
+  const { email, password } = formData
 
   const { loading, error, user } = useSelector((state) => state.auth)
+
+  const navigate = useNavigate()
+  const location = useLocation()
+  const dispatch = useDispatch()
+  const redirect = '/products'
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -32,13 +33,13 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const userData = {
-      name,
-      email,
-      password,
-    }
 
-    dispatch(register(userData))
+    if (!email) return toast.error('Email is required')
+    if (!validateEmail(email)) return toast.error('Email invalid')
+    if (!password) return toast.error('Password is required')
+    if (password.length <= 5) return toast.error('Password must be at least 8 characters')
+
+    dispatch(login({ email, password }))
     setTimeout(() => {
       dispatch(resetErrorState())
     }, 3500)
@@ -46,45 +47,34 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (user) {
-      navigate(redirect)
-      toast.success(`Account created. Welcome aboard ${user.name}`)
+      toast.success('Logged in successfully!')
+      if (location.state?.from) {
+        navigate(location.state.from)
+      } else {
+        navigate(redirect)
+      }
     }
-  }, [dispatch, user, error, navigate])
+  }, [user, redirect, error, navigate, location.state])
 
   if (loading) return <Spinner />
 
   return (
+    <>
+    {error && <Alert type='danger'>{error}</Alert>}
     <form className='needs-validation' noValidate onSubmit={handleSubmit}>
-      {error && <Alert type='danger'>{error}</Alert>}
-      <label htmlFor='name'>Name</label>
-      <div className='input-group mb-3'>
-        <span className='input-group-text' id='inputGroupPrepend'>
-          <span><i className='fas fa-user'></i></span>
-        </span>
-        <input
-          name='name'
-          id='name'
-          type='text'
-          label='Your name'
-          placeholder='Name'
-          className='form-control'
-          onChange={onChange}
-        />
-        <div className='invalid-feedback'> Please fill the user name. </div>
-      </div>
+    <h4 className='text-center'>Login</h4>
       <label htmlFor='email'>Email</label>
       <div className='input-group mb-3'>
         <span className='input-group-text'>
         <span><i className='fas fa-envelope'></i></span>
         </span>
         <input
+          className='form-control'
           name='email'
           id='email'
           type='text'
-          label='Your email'
-          placeholder='Email'
-          className='form-control'
           onChange={onChange}
+          placeholder='Email'
         />
       </div>
       <label htmlFor='password'>Password</label>
@@ -102,15 +92,16 @@ const RegisterForm = () => {
       </div>
       <div className='d-grid'>
         <button type='submit' className='btn btn-primary mb-3'>
-          Register
+          Login
         </button>
       </div>
       <div className="d-flex justify-content-center align-items-center">
 
-      <Link className='float-start' to='/login'>
-        Already have an account? Login here
+      <Link className='float-start' to='/register' title='Sign Up'>
+        Don't have an account? Register here
       </Link>
       </div>
+
       <div className='clearfix'></div>
       <hr></hr>
       <div className='row'>
@@ -119,7 +110,7 @@ const RegisterForm = () => {
         </div>
         <div className='col- text-center'>
           <Link to='/' className='btn btn-light text-white bg-twitter me-3'>
-           <span><i className='fab fa-twitter'></i></span>
+            <span><i className='fab fa-twitter'></i></span>
           </Link>
           <Link to='/' className='btn btn-light text-white me-3 bg-facebook'>
           <span><i className='fab fa-facebook'></i></span>
@@ -130,7 +121,8 @@ const RegisterForm = () => {
         </div>
       </div>
     </form>
+    </>
   )
 }
 
-export default RegisterForm
+export default LoginForm
