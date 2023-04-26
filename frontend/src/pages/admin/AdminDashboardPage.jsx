@@ -72,8 +72,8 @@ const AdminDashboardPage = () => {
                   <div className='card bg-success o-hidden h-100'>
                     <div className='card-body text-white'>
                     <div className='text-center'>
-                        <h5 class="card-title">Categories</h5>
-                        <p class="card-text fs-3">{categories && categories.length}</p>
+                        <h5 className="card-title">Categories</h5>
+                        <p className="card-text fs-3">{categories && categories.length}</p>
                       </div>
                     </div>
                     <Link
@@ -92,8 +92,8 @@ const AdminDashboardPage = () => {
                   <div className='card bg-danger o-hidden h-100'>
                     <div className='card-body text-white'>
                       <div className='text-center'>
-                        <h5 class="card-title">Orders</h5>
-                        <p class="card-text fs-3">15</p>
+                        <h5 className="card-title">Orders</h5>
+                        <p className="card-text fs-3">15</p>
                       </div>
                     </div>
                     <Link
@@ -112,8 +112,8 @@ const AdminDashboardPage = () => {
                   <div className='card bg-info o-hidden h-100'>
                     <div className='card-body text-white'>
                       <div className='text-center'>
-                        <h5 class="card-title">Users</h5>
-                        <p class="card-text fs-3">245</p>
+                        <h5 className="card-title">Users</h5>
+                        <p className="card-text fs-3">245</p>
                       </div>
                     </div>
                     <Link
@@ -132,8 +132,8 @@ const AdminDashboardPage = () => {
                   <div className='card bg-warning o-hidden h-100'>
                     <div className='card-body text-white'>
                     <div className='text-center'>
-                        <h5 class="card-title">Out of Stock</h5>
-                        <p class="card-text fs-3">5</p>
+                        <h5 className="card-title">Out of Stock</h5>
+                        <p className="card-text fs-3">5</p>
                       </div>
                     </div>
                     <Link

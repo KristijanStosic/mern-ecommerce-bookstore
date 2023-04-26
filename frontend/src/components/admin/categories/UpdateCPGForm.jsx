@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createNewCategory } from '../../redux/categories/categoryActions'
 import { toast } from 'react-hot-toast'
+import { closeUpdateModal } from '../../../redux/modal/modalSlice'
 
-const CreateCategoryForm = ({ handleClose }) => {
-  const [name, setName] = useState('')
+const UpdateCPGForm = ({ itemToUpdate, updateAction }) => {
+  const [name, setName] = useState(itemToUpdate?.name)
 
   const dispatch = useDispatch()
 
@@ -12,8 +12,8 @@ const CreateCategoryForm = ({ handleClose }) => {
     e.preventDefault()
 
     if (!name) return toast.error('Name is required')
-    dispatch(createNewCategory({ name }))
-    handleClose()
+    dispatch(updateAction(itemToUpdate?._id, name))
+    dispatch(closeUpdateModal())
 }
 
   return (
@@ -31,7 +31,7 @@ const CreateCategoryForm = ({ handleClose }) => {
         />
         <div className='d-grid gap-2 mx-auto mt-2'>
           <button type='submit' className='btn btn-primary'>
-            Create
+            Update
           </button>
         </div>
       </div>
@@ -39,4 +39,4 @@ const CreateCategoryForm = ({ handleClose }) => {
   )
 }
 
-export default CreateCategoryForm
+export default UpdateCPGForm

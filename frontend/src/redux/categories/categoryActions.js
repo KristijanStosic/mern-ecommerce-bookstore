@@ -76,8 +76,6 @@ export const updateCategory = (categoryId, name) => async (dispatch, getState) =
 }
 
 export const deleteCategory = (categoryId) => async (dispatch, getState) => {
-    dispatch(setLoading(true))
-
     const { auth: { user } } = getState()
 
     const config = {

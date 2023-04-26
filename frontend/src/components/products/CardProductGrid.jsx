@@ -1,7 +1,5 @@
-import { lazy } from 'react'
 import { Link } from 'react-router-dom'
-
-const Rating = lazy(() => import('./Rating'))
+import Rating from './Rating'
 
 const CardProductGrid = ({ product }) => {
   return (

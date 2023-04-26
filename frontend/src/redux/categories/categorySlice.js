@@ -26,7 +26,8 @@ export const categoriesSlice = createSlice({
       state.error = null
     },
     createCategory: (state, action) => {
-      state.categories.push(action.payload)
+      state.categories = [...state.categories, action.payload]
+      //state.categories.push(action.payload)
       state.loading = false
       state.error = null
       toast.success(`Category ${action.payload.name} created`)
@@ -63,9 +64,8 @@ export const {
   categoryDelete,
   setLoading,
   resetError,
-  setCategoryUpdateFlag,
-  setCategoryRemoveFlag,
 } = categoriesSlice.actions
+
 export default categoriesSlice.reducer
 
 export const categoriesSelector = (state) => state.categories

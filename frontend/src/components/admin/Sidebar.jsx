@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
-    <div className='container-fluid bg-secondary h-100'>
+    <div className='container-fluid bg-dark h-100'>
       <div className='row'>
         <div className='d-flex flex-column col-auto min-vh-100'>
           <div className='mt-2 text-center'>

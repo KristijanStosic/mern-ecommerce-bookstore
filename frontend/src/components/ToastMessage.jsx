@@ -1,7 +1,6 @@
-import React from 'react'
 import { Toaster } from 'react-hot-toast'
 
-const Toast = () => {
+const ToastMessage = () => {
   return (
     <Toaster reverseOrder={false} position='bottom-left' toastOptions={{ 
         duration: 5000,
@@ -23,4 +22,4 @@ const Toast = () => {
   )
 }
 
-export default Toast
+export default ToastMessage

@@ -1,25 +1,22 @@
-import { lazy, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getProducts } from '../../redux/products/productActions'
+import CardProductGrid from '../../components/products/CardProductGrid'
+import CardProductList from '../../components/products/CardProductList'
 import useTitle from '../../hooks/useTitle'
 import Spinner from '../../components/Spinner'
 import Alert from '../../components/Alert'
 import Pagination from '../../components/apiFeatures/Pagination'
 
-const CardProductGrid = lazy(() => import('../../components/products/CardProductGrid'))
-const CardProductList = lazy(() => import('../../components/products/CardProductList'))
-
 const ProductsPage = () => {
   useTitle('Explore our products!')
-  const [sort, setSort] = useState('')
   const [view, setView] = useState('grid')
+  const [sort, setSort] = useState('')
   const params = useParams()
   const dispatch = useDispatch()
 
-  const { loading, error, products, page, pages} = useSelector(
-    (state) => state.products
-  )
+  const { loading, error, products, page, pages} = useSelector((state) => state.products)
 
   const pageNumber = params.page || 1
   const keyword = params.keyword

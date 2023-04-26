@@ -1,6 +1,4 @@
-import { lazy } from 'react'
-
-const Search = lazy(() => import('../components/apiFeatures/Search'))
+import Search from '../components/apiFeatures/Search'
 
 const NotFoundPage = () => {
   return (

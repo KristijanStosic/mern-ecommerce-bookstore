@@ -10,9 +10,10 @@ import Alert from '../../components/Alert'
 
 const ProductPage = () => {
   const [quantity, setQuantity] = useState(1)
-  const dispatch = useDispatch()
   const { productId } = useParams()
   const { loading, error, product } = useSelector((state) => state.products)
+  
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getProduct(productId))

@@ -1,8 +1,6 @@
-import { lazy } from 'react'
 import { Link } from 'react-router-dom'
-
-const Rating = lazy(() => import('./Rating'))
-const ReadMoreText = lazy(() => import('./ReadMoreText'))
+import Rating from './Rating'
+import ReadMoreText from './ReadMoreText'
 
 const CardProductList = ({ product }) => {
   return (

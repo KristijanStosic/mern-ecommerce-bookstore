@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Pagination = ({ page, pages, isAdmin = false, keyword = '' }) => {
