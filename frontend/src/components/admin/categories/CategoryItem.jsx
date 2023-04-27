@@ -1,50 +1,42 @@
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  openDeleteModal,
-  openUpdateModal,
-} from '../../../redux/modal/modalSlice'
-import DeleteModal from '../../modals/DeleteModal'
-import {
-  deleteCategory,
-  updateCategory,
-} from '../../../redux/categories/categoryActions'
-import UpdateModal from './UpdateModal'
 import { useState } from 'react'
+import { deleteCategory, updateCategory } from '../../../redux/categories/categoryActions'
+import UpdateCPGModal from '../../modals/UpdateCPGModal'
+import DeleteModal from '../../modals/DeleteModal'
 
 const CategoryItem = ({ category }) => {
-  const dispatch = useDispatch()
-  const [deleteData, setDeleteData] = useState({})
-
-  const { isOpenUpdateModal, isOpenDeleteModal } = useSelector(
-    (state) => state.modal
-  )
+  const [isOpenUpdateModal, setIsOpenUpdateModal] = useState(false)
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
 
   return (
     <>
       <td>{category.name}</td>
       <td style={{ cursor: 'pointer' }}>
         <i
-          className='fas fa-pencil-alt text-primary'
-          onClick={() => dispatch(openUpdateModal())}
+          className='fas fa-pencil-alt text-dark'
+          onClick={() => setIsOpenUpdateModal(true)}
         ></i>
         <i
           className='fas fa-trash text-danger mx-3'
-          onClick={() => {
-            setDeleteData(category)
-            dispatch(openDeleteModal())
-          }}
+          onClick={() => setIsOpenDeleteModal(true)}
         ></i>
       </td>
 
       {isOpenUpdateModal && (
-        <UpdateModal itemToUpdate={category} updateAction={updateCategory} />
+        <UpdateCPGModal
+          isOpen={isOpenUpdateModal}
+          onClose={setIsOpenUpdateModal}
+          itemToUpdate={category}
+          updateAction={updateCategory}
+          type='Category'
+        />
       )}
 
       {isOpenDeleteModal && (
         <DeleteModal
+          isOpen={isOpenDeleteModal}
+          onClose={setIsOpenDeleteModal}
           deleteAction={deleteCategory}
-          itemToDelete={deleteData}
-          type='category'
+          itemToDelete={category}
         />
       )}
     </>

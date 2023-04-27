@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Search = () => {
+const Search = ({ isAdmin }) => {
   const [keyword, setKeyword] = useState('')
 
   const navigate = useNavigate()
@@ -9,7 +9,13 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (keyword.trim()) {
-      navigate(`/products/search/${keyword}`)
+      if (isAdmin) {
+        navigate(`/admin/products/search/${keyword}`)
+      } else {
+        navigate(`/products/search/${keyword}`)
+      }
+    } else if (isAdmin) {
+      navigate('/admin/products')
     } else {
       navigate('/')
     }

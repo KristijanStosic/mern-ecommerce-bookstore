@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-hot-toast'
-import { closeUpdateModal } from '../../../redux/modal/modalSlice'
 
-const UpdateCPGForm = ({ itemToUpdate, updateAction }) => {
+const UpdateCPGForm = ({ itemToUpdate, updateAction, onClose }) => {
   const [name, setName] = useState(itemToUpdate?.name)
 
   const dispatch = useDispatch()
@@ -12,8 +11,8 @@ const UpdateCPGForm = ({ itemToUpdate, updateAction }) => {
     e.preventDefault()
 
     if (!name) return toast.error('Name is required')
-    dispatch(updateAction(itemToUpdate?._id, name))
-    dispatch(closeUpdateModal())
+    dispatch(updateAction(itemToUpdate._id, name))
+    onClose(false)
 }
 
   return (

@@ -9,7 +9,7 @@ const ReadMoreText = ({ children }) => {
   }
 
   return (
-    <p className='text-muted small mt-2' style={{ cursor: 'pointer'}}>
+    <p className='text-dark small mt-2' style={{ cursor: 'pointer'}}>
       {readMore && readMore ? text.slice(0, 300) : text}
       <span onClick={toggleReadMore} className='text-danger'>
         {readMore ? ' [...read more]' : ' [show less]'}

@@ -4,7 +4,7 @@ import User from '../models/User.js'
 // @route   GET /api/users
 // @access  Private/Admin
 const getUsers = async (req, res) => {
-  const users = await User.find({}).select('-password')
+  const users = await User.find({}).sort({ isAdmin: 'desc' }).select('-password')
 
   // If no users
   if (!users?.length) {

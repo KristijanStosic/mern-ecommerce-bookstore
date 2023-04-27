@@ -13,7 +13,7 @@ const Sidebar = () => {
             <hr className='text-white nowrap d-none d-sm-block' />
             <ul className='nav nav-pills flex-column mt-2 mt-sm-0' id='menu'>
               <li className='nav-item my-sm-1 my-2'>
-                <Link className='nav-link text-white text-center text-sm-start' aria-current='page'>
+                <Link to='/admin-dashboard' className='nav-link text-white text-center text-sm-start' aria-current='page'>
                   <i className='fas fa-tachometer-alt'></i>
                   <span className='ms-2 d-none d-sm-inline'>Dashboard</span>
                 </Link>
@@ -31,7 +31,7 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className='nav-item my-sm-1 my-2'>
-                <Link to='/' className='nav-link text-white text-center text-sm-start'>
+                <Link to='/admin/users' className='nav-link text-white text-center text-sm-start'>
                   <i className='fas fa-users'></i>
                   <span className='ms-2 d-none d-sm-inline'>Users</span>
                 </Link>

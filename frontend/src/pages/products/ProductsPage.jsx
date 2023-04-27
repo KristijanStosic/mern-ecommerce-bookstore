@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProducts } from '../../redux/products/productActions'
+import { getAllProducts } from '../../redux/products/productActions'
 import CardProductGrid from '../../components/products/CardProductGrid'
 import CardProductList from '../../components/products/CardProductList'
 import useTitle from '../../hooks/useTitle'
@@ -16,13 +16,13 @@ const ProductsPage = () => {
   const params = useParams()
   const dispatch = useDispatch()
 
-  const { loading, error, products, page, pages} = useSelector((state) => state.products)
+  const { loading, error, products, page, pages } = useSelector((state) => state.products)
 
   const pageNumber = params.page || 1
   const keyword = params.keyword
 
   useEffect(() => {
-    dispatch(getProducts(keyword, pageNumber, sort))
+    dispatch(getAllProducts(keyword, pageNumber, sort))
   }, [dispatch, keyword, pageNumber, sort])
 
   if (loading) return <Spinner />
@@ -44,15 +44,10 @@ const ProductsPage = () => {
           </div>
           <div className='col-md-9'>
             <div className='row'>
-              <div className='col-7'>
-                <span className='align-middle fw-bold'>
-                  155 results for{' '}
-                  <span className='text-warning'>"t-shirts"</span>
-                </span>
-              </div>
-              <div className='col-5 d-flex justify-content-end'>
+              <div className='d-flex justify-content-end align-items-center'>
+                <span className='text-nowrap'>Sort by</span>
                 <select
-                  className='form-select mw-210 float-start'
+                  className='form-select mw-210 float-start ms-3'
                   aria-label='Default select'
                   onChange={(e) => setSort(e.target.value)}
                   value={sort}
@@ -64,6 +59,7 @@ const ProductsPage = () => {
                   <option value='createdAt'>Oldest</option>
                   <option value='-createdAt'>Newest</option>
                 </select>
+
                 <div className='btn-group ms-3' role='group'>
                   <button
                     aria-label='Grid'
@@ -73,7 +69,9 @@ const ProductsPage = () => {
                       view === 'grid' ? 'btn-primary' : 'btn-outline-primary'
                     }`}
                   >
-                   <span><i className='fas fa-th'></i></span>
+                    <span>
+                      <i className='fas fa-th'></i>
+                    </span>
                   </button>
                   <button
                     aria-label='List'
@@ -83,7 +81,9 @@ const ProductsPage = () => {
                       view === 'list' ? 'btn-primary' : 'btn-outline-primary'
                     }`}
                   >
-                    <span><i className='fas fa-bars'></i></span>
+                    <span>
+                      <i className='fas fa-bars'></i>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -108,7 +108,11 @@ const ProductsPage = () => {
                 })}
             </div>
             <hr />
-            <Pagination page={page} pages={pages} keyword={keyword ? keyword : ''} />
+            <Pagination
+              page={page}
+              pages={pages}
+              keyword={keyword ? keyword : ''}
+            />
           </div>
         </div>
       </div>

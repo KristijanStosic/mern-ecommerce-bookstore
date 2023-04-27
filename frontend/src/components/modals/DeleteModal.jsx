@@ -1,34 +1,31 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { closeDeleteModal } from '../../redux/modal/modalSlice'
+import { useDispatch } from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
 
-const DeleteModal = ({ itemToDelete, type, deleteAction }) => {
+const DeleteModal = ({ isOpen, onClose, itemToDelete, deleteAction }) => {
   const dispatch = useDispatch()
-
-  const { isOpenDeleteModal } = useSelector((state) => state.modal)
 
   const deleteHandler = () => {
     dispatch(deleteAction(itemToDelete._id))
-    dispatch(closeDeleteModal())
+    onClose(false)
   }
 
   return (
-    <Modal show={isOpenDeleteModal} onHide={() => dispatch(closeDeleteModal())}>
+    <Modal show={isOpen} onHide={() => onClose(false)} backdrop='static' keyboard={false}>
       <Modal.Header closeButton>
-        <Modal.Title>Delete {type}</Modal.Title>
+        <Modal.Title>Delete {itemToDelete?.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         Are you sure you want to delete category {itemToDelete.name} ?
       </Modal.Body>
       <Modal.Footer>
         <button
-          className='btn btn-danger'
-          onClick={() => dispatch(closeDeleteModal())}
+          className='btn btn-danger btn-lg'
+          onClick={() => onClose(false)}
         >
-          No
+          <i className='fas fa-times'></i>
         </button>
-        <button className='btn btn-success' onClick={deleteHandler}>
-          Yes
+        <button className='btn btn-success btn-lg' onClick={deleteHandler}>
+        <i className='fas fa-check'></i>
         </button>
       </Modal.Footer>
     </Modal>

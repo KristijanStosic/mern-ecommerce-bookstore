@@ -2,22 +2,35 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllCategories } from '../../redux/categories/categoryActions'
+import { getAllPublishers } from '../../redux/publishers/publisherActions'
+import { getAllGenres } from '../../redux/genres/genreActions'
+import { getAllProducts } from '../../redux/products/productActions'
+import { getAllUsers } from '../../redux/users/userActions'
 
 import Sidebar from '../../components/admin/Sidebar'
+import Spinner from '../../components/Spinner'
 
 const AdminDashboardPage = () => {
   const dispatch = useDispatch()
-  const { categories } = useSelector((state) => state.categories)
+  const { categories, loading } = useSelector((state) => state.categories)
+  const { publishers } = useSelector((state) => state.publishers)
+  const { genres } = useSelector((state) => state.genres)
+  const { users } = useSelector((state) => state.users)
+  const { products, count } = useSelector((state) => state.products)
 
-  /*let outOfStock = 0
+  let outOfStock = 0
   products.forEach((product) => {
     if (product.stock === 0) {
       outOfStock += 1
     }
-  })*/
+  })
 
   useEffect(() => {
     dispatch(getAllCategories())
+    dispatch(getAllPublishers())
+    dispatch(getAllGenres())
+    dispatch(getAllProducts())
+    dispatch(getAllUsers())
   }, [dispatch])
 
   return (
@@ -30,9 +43,9 @@ const AdminDashboardPage = () => {
         <div className='col-12 col-md-10'>
           <h1 className='my-3 mx-3'>Dashboard</h1>
 
-          {/* {loading ? (
-            <Loader />
-          ) : ( */}
+          {loading ? (
+            <Spinner />
+          ) : (
             <>
               <div className='row pr-4 mx-2'>
                 <div className='col-xl-12 col-sm-12 mb-3'>
@@ -53,7 +66,7 @@ const AdminDashboardPage = () => {
                     <div className='card-body text-white'>
                     <div className='text-center'>
                         <h5 class="card-title">Products</h5>
-                        <p class="card-text fs-3">24</p>
+                        <p class="card-text fs-3">{products && count}</p>
                       </div>
                     </div>
                     <Link
@@ -69,7 +82,7 @@ const AdminDashboardPage = () => {
                 </div>
 
                 <div className='col-xl-3 col-sm-6 mb-3'>
-                  <div className='card bg-success o-hidden h-100'>
+                  <div className='card bg-danger o-hidden h-100'>
                     <div className='card-body text-white'>
                     <div className='text-center'>
                         <h5 className="card-title">Categories</h5>
@@ -89,7 +102,47 @@ const AdminDashboardPage = () => {
                 </div>
 
                 <div className='col-xl-3 col-sm-6 mb-3'>
-                  <div className='card bg-danger o-hidden h-100'>
+                  <div className='card bg-secondary o-hidden h-100'>
+                    <div className='card-body text-white'>
+                    <div className='text-center'>
+                        <h5 className="card-title">Publishers</h5>
+                        <p className="card-text fs-3">{publishers && publishers.length}</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/publishers'
+                    >
+                     <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-dark o-hidden h-100'>
+                    <div className='card-body text-white'>
+                    <div className='text-center'>
+                        <h5 className="card-title">Genres</h5>
+                        <p className="card-text fs-3">{genres && genres.length}</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/genres'
+                    >
+                     <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-dark o-hidden h-100'>
                     <div className='card-body text-white'>
                       <div className='text-center'>
                         <h5 className="card-title">Orders</h5>
@@ -109,11 +162,11 @@ const AdminDashboardPage = () => {
                 </div>
 
                 <div className='col-xl-3 col-sm-6 mb-3'>
-                  <div className='card bg-info o-hidden h-100'>
+                  <div className='card bg-secondary o-hidden h-100'>
                     <div className='card-body text-white'>
                       <div className='text-center'>
                         <h5 className="card-title">Users</h5>
-                        <p className="card-text fs-3">245</p>
+                        <p className="card-text fs-3">{users && users.length}</p>
                       </div>
                     </div>
                     <Link
@@ -129,11 +182,31 @@ const AdminDashboardPage = () => {
                 </div>
 
                 <div className='col-xl-3 col-sm-6 mb-3'>
-                  <div className='card bg-warning o-hidden h-100'>
+                  <div className='card bg-danger o-hidden h-100'>
+                    <div className='card-body text-white'>
+                      <div className='text-center'>
+                        <h5 className="card-title">Reviews</h5>
+                        <p className="card-text fs-3">245</p>
+                      </div>
+                    </div>
+                    <Link
+                      className='card-footer text-white clearfix small z-1'
+                      to='/admin/reviews'
+                    >
+                      <div className="d-flex justify-content-between">
+                        <span className='text-small'>View Details</span>
+                        <span><i className='fas fa-angle-right'></i></span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className='col-xl-3 col-sm-6 mb-3'>
+                  <div className='card bg-success o-hidden h-100'>
                     <div className='card-body text-white'>
                     <div className='text-center'>
                         <h5 className="card-title">Out of Stock</h5>
-                        <p className="card-text fs-3">5</p>
+                        <p className="card-text fs-3">{outOfStock}</p>
                       </div>
                     </div>
                     <Link
@@ -150,7 +223,7 @@ const AdminDashboardPage = () => {
               </div>
               
             </>
-          {/* )} */}
+          )}
         </div>
       </div>
     </>

@@ -13,7 +13,7 @@ const Pagination = ({ page, pages, isAdmin = false, keyword = '' }) => {
                     ? keyword
                       ? `/products/search/${keyword}/page/${x + 1}`
                       : `/products/page/${x + 1}`
-                    : `/admin/all-products/${x + 1}`
+                    : `/admin/products/page/${x + 1}`
                 }
                 className={page === x + 1 ? 'page-link active' : 'page-link'}
               >

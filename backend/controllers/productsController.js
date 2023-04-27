@@ -15,7 +15,7 @@ const getProducts = async (req, res) => {
 
   if (!products?.length) return res.status(404).json({ message: 'No products' })
 
-  res.status(200).json({ products, page, pages: Math.ceil(count / pageSize) })
+  res.status(200).json({ products, page, pages: Math.ceil(count / pageSize), count })
 }
 
 // @desc    Get single product

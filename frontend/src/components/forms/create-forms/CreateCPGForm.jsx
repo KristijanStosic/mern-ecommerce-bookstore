@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createNewCategory } from '../../../redux/categories/categoryActions'
-import { createNewPublisher } from '../../../redux/publishers/publisherActions'
 import { toast } from 'react-hot-toast'
-import { closeCreateModal } from '../../../redux/modal/modalSlice'
 
-const CreateCPGForm = ({ type }) => {
+const CreateCPGForm = ({ createAction, type, onClose }) => {
   const [name, setName] = useState('')
 
   const dispatch = useDispatch()
@@ -15,16 +12,9 @@ const CreateCPGForm = ({ type }) => {
 
     if (!name) return toast.error('Name is required')
 
-    if (type === 'Category') {
-      dispatch(createNewCategory({ name }))
-      dispatch(closeCreateModal())
-    }
-
-    if (type === 'Publisher') {
-      dispatch(createNewPublisher({ name }))
-      dispatch(closeCreateModal())
-    }
-}
+    dispatch(createAction({ name }))
+    onClose(false)
+  }
 
   return (
     <form onSubmit={handleSubmit}>

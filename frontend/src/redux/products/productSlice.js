@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-hot-toast'
 
 export const initialState = {
   loading: false,
@@ -7,9 +8,7 @@ export const initialState = {
   product: null,
   page: null,
   pages: null,
-  reviewSend: false,
-  productUpdate: false,
-  reviewRemoval: false,
+  count: 0
 }
 
 export const productsSlice = createSlice({
@@ -19,40 +18,44 @@ export const productsSlice = createSlice({
     setLoading: (state) => {
       state.loading = true
     },
-    setProducts: (state, action) => {
+    getProducts: (state, action) => {
       state.loading = false
       state.error = null
       state.products = action.payload.products
       state.page = action.payload.page
       state.pages = action.payload.pages
+      state.count = action.payload.count
     },
-    setProduct: (state, action) => {
+    getProduct: (state, action) => {
       state.product = action.payload
       state.loading = false
       state.error = null
+    },
+    createProduct: (state, action) => {
+      state.products = [...state.products, action.payload]
+      //state.products.push(action.payload)
+      state.loading = false
+      state.error = null
+      toast.success(`Product ${action.payload.name} created`)
+    },
+    productUpdate: (state, action) => {
+      state.products = state.products.map((product) => product._id === action.payload._id ? action.payload : product)
+      toast.success('Product updated')
+      state.loading = false
+      state.error = null
+    },
+    productDelete: (state, action) => {
+      state.products = state.products.filter((product) => product._id !== action.payload._id)
+      state.error = null
+      state.loading = false
+      toast.success(`Product ${action.payload.name} is deleted`)
     },
     setError: (state, action) => {
       state.error = action.payload
       state.loading = false
     },
-    productReviewed: (state) => {
-      state.loading = false
-      state.error = null
-      state.reviewSend = true
-    },
     resetError: (state) => {
       state.error = null
-      state.reviewSend = false
-      state.productUpdate = false
-      state.reviewRemoval = false
-    },
-    setProductUpdateFlag: (state) => {
-      state.productUpdate = true
-      state.loading = false
-    },
-    setReviewRemovalFlag: (state) => {
-      state.error = null
-      state.reviewRemoval = true
       state.loading = false
     },
   },
@@ -60,14 +63,15 @@ export const productsSlice = createSlice({
 
 export const {
   setLoading,
+  getProducts,
+  getProduct,
+  createProduct,
+  productUpdate,
+  productDelete,
   setError,
-  setProducts,
-  setProduct,
-  productReviewed,
   resetError,
-  setProductUpdateFlag,
-  setReviewRemovalFlag,
 } = productsSlice.actions
+
 export default productsSlice.reducer
 
 export const productsSelector = (state) => state.products

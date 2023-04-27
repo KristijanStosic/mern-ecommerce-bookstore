@@ -4,26 +4,26 @@ import Rating from './Rating'
 const CardProductGrid = ({ product }) => {
   return (
     <div className='card'>
-      <Link to={`/product/${product._id}`}><img src={product?.image} className='card-img-top' alt={product.name} /></Link>
+      <Link to={`/product/${product._id}`}>
+        <img src={product?.image} className='card-img-top' alt={product.name} style={{ width: '100%', height: '25vw', objectFit: 'cover'}} />
+      </Link>
       {product.isNewProduct && (
         <span className='badge bg-success position-absolute mt-2 ms-2'>
           New
         </span>
       )}
       <div className='card-body'>
-        <h6 className='card-subtitle mb-2'>
           <Link to={`/product/${product._id}`} className='text-decoration-none'>
-            {product.name}
+            <h5 className='card-title text-dark'>{product.name}</h5>
           </Link>
-        </h6>
         <div className='my-2'>
           <span className='fw-bold h5'>${product.price}</span>
             <Rating averageRating={product.averageRating} numOfReviews={product.numOfReviews} />
         </div>
-        <div className='btn-group  d-flex' role='group'>
+        <div className='btn-group d-grid' role='group'>
           <button
             type='button'
-            className='btn btn-sm btn-primary'
+            className='btn btn-primary'
             title='Add to cart'
             disabled={product.countInStock <= 0}
           >
