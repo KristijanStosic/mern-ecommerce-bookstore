@@ -25,21 +25,11 @@ export const usersSlice = createSlice({
       state.loading = false
       state.error = null
     },
-    getProfile: (state, action) => {
-      state.user = action.payload
-      state.loading = false 
-      state.error = null
-    },
-    updateProfile: (state, action) => {
-      state.user = action.payload
-      state.loading = false 
-      state.error = null
-    },
     userUpdate: (state, action) => {
       state.users = state.users.map((user) => user._id === action.payload._id ? action.payload : user)
-      toast.success('User updated')
       state.loading = false
       state.error = null
+      toast.success('User updated')
     },
     userDelete: (state, action) => {
       state.users = state.users.filter((user) => user._id !== action.payload._id)
@@ -62,8 +52,6 @@ export const {
   setLoading,
   getUsers,
   getUser,
-  getProfile,
-  updateProfile,
   userUpdate,
   userDelete,
   setError,

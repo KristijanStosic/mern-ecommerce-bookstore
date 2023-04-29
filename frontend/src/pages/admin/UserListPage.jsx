@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllUsers } from '../../redux/users/userActions'
 import Spinner from '../../components/Spinner'
@@ -7,8 +7,6 @@ import Alert from '../../components/Alert'
 import UserItem from '../../components/admin/users/UserItem'
 
 const UserListPage = () => {
-  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
-
   const { users, loading, error } = useSelector((state) => state.users)
 
   const dispatch = useDispatch()

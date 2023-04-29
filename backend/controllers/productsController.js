@@ -9,7 +9,7 @@ const getProducts = async (req, res) => {
   const page = Number(req.query.page) || 1
   const count = await Product.countDocuments()
 
-  const apiFeatures = new APIFeatures(Product.find().populate('category', 'name').populate('publisher', 'name').populate('genre', 'name'), req.query).sort().search().filter().pagination(pageSize, page)
+  const apiFeatures = new APIFeatures(Product.find().populate('category', 'name').populate('publisher', 'name').populate('genre', 'name').populate('user', 'name'), req.query).sort().search().filter().pagination(pageSize, page)
 
   const products = await apiFeatures.query 
 
@@ -93,7 +93,7 @@ const deleteProduct = async (req, res) => {
 
   if (!product) return res.status(404).json({ message: 'Product not found' })
 
-  if (product.user.toString() !== req.user.id) return res.status(401).json({ message: 'Not Authorized'})
+  if (product.user.toString() !== req.user.id) return res.status(401).json({ message: 'You didnt create this product. You cannot delete it'})
 
   await product.remove()
 

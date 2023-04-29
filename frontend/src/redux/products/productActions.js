@@ -71,6 +71,7 @@ export const updateProduct = (productId, productData) => async (dispatch, getSta
 }
 
 export const deleteProduct = (productId) => async (dispatch, getState) => {
+  dispatch(setLoading(true))
   const { auth: { user } } = getState()
 
   const config = {

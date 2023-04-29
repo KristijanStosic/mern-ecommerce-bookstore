@@ -4,6 +4,8 @@ import {
   setError,
   userLogin,
   userLogout,
+  getProfile,
+  updateProfile,
   resetError
 } from '../auth/authSlice'
 import { extractErrorMessage } from '../../utils/utils'
@@ -27,6 +29,7 @@ export const login = (userData) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('user')
+  localStorage.removeItem('profile')
   localStorage.removeItem('subtotal')
   localStorage.removeItem('cart')
   dispatch(userLogout())
@@ -40,6 +43,47 @@ export const register = (userData) => async (dispatch) => {
     localStorage.setItem('user', JSON.stringify(data))
   } catch (error) {
     dispatch(setError(extractErrorMessage(error)))
+  }
+}
+
+export const getUserProfile = () => async (dispatch, getState) => {
+  const { auth: { user } } = getState()
+
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`
+    }
+  }
+
+  try {
+    const { data } = await axios.get(`/api/users/profile`, config)
+    dispatch(getProfile(data))
+    dispatch(resetError())
+    localStorage.setItem('profile', JSON.stringify(data));
+  } catch (error) {
+    dispatch(setError(extractErrorMessage(error)))
+  }
+}
+
+export const updateUserProfile = (profileData) => async (dispatch, getState) => {
+  const { auth: { user } } = getState()
+  
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`
+    }
+  }
+  
+  try {
+    const { data } = await axios.put(`/api/users/profile`, profileData, config)
+    dispatch(updateProfile(data))
+    dispatch(resetError())
+    localStorage.setItem('profile', JSON.stringify(data))
+    localStorage.setItem('user', JSON.stringify(data))
+  } catch (error) {
+      dispatch(setError(extractErrorMessage(error)))
   }
 }
 

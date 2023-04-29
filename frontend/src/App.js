@@ -18,6 +18,10 @@ import PublisherListPage from './pages/admin/PublisherListPage'
 import GenreListPage from './pages/admin/GenreListPage'
 import ProductListPage from './pages/admin/ProductListPage'
 import UserListPage from './pages/admin/UserListPage'
+import ProfilePage from './pages/profile/ProfilePage'
+import OrderListPage from './pages/admin/OrderListPage'
+import OrderDetailsPage from './pages/admin/OrderDetailsPage'
+import ReviewListPage from './pages/admin/ReviewListPage'
 
 const App = () => {
   return (
@@ -37,6 +41,9 @@ const App = () => {
         <Route path='/admin/categories' element={<CategoryListPage />} />
         <Route path='/admin/publishers' element={<PublisherListPage />} />
         <Route path='/admin/genres' element={<GenreListPage />} />
+        <Route path='/admin/orders' element={<OrderListPage />} />
+        <Route path='/admin/order/:orderId' element={<OrderDetailsPage />} />
+        <Route path='/admin/reviews' element={<ReviewListPage />} />
         <Route path='/admin/users' element={<UserListPage />} />
         <Route path='/admin/products' element={<ProductListPage />} />
         <Route path='/admin/products/page/:page' element={<ProductListPage />} />
@@ -47,6 +54,7 @@ const App = () => {
 
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
+        <Route path='/my-profile' element={<ProfilePage />} />
         <Route path='/*' element={<NotFoundPage />} />
       </Routes>
       <Footer />

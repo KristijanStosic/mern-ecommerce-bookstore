@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { formatDate } from '../../../utils/utils'
 import { deleteUser } from '../../../redux/users/userActions'
-import UpdateProductForm from '../../../components/forms/update-forms/UpdateProductForm'
+import UpdateUserModal from '../../modals/UpdateUserModal'
 import DeleteModal from '../../modals/DeleteModal'
 
 const UserItem = ({ user }) => {
@@ -10,12 +10,13 @@ const UserItem = ({ user }) => {
 
   return (
     <>
-      <td className='align-middle text-wrap fw-semibold'>{user.name}</td>
+      <td className='align-middle fw-semibold'>{user.name}</td>
       <td className='align-middle'>{user.email}</td>
       <td className='align-middle'>
         {user.isAdmin  
-              ? <span className='badge bg-success me-2'><i className='fas fa-check'></i></span> 
-              : <span className='badge bg-danger me-2'><i className='fas fa-times'></i></span>}
+              ? <i className='fas fa-check text-success'></i> 
+              : <i className='fas fa-times text-danger'></i>
+        }
       </td>
       <td className='align-middle'>{formatDate(user.createdAt)}</td>
       <td style={{ cursor: 'pointer' }} className='align-middle'>
@@ -30,15 +31,13 @@ const UserItem = ({ user }) => {
         ></i>
       </td>
 
-      {/* {isOpenUpdateModal && (
-        <UpdateProductForm
+      {isOpenUpdateModal && (
+        <UpdateUserModal
           isOpen={isOpenUpdateModal}
           onClose={setIsOpenUpdateModal}
-          itemToUpdate={product}
-          updateAction={updateProduct}
-          type='Product'
+          itemToUpdate={user}
         />
-      )} */}
+      )}
 
       {isOpenDeleteModal && (
         <DeleteModal

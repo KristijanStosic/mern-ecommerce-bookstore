@@ -25,7 +25,7 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className='nav-item my-sm-1 my-2'>
-                <Link to='/admin/all-orders' className='nav-link text-white text-center text-sm-start'>
+                <Link to='/admin/orders' className='nav-link text-white text-center text-sm-start'>
                   <i className='fas fa-shopping-basket'></i>
                   <span className='ms-2 d-none d-sm-inline'>Orders</span>
                 </Link>
@@ -37,7 +37,7 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className='nav-item my-sm-1 my-2'>
-                <Link to='/' className='nav-link text-white text-center text-sm-start'>
+                <Link to='/admin/reviews' className='nav-link text-white text-center text-sm-start'>
                   <i className='fas fa-star'></i>
                   <span className='ms-2 d-none d-sm-inline'>Reviews</span>
                 </Link>

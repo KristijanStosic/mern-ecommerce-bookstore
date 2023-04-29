@@ -72,7 +72,7 @@ const CreateProductForm = ({ onClose }) => {
         const { data } = await axios.post('/api/upload', formData, config)
 
         setImage(data)
-        setImagePreview(URL.createObjectURL(e.target.files[0]))
+        setImagePreview(URL.createObjectURL(file))
         setImageUploading(false)
     } catch (error) {
       setImage('')

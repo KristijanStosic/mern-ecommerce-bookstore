@@ -13,7 +13,7 @@ const UpdateCPGForm = ({ itemToUpdate, updateAction, onClose }) => {
     if (!name) return toast.error('Name is required')
     dispatch(updateAction(itemToUpdate._id, name))
     onClose(false)
-}
+  }
 
   return (
     <form onSubmit={handleSubmit}>

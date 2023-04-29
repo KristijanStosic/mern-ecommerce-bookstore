@@ -57,12 +57,6 @@ const updateUser = async (req, res) => {
     return res.status(404).json({ message: 'User not found' })
   }
 
-  const userAlreadyExists = await User.findOne({ email }).select('-password')
-
-  if (userAlreadyExists) {
-    return res.status(409).json({ message: 'Email already exists' })
-  }
-
   user.name = name || user.name
   user.email = email || user.email
   user.isAdmin = isAdmin

@@ -53,7 +53,7 @@ const ProductListPage = () => {
               </div>
             </div>
             <table className='table table-striped table-image table-bordered table-hover border'>
-              <thead className='table-dark text-center'>
+              <thead className='table-dark text-center text-uppercase'>
                 <tr>
                   <th scope='col'>ID</th>
                   <th scope='col'>Image</th>

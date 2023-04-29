@@ -34,7 +34,7 @@ const Search = ({ isAdmin }) => {
         />
         <label className='visually-hidden' htmlFor='search'></label>
         <button
-          className='btn btn-primary text-white'
+          className='btn btn-dark text-white'
           type='submit'
           aria-label='Search'
         >

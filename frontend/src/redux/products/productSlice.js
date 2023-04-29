@@ -40,7 +40,7 @@ export const productsSlice = createSlice({
     },
     productUpdate: (state, action) => {
       state.products = state.products.map((product) => product._id === action.payload._id ? action.payload : product)
-      toast.success('Product updated')
+      toast.success(`Product ${action.payload.name} updated`)
       state.loading = false
       state.error = null
     },

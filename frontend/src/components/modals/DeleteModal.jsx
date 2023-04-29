@@ -15,7 +15,7 @@ const DeleteModal = ({ isOpen, onClose, itemToDelete, deleteAction }) => {
         <Modal.Title>Delete {itemToDelete?.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Are you sure you want to delete category {itemToDelete.name} ?
+        Are you sure you want to delete {itemToDelete.name}?
       </Modal.Body>
       <Modal.Footer>
         <button

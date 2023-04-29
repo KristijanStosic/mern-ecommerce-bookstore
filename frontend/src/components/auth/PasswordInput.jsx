@@ -16,7 +16,7 @@ const PasswordInput = ({ placeholder, value, onChange, name, onPaste }) => {
         <input
           className='form-control'
           name={name}
-          id='password'
+          id='showPassword'
           onChange={onChange}
           value={value}
           type={showPassword ? 'text' : 'password'}

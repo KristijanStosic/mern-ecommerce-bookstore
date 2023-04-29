@@ -6,9 +6,11 @@ import { getAllPublishers } from '../../redux/publishers/publisherActions'
 import { getAllGenres } from '../../redux/genres/genreActions'
 import { getAllProducts } from '../../redux/products/productActions'
 import { getAllUsers } from '../../redux/users/userActions'
+import { getAllReviews } from '../../redux/reviews/reviewActions'
 
 import Sidebar from '../../components/admin/Sidebar'
 import Spinner from '../../components/Spinner'
+import { getAllOrders } from '../../redux/orders/orderActions'
 
 const AdminDashboardPage = () => {
   const dispatch = useDispatch()
@@ -16,11 +18,13 @@ const AdminDashboardPage = () => {
   const { publishers } = useSelector((state) => state.publishers)
   const { genres } = useSelector((state) => state.genres)
   const { users } = useSelector((state) => state.users)
+  const { orders } = useSelector((state) => state.orders)
+  const { reviews } = useSelector((state) => state.reviews)
   const { products, count } = useSelector((state) => state.products)
 
   let outOfStock = 0
   products.forEach((product) => {
-    if (product.stock === 0) {
+    if (product.countInStock === 0) {
       outOfStock += 1
     }
   })
@@ -31,6 +35,8 @@ const AdminDashboardPage = () => {
     dispatch(getAllGenres())
     dispatch(getAllProducts())
     dispatch(getAllUsers())
+    dispatch(getAllOrders())
+    dispatch(getAllReviews())
   }, [dispatch])
 
   return (
@@ -52,8 +58,8 @@ const AdminDashboardPage = () => {
                   <div className='card bg-primary o-hidden h-100'>
                     <div className='card-body text-white'>
                       <div className='text-center'>
-                        <h5 class="card-title">Total Profit</h5>
-                        <p class="card-text fs-5">$66924</p>
+                        <h5 className="card-title">Total Profit</h5>
+                        <p className="card-text fs-5">$66924</p>
                       </div>
                     </div>
                   </div>
@@ -65,8 +71,8 @@ const AdminDashboardPage = () => {
                   <div className='card bg-success o-hidden h-100'>
                     <div className='card-body text-white'>
                     <div className='text-center'>
-                        <h5 class="card-title">Products</h5>
-                        <p class="card-text fs-3">{products && count}</p>
+                        <h5 className="card-title">Products</h5>
+                        <p className="card-text fs-3">{products && count}</p>
                       </div>
                     </div>
                     <Link
@@ -146,7 +152,7 @@ const AdminDashboardPage = () => {
                     <div className='card-body text-white'>
                       <div className='text-center'>
                         <h5 className="card-title">Orders</h5>
-                        <p className="card-text fs-3">15</p>
+                        <p className="card-text fs-3">{orders && orders.length}</p>
                       </div>
                     </div>
                     <Link
@@ -186,7 +192,7 @@ const AdminDashboardPage = () => {
                     <div className='card-body text-white'>
                       <div className='text-center'>
                         <h5 className="card-title">Reviews</h5>
-                        <p className="card-text fs-3">245</p>
+                        <p className="card-text fs-3">{reviews && reviews.length}</p>
                       </div>
                     </div>
                     <Link

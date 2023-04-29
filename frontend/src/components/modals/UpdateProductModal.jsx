@@ -2,15 +2,18 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import UpdateProductForm from '../forms/update-forms/UpdateProductForm'
 
-const UpdateProductModal = ({ isOpen, onClose, itemToUpdate, updateAction }) => {
+const UpdateProductModal = ({ isOpen, onClose, itemToUpdate }) => {
 
   return (
     <Modal show={isOpen} onHide={() => onClose(false)}>
       <Modal.Header closeButton>
-        <Modal.Title>Update {itemToUpdate.name}?</Modal.Title>
+        <Modal.Title>Update {itemToUpdate?.name}?</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <UpdateProductForm itemToUpdate={itemToUpdate} updateAction={updateAction} onClose={onClose} />
+        <UpdateProductForm 
+          itemToUpdate={itemToUpdate}
+          onClose={onClose} 
+        />
       </Modal.Body>
       <Modal.Footer>
         <button

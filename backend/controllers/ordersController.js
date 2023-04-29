@@ -12,8 +12,11 @@ const createOrder = async (req, res) => {
 
   orderItems.forEach(async (item) => {
     const product = await Product.findOne({ _id: item.product })
-    if (!product) return res.status(404).json({ message: 'Product not found' })
-    if (item.quantity > product.countInStock) return res.status(400).json({ message: 'You cannot order more than available' })
+    if (!product) {
+      return  res.status(404).json({ message: 'Product not found' })
+    } else if (item.quantity > product.countInStock) {
+      return res.status(400).json({ message: 'You cannot order more than available' })
+    }
 
     product.countInStock -= item.quantity
 

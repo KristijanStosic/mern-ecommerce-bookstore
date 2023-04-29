@@ -6,8 +6,6 @@ import {
   getUser,
   userUpdate,
   userDelete,
-  getProfile,
-  updateProfile,
   setLoading,
   setError,
   resetError,
@@ -50,45 +48,6 @@ export const getUserById = (userId) => async (dispatch, getState) => {
   }
 }
 
-export const getUserProfile = () => async (dispatch, getState) => {
-  const { auth: { user } } = getState()
-
-  const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`
-      }
-  }
-
-  try {
-      const { data } = await axios.post(`/api/profile`, config)
-      dispatch(getProfile(data))
-      dispatch(resetError())
-  } catch (error) {
-      dispatch(setError(extractErrorMessage(error)))
-  }
-}
-
-export const updateUserProfile = (profileData) => async (dispatch, getState) => {
-    const { auth: { user } } = getState()
-  
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.token}`
-        }
-    }
-  
-    try {
-        const { data } = await axios.put(`/api/profile`, profileData, config)
-        localStorage.setItem('user', JSON.stringify(data));
-        dispatch(updateProfile(data))
-        dispatch(resetError())
-    } catch (error) {
-        dispatch(setError(extractErrorMessage(error)))
-    }
-  }
-
 export const updateUser = (userId, userData) => async (dispatch, getState) => {
   const { auth: { user } } = getState()
 
@@ -104,7 +63,7 @@ export const updateUser = (userId, userData) => async (dispatch, getState) => {
     dispatch(userUpdate(data))
     dispatch(resetError())
   } catch (error) {
-      dispatch(setError(extractErrorMessage(error)))
+    dispatch(setError(extractErrorMessage(error)))
   }
 }
 
@@ -126,6 +85,6 @@ export const deleteUser = (userId) => async (dispatch, getState) => {
   }
 }
 
-export const resetProductError = () => async (dispatch) => {
+export const resetUserError = () => async (dispatch) => {
   dispatch(resetError())
 }
