@@ -29,33 +29,18 @@ const ReviewListPage = () => {
               {error && <Alert type='danger'>{error}</Alert>}
             </div>
             <div className='d-flex justify-content-between align-items-center'>
-              <div className="d-flex justify-content-start align-items-center">
+              <div className='d-flex justify-content-start align-items-center'>
                 <h1 className='text-dark'>All Reviews</h1>
               </div>
             </div>
-            <table className='table table-striped table-image table-bordered table-hover border'>
-              <thead className='table-dark text-center'>
-                <tr>
-                  <th scope='col'>ID</th>
-                  <th scope='col'>Title</th>
-                  <th scope='col'>Comment</th>
-                  <th scope='col'>Rating</th>
-                  <th scope='col'>Product</th>
-                  <th scope='col'>User</th>
-                  <th scope='col'>Created</th>
-                  <th scope='col'>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {reviews &&
-                  reviews?.map((review, index) => (
-                    <tr key={review._id} className='text-center'>
-                      <th scope='row' className='align-middle text-center'>{index + 1}</th>
-                      <ReviewItem review={review} />
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+            <div className='row'>
+              {reviews &&
+                reviews?.map((review, index) => (
+                  <div key={index} className='col-md-4 mt-3'>
+                    <ReviewItem review={review} />
+                  </div>
+                ))}
+            </div>
           </>
         </div>
       </div>

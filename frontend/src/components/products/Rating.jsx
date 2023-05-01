@@ -1,6 +1,6 @@
 const Rating = ({ averageRating, numOfReviews, color }) => {
   return (
-    <div className='border-bottom mb-3'>
+    <div className=''>
      <span>
         <i
           style={{ color }}
@@ -62,7 +62,7 @@ const Rating = ({ averageRating, numOfReviews, color }) => {
         ></i>
       </span>
       <span className='text-secondary mx-1'>
-        {`(${numOfReviews}) ${numOfReviews === 0 ? 'Review' : 'Reviews'}`}
+        {numOfReviews && `(${numOfReviews}) ${numOfReviews === 0 ? 'Review' : 'Reviews'}`}
       </span>
     </div>
   )

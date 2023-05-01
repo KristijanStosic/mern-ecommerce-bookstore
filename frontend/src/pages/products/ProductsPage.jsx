@@ -91,17 +91,17 @@ const ProductsPage = () => {
             <hr />
             <div className='row g-3'>
               {view === 'grid' &&
-                products.map((product, idx) => {
+                products.map((product, index) => {
                   return (
-                    <div key={idx} className='col-md-4'>
+                    <div key={index} className='col-md-4'>
                       <CardProductGrid product={product} />
                     </div>
                   )
                 })}
               {view === 'list' &&
-                products.map((product, idx) => {
+                products.map((product, index) => {
                   return (
-                    <div key={idx} className='col-md-12'>
+                    <div key={index} className='col-md-12'>
                       <CardProductList product={product} />
                     </div>
                   )

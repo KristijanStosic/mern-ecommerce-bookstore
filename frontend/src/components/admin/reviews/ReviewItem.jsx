@@ -1,26 +1,39 @@
 import { useState } from 'react'
-import ReadMoreText from '../../../components/products/ReadMoreText'
-import DeleteModal from '../../modals/DeleteModal'
 import { deleteReview } from '../../../redux/reviews/reviewActions'
 import { formatDate } from '../../../utils/utils'
+import Rating from '../../../components/products/Rating'
+import ReadMoreText from '../../../components/products/ReadMoreText'
+import DeleteModal from '../../modals/DeleteModal'
 
 const ReviewItem = ({ review }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
 
   return (
     <>
-      <td className='align-middle text-wrap fw-semibold'><ReadMoreText>{review.title}</ReadMoreText></td>
-      <td className='align-middle'><ReadMoreText>{review.comment}</ReadMoreText></td>
-      <td className='align-middle'><strong>{review.rating}</strong></td>
-      <td className='align-middle'>{review.product.name}</td>
-      <td className='align-middle'>{review.user.name}</td>
-      <td className='align-middle'>{formatDate(review.createdAt)}</td>
-      <td style={{ cursor: 'pointer' }} className='align-middle'>
-        <i 
-          className='fas fa-trash text-danger mx-3'
-          onClick={() => setIsOpenDeleteModal(true)}
-        ></i>
-      </td>
+      <div className='card'>
+        <div className='card-header bg-light'>
+          <div className='d-flex justify-content-between'>
+          <Rating
+              averageRating={review.rating}
+              numOfReviews={review.numOfReviews}
+            />
+            <span>
+              <i className='fas fa-trash-alt text-danger'></i>
+            </span>
+          </div>
+        </div>
+
+        <div className='card-body'>
+          <div className='my-2'>
+            <span className='fw-bold h6'>Product: {review.product.name}</span>
+          </div>
+          <p className='h6'>Posted by: {review.user.name}</p>
+          <p className='fw-bold h6 text-muted'>Date: {formatDate(review.createdAt)}</p>
+          <div className="card-footer">
+            <p>fafdas</p>
+          </div>
+        </div>
+      </div>
 
       {isOpenDeleteModal && (
         <DeleteModal
