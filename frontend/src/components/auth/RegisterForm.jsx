@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { validateEmail } from '../../utils/utils'
 import PasswordInput from './PasswordInput'
 import Alert from '../Alert'
-import Spinner from '../Spinner'
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -59,8 +58,6 @@ const RegisterForm = () => {
       toast.success(`Account created. Welcome aboard ${user.name}`)
     }
   }, [dispatch, user, error, navigate])
-
-  if (loading) return <Spinner />
 
   return (
     <>
@@ -125,13 +122,16 @@ const RegisterForm = () => {
         />
       </div>
       <div className='d-grid'>
-        <button type='submit' className='btn btn-primary mb-3'>
-          Register
-        </button>
+      {loading ? (
+            <button className="btn btn-dark" type="button" disabled>
+            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+          ) : (
+            <button className='btn btn-dark'>Register</button>
+        )}
       </div>
-      <div className="d-flex justify-content-center align-items-center">
-
-      <Link className='float-start' to='/login'>
+      <div className="d-flex justify-content-center align-items-center mt-2">
+      <Link className='text-dark fw-semibold' to='/login'>
         Already have an account? Login here
       </Link>
       </div>

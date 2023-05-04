@@ -1,8 +1,24 @@
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
+import { addToCart } from '../../redux/cart/cartActions'
 import Rating from './Rating'
 import ReadMoreText from './ReadMoreText'
 
 const CardProductList = ({ product }) => {
+  const dispatch = useDispatch()
+
+  const { cart } = useSelector((state) => state.cart)
+
+  const addItemToCart = (productId) => {
+    if (cart.some((cartItem) => cartItem.productId === productId)) {
+      toast.error('This item is already in your cart. Go to your cart to change the amount')
+    } else {
+      dispatch(addToCart(productId, 1))
+      toast.success('Item has been added to your cart')
+    }
+  }
+
   return (
     <div className='card'>
       <div className='row g-0'>
@@ -43,16 +59,15 @@ const CardProductList = ({ product }) => {
               <span className='fw-bold h5'>${product?.price}</span>
             </div>
             <p className='text-success small mb-2'>
-              <span>
-                <i className='fas fa-truck'></i>
-              </span>{' '}
-              Free Shipping
+              <span><i className='fas fa-truck'></i></span>
+                Free Shipping
             </p>
             <div className='btn-group d-flex' role='group'>
               <button
                 type='button'
-                className='btn btn-sm btn-primary'
+                className='btn btn-sm btn-dark'
                 title='Add to cart'
+                onClick={() => addItemToCart(product._id)}
               >
                 <span>
                   <i className='fas fa-cart-plus'></i>

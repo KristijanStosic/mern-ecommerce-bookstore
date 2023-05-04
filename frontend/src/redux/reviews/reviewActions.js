@@ -5,11 +5,12 @@ import {
   getReviews,
   //getReview,
   getProductReviews,
-  //createReview,
+  createReview,
   reviewDelete,
   setLoading,
   setError,
   resetError,
+  resetReviews,
 } from '../reviews/reviewSlice'
 
 export const getAllReviews = () => async (dispatch) => {
@@ -33,8 +34,26 @@ export const getSingleProductReviews = (productId) => async (dispatch) => {
   }
 }
 
+export const createNewReview = (reviewData) => async (dispatch, getState) => {
+  const { auth: { user } } = getState()
+  
+  const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`
+    }
+  }
+  
+  try {
+    const { data } = await axios.post('/api/reviews', reviewData, config)
+    dispatch(createReview(data))
+    dispatch(resetReviews())
+  } catch (error) {
+    dispatch(setError(extractErrorMessage(error)))
+  }
+}
+
 export const deleteReview = (reviewId) => async (dispatch, getState) => {
-  dispatch(setLoading(true))
   const { auth: { user } } = getState()
   
   const config = {
@@ -52,8 +71,11 @@ export const deleteReview = (reviewId) => async (dispatch, getState) => {
   }
 }
   
-
 export const resetReviewError = () => async (dispatch) => {
-    dispatch(resetError())
+  dispatch(resetError())
+}
+
+export const resetProductReviews = () => async (dispatch) => {
+  dispatch(resetReviews())
 }
   

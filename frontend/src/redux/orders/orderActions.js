@@ -4,13 +4,15 @@ import { extractErrorMessage } from '../../utils/utils'
 import {
   getOrders,
   getOrder,
+  getMyOrders,
   //createOrder,
-  //updateOrderToDelivered,
+  deliverOrder,
   //updateOrderToPaid,
   orderDelete,
   setLoading,
   setError,
   resetError,
+  resetMyOrders
 } from '../orders/orderSlice'
 
 export const getAllOrders = () => async (dispatch, getState) => {
@@ -28,6 +30,26 @@ export const getAllOrders = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get('/api/orders', config)
     dispatch(getOrders(data))
+  } catch (error) {
+    dispatch(setError(extractErrorMessage(error)))
+  }
+}
+
+export const getUserOrders = () => async (dispatch, getState) => {
+  dispatch(setLoading(true))
+
+  const { auth: { user } } = getState()
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.token}`,
+    }
+  }
+
+  try {
+    const { data } = await axios.get('/api/orders/my-orders', config)
+    dispatch(getMyOrders(data))
   } catch (error) {
     dispatch(setError(extractErrorMessage(error)))
   }
@@ -72,7 +94,28 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
   }
 }
 
+export const updateOrderToDelivered = (orderId) => async (dispatch, getState) => {
+  const { auth: { user } } = getState()
+
+  const config = {
+      headers: {
+          Authorization: `Bearer ${user.token}`
+      }
+  }
+
+  try {
+    const { data } = await axios.put(`/api/orders/${orderId}/deliver`, {}, config)
+    dispatch(deliverOrder(data))
+    dispatch(resetError())
+  } catch (error) {
+      dispatch(setError(extractErrorMessage(error)))
+  }
+}
 
 export const resetOrderError = () => async (dispatch) => {
   dispatch(resetError())
+}
+
+export const resetOrders = () => async (dispatch) => {
+  dispatch(resetMyOrders())
 }

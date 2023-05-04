@@ -22,43 +22,48 @@ import ProfilePage from './pages/profile/ProfilePage'
 import OrderListPage from './pages/admin/OrderListPage'
 import OrderDetailsPage from './pages/admin/OrderDetailsPage'
 import ReviewListPage from './pages/admin/ReviewListPage'
+import CartPage from './pages/cart/CartPage'
+import MyOrdersPage from './pages/orders/MyOrdersPage'
 
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <TopMenu />
-      <ToastMessage />
-      <Routes>
-        <Route path='/' element={<ProductsPage />} />
-        <Route path='/products' element={<ProductsPage />} />
-        <Route path='/products/search/:keyword' element={<ProductsPage />} />
-        <Route path='/products/page/:page' element={<ProductsPage />} />
-        <Route path='/products/search/:keyword/page/:page' element={<ProductsPage />} />
-        <Route path='/product/:productId' element={<ProductDetailsPage />} />
+      <Router>
+        <Header />
+        <TopMenu />
+        <ToastMessage />
+        <Routes>
+          <Route path='/' element={<ProductsPage />} />
+          <Route path='/products' element={<ProductsPage />} />
+          <Route path='/products/search/:keyword' element={<ProductsPage />} />
+          <Route path='/products/page/:page' element={<ProductsPage />} />
+          <Route path='/products/search/:keyword/page/:page' element={<ProductsPage />} />
+          <Route path='/product/:productId' element={<ProductDetailsPage />} />
 
-        <Route path='/admin-dashboard' element={<AdminDashboardPage />} />
-        <Route path='/admin/categories' element={<CategoryListPage />} />
-        <Route path='/admin/publishers' element={<PublisherListPage />} />
-        <Route path='/admin/genres' element={<GenreListPage />} />
-        <Route path='/admin/orders' element={<OrderListPage />} />
-        <Route path='/admin/order/:orderId' element={<OrderDetailsPage />} />
-        <Route path='/admin/reviews' element={<ReviewListPage />} />
-        <Route path='/admin/users' element={<UserListPage />} />
-        <Route path='/admin/products' element={<ProductListPage />} />
-        <Route path='/admin/products/page/:page' element={<ProductListPage />} />
-        <Route path='/admin/products/search/:keyword' element={<ProductListPage />} />
-        <Route path='/admin/products/search/:keyword/page/:page' element={<ProductListPage />} />
+          <Route path='/cart' element={<CartPage />} />
+          <Route path='/my-orders' element={<MyOrdersPage />} />
 
-        <Route path='/order-success' element={<OrderSuccessPage />} />
+          <Route path='/admin-dashboard' element={<AdminDashboardPage />} />
+          <Route path='/admin/categories' element={<CategoryListPage />} />
+          <Route path='/admin/publishers' element={<PublisherListPage />} />
+          <Route path='/admin/genres' element={<GenreListPage />} />
+          <Route path='/admin/orders' element={<OrderListPage />} />
+          <Route path='/admin/order/:orderId' element={<OrderDetailsPage />} />
+          <Route path='/admin/reviews' element={<ReviewListPage />} />
+          <Route path='/admin/users' element={<UserListPage />} />
+          <Route path='/admin/products' element={<ProductListPage />} />
+          <Route path='/admin/products/page/:page' element={<ProductListPage />} />
+          <Route path='/admin/products/search/:keyword' element={<ProductListPage />} />
+          <Route path='/admin/products/search/:keyword/page/:page' element={<ProductListPage />} />
 
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
-        <Route path='/my-profile' element={<ProfilePage />} />
-        <Route path='/*' element={<NotFoundPage />} />
-      </Routes>
-      <Footer />
-    </Router>
+          <Route path='/order-success' element={<OrderSuccessPage />} />
+
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/my-profile' element={<ProfilePage />} />
+          <Route path='/*' element={<NotFoundPage />} />
+        </Routes>
+        <Footer />
+      </Router>
   )
 }
 

@@ -12,10 +12,29 @@ import {
   resetError,
 } from '../products/productSlice'
 
-export const getAllProducts = (keyword = '', page = '', sort = '') => async (dispatch) => {
+export const getAllProducts = (keyword = '', page = '', sort = '', category = '', publisher = '', genre = '', rating = '') => async (dispatch) => {
   dispatch(setLoading(true))
   try {
-    const { data } = await axios.get(`/api/products?keyword=${keyword}&page=${page}&sort=${sort}`)
+    let link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}`
+
+    if (rating) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&averageRating=${rating}`
+
+    if (category) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&category=${category}`
+
+    if (publisher) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&publisher=${publisher}`
+
+    if (genre) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&genre=${genre}`
+
+    if (category && publisher) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&category=${category}&publisher=${publisher}`
+
+    if (category && genre) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&category=${category}&genre=${genre}`
+
+    if (publisher && genre) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&publisher=${publisher}&genre=${genre}`
+
+    if (category && publisher && genre) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&category=${category}&publisher=${publisher}&genre=${genre}`
+
+    const { data } = await axios.get(link)
+
     dispatch(getProducts(data))
   } catch (error) {
     dispatch(setError(extractErrorMessage(error)))

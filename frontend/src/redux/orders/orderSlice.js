@@ -6,6 +6,8 @@ export const initialState = {
   error: null,
   orders: [],
   order: null,
+  myOrders: [],
+  orderSuccessUpdate: false
 }
 
 export const ordersSlice = createSlice({
@@ -25,30 +27,43 @@ export const ordersSlice = createSlice({
       state.loading = false
       state.error = null
     },
+    getMyOrders: (state, action) => {
+      state.myOrders = action.payload
+      state.loading = false
+      state.error = null
+    },
     createOrder: (state, action) => {
-        state.orders = [...state.orders, action.payload]
-        //state.orders.push(action.payload)
-        state.loading = false
-        state.error = null
-        toast.success(`Order created`)
+      state.orders = [...state.orders, action.payload]
+      //state.orders.push(action.payload)
+      state.loading = false
+      state.error = null
+      toast.success(`Order created`)
     },
     updateOrderToPaid: (state, action) => {
-      state.orders = state.orders.map((order) => order._id === action.payload._id ? action.payload : order)
+      state.orders = state.orders.map((order) =>
+        order._id === action.payload._id ? action.payload : order
+      )
       state.loading = false
       state.error = null
       toast.success('Order paid')
     },
-    updateOrderToDelivered: (state, action) => {
-        state.orders = state.orders.map((order) => order._id === action.payload._id ? action.payload : order)
-        state.loading = false
-        state.error = null
-        toast.success('Order delivered')
+    deliverOrder: (state, action) => {
+      state.orders = state.orders.map((order) => order._id === action.payload._id ? action.payload : order)
+      state.loading = false
+      state.error = null
+      state.orderSuccessUpdate = true
+      toast.success('Order delivered')
     },
     orderDelete: (state, action) => {
-        state.orders = state.orders.filter((order) => order._id !== action.payload._id)
-        state.error = null
-        state.loading = false
-        toast.success(`Order is deleted`)
+      state.orders = state.orders.filter((order) => order._id !== action.payload._id)
+      state.error = null
+      state.loading = false
+      toast.success(`Order is deleted`)
+    },
+    resetMyOrders: (state) => {
+      state.myOrders = []
+      state.error = null
+      state.loading = false
     },
     setError: (state, action) => {
       state.error = action.payload
@@ -65,12 +80,14 @@ export const {
   setLoading,
   getOrders,
   getOrder,
+  getMyOrders,
   createOrder,
-  updateOrderToDelivered,
+  deliverOrder,
   updateOrderToPaid,
   orderDelete,
   setError,
   resetError,
+  resetMyOrders
 } = ordersSlice.actions
 
 export default ordersSlice.reducer

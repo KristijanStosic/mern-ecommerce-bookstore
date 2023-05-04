@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
+import { resetCart } from '../../redux/cart/cartActions'
+import { resetOrders } from '../../redux/orders/orderActions'
 import Search from '../apiFeatures/Search'
 
 const Header = () => {
@@ -9,22 +11,24 @@ const Header = () => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
+  const { cart } = useSelector((state) => state.cart)
 
   const onLogout = () => {
     dispatch(logout())
-    //dispatch(resetCart())
+    dispatch(resetCart())
+    dispatch(resetOrders())
     toast.success('You have been logged out')
     navigate('/')
   }
 
   return (
     <>
-      <header className='p-4 border-bottom border-3 border-primary bg-light'>
+      <header className='p-4 border-bottom border-3 border-warning bg-light'>
         <div className='d-flex justify-content-between align-items-center'>
           <div className='d-flex justify-content-center align-items-center'>
             <Link to='/' className='text-decoration-none fs-3'>
-              <strong className='text-primary'>Book</strong>
-              <strong className='text-warning'>store</strong>
+              <strong className='text-warning'>Book</strong>
+              <strong className='text-dark'>store</strong>
             </Link>
             <div className='mx-3'>
               <Search />
@@ -33,19 +37,19 @@ const Header = () => {
 
           <div className='d-flex justify-content-center align-items-center'>
             <div className='position-relative d-inline me-3'>
-              <Link to='/cart' className='btn btn-outline-primary'>
+              <Link to='/cart' className='btn btn-outline-dark'>
                 <span>
                   <i className='fas fa-shopping-cart'></i>
                 </span>
                 <div className='position-absolute top-0 start-100 translate-middle badge bg-danger rounded-circle'>
-                  2
+                  {cart?.length}
                 </div>
               </Link>
             </div>
             {user ? (
               <div className='dropdown'>
                 <button
-                  className='btn btn-outline-primary dropdown-toggle'
+                  className='btn btn-outline-dark dropdown-toggle'
                   type='button'
                   id='dropdownMenuButton1'
                   data-bs-toggle='dropdown'
@@ -83,13 +87,13 @@ const Header = () => {
               </div>
             ) : (
               <div className='btn-group'>
-                <Link className='btn btn-outline-primary rounded me-3' to='/login'>
+                <Link className='btn btn-outline-dark rounded me-2' to='/login'>
                   <span>
                     <i className='fas fa-arrow-right'></i>
                   </span>
                   Login
                 </Link>
-                <Link className='btn btn-outline-primary rounded' to='/register'>
+                <Link className='btn btn-outline-dark rounded' to='/register'>
                   <span>
                     <i className='fas fa-user-plus'></i>
                   </span>

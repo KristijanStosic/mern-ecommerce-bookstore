@@ -36,7 +36,7 @@ const ReviewListPage = () => {
             <div className='row'>
               {reviews &&
                 reviews?.map((review, index) => (
-                  <div key={index} className='col-md-4 mt-3'>
+                  <div key={index} className='col-md-4 mb-3'>
                     <ReviewItem review={review} />
                   </div>
                 ))}

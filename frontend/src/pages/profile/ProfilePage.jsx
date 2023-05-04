@@ -22,13 +22,13 @@ const ProfilePage = () => {
       {error && <Alert type='danger'>{error}</Alert>}
       <div className='row'>
         <div className='col-md-4'>
-          <h3>Change Password</h3>
-          <ChangePasswordForm />
+          <h3>My Profile</h3>
+          <ProfileForm user={user} />
           <br></br>
         </div>
         <div className='col-md-4'>
-          <h3>My Profile</h3>
-          <ProfileForm user={user} />
+          <h3>Change Password</h3>
+          <ChangePasswordForm />
           <br></br>
         </div>
       </div>

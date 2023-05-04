@@ -26,10 +26,6 @@ const orderItemSchema = new mongoose.Schema({
 
 const orderSchema = new mongoose.Schema(
   {
-    shippingPrice: {
-      type: Number,
-      required: true,
-    },
     itemsPrice: {
       type: Number,
     },
@@ -52,7 +48,7 @@ const orderSchema = new mongoose.Schema(
     },
     paymentMethod: {
       type: String,
-      required: true,
+      default: 'Stripe'
     },
     paymentDetails: {
       orderId: { type: String },

@@ -7,6 +7,7 @@ export const initialState = {
   reviews: [],
   productReviews: [],
   review: null,
+  reviewCreateSuccess: false
 }
 
 export const reviewsSlice = createSlice({
@@ -23,6 +24,7 @@ export const reviewsSlice = createSlice({
     },
     getReview: (state, action) => {
       state.review = action.payload
+      state.productReviews = action.payload
       state.loading = false
       state.error = null
     },
@@ -30,12 +32,14 @@ export const reviewsSlice = createSlice({
       state.productReviews = action.payload
       state.loading = false
       state.error = null
+      state.reviewCreateSuccess = false
     },
     createReview: (state, action) => {
       state.reviews = [...state.reviews, action.payload]
       //state.reviews.push(action.payload)
       state.loading = false
       state.error = null
+      state.reviewCreateSuccess = true
       toast.success('Review submitted')
     },
     reviewDelete: (state, action) => {
@@ -52,6 +56,10 @@ export const reviewsSlice = createSlice({
       state.error = null
       state.loading = false
     },
+    resetReviews: (state) => {
+      state.error = null
+      state.loading = false
+    }
   },
 })
 
@@ -64,6 +72,7 @@ export const {
   reviewDelete,
   setError,
   resetError,
+  resetReviews
 } = reviewsSlice.actions
 
 export default reviewsSlice.reducer

@@ -76,7 +76,7 @@ const deleteReview = async (req, res) => {
 }
 
 const getProductReviews = async (req, res) => {
-  const reviews = await Review.find({ product: req.params.id }).populate('user', 'name')
+  const reviews = await Review.find({ product: req.params.id }).sort({ createdAt: 'desc' }).populate('user', 'name')
 
   if (!reviews?.length) return res.status(404).json({ message: 'No reviews'})
 

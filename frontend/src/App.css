@@ -61,3 +61,10 @@
 .nav-pills li a:hover {
   background-color: rgb(66, 66, 243);
 }
+
+.on {
+  color: #f8e825;
+}
+.off {
+  color: #ccc;
+}

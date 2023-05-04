@@ -5,7 +5,7 @@ import Product from '../models/Product.js'
 // @route   POST /api/orders
 // @access  Public
 const createOrder = async (req, res) => {
-  let { orderItems, shippingAddress, shippingPrice, itemsPrice, totalPrice, paymentMethod, paymentDetails } = req.body
+  let { orderItems, shippingAddress, itemsPrice, totalPrice, paymentDetails } = req.body
 
   if (!orderItems || orderItems.length < 1)
     return res.status(400).json({ message: 'No order items' })
@@ -26,9 +26,7 @@ const createOrder = async (req, res) => {
   const order = await Order.create({
     orderItems,
     shippingAddress,
-    paymentMethod,
     paymentDetails,
-    shippingPrice,
     itemsPrice,
     totalPrice,
     user: req.user._id,
@@ -86,9 +84,9 @@ const updateOrderToDelivered = async (req, res) => {
   order.isDelivered = true
   order.deliveredAt = Date.now()
 
-  const updatedOrder = await order.save()
+  await order.save()
 
-  res.status(200).json(updatedOrder)
+  res.status(200).json(order)
 }
 
 // @desc   Delete order

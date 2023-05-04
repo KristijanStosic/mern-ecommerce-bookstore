@@ -7,7 +7,7 @@ const authenticate = async (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization
   
     if (!authHeader || !authHeader?.startsWith('Bearer ')) {
-      throw createHttpError(401, 'Please login to access this route')
+      return res.status(401).json({ message: 'Please login'})
     }
   
     try {
@@ -20,13 +20,13 @@ const authenticate = async (req, res, next) => {
       req.user = await User.findById(decoded.userId).select('-password')
   
       if (!req.user) {
-        throw createHttpError(401, 'Not authorized')
+        return res.status(401).json({ message: 'Not Authorized'})
       }
   
       next()
     } catch (error) {
       console.log(error)
-      throw createHttpError(401, 'Not authorized, token failed')
+      return res.status(401).json({ message: 'Not Authorized, token failed'})
     }
   }
 
@@ -34,7 +34,7 @@ const admin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next()
   } else {
-    throw createHttpError(403, 'Not authorized as an admin')
+    return res.status(403).json({ message: 'Not Authorized as an Admin'})
   }
 }
 

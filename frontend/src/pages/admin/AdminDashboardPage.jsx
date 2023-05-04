@@ -29,6 +29,11 @@ const AdminDashboardPage = () => {
     }
   })
 
+  let totalProfit = 0
+  orders.forEach((order) => (
+    (totalProfit += order.totalPrice).toFixed(2)
+  ))
+
   useEffect(() => {
     dispatch(getAllCategories())
     dispatch(getAllPublishers())
@@ -59,7 +64,7 @@ const AdminDashboardPage = () => {
                     <div className='card-body text-white'>
                       <div className='text-center'>
                         <h5 className="card-title">Total Profit</h5>
-                        <p className="card-text fs-5">$66924</p>
+                        <p className="card-text fs-5">${totalProfit && totalProfit}</p>
                       </div>
                     </div>
                   </div>

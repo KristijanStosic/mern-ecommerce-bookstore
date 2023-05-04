@@ -43,17 +43,17 @@ const productSchema = new mongoose.Schema(
     },
     genre: {
       type: mongoose.Schema.Types.ObjectId,
-      required: false,
+      required: true,
       ref: 'Genre',
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      required: false,
+      required: true,
       ref: 'Category',
     },
     publisher: {
       type: mongoose.Schema.Types.ObjectId,
-      required: false,
+      required: true,
       ref: 'Publisher',
     },
     user: {

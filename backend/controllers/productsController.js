@@ -9,11 +9,11 @@ const getProducts = async (req, res) => {
   const page = Number(req.query.page) || 1
   const count = await Product.countDocuments()
 
-  const apiFeatures = new APIFeatures(Product.find().populate('category', 'name').populate('publisher', 'name').populate('genre', 'name').populate('user', 'name'), req.query).sort().search().filter().pagination(pageSize, page)
+  const apiFeatures = new APIFeatures(Product.find().populate('category').populate('publisher').populate('genre').populate('user', 'name'), req.query).sort().search().filter().pagination(pageSize, page)
 
   const products = await apiFeatures.query 
 
-  if (!products?.length) return res.status(404).json({ message: 'No products' })
+  //if (!products?.length) return res.status(404).json({ message: 'No products' })
 
   res.status(200).json({ products, page, pages: Math.ceil(count / pageSize), count })
 }

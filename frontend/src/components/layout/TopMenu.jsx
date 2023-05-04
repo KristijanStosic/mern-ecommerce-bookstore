@@ -4,7 +4,7 @@ const TopMenu = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark p-0'>
       <div className='container-fluid'>
-        <Link className='navbar-brand' to='/'>
+        <Link className='navbar-brand text-warning fw-semibold' to='/'>
           Bookstore
         </Link>
         <button
@@ -22,7 +22,7 @@ const TopMenu = () => {
           <ul className='navbar-nav'>
             <li className='nav-item dropdown'>
               <button
-                className='btn nav-link dropdown-toggle fw-bold'
+                className='btn nav-link dropdown-toggle fw-bold text-warning'
                 id='navbarDropdown'
                 data-toggle='dropdown'
                 aria-expanded='false'
@@ -70,7 +70,7 @@ const TopMenu = () => {
               </ul>
             </li>
             <li className='nav-item'>
-              <Link className='nav-link' to='/products'>
+              <Link className='nav-link text-warning' to='/products'>
                 Explore books
               </Link>
             </li>
