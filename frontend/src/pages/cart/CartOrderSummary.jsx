@@ -37,11 +37,11 @@ const CartOrderSummary = () => {
         <hr />
         <div className='d-grid'>
           {buttonLoading ? (
-            <button className="btn btn-primary" type="button" disabled>
+            <button className="btn btn-dark" type="button" disabled>
             <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </button>
           ) : (
-            <button className='btn btn-primary' onClick={() => checkoutHandler()}>Checkout</button>
+            <button className='btn btn-dark' onClick={() => checkoutHandler()}>Checkout</button>
           ) }
         </div>
       </div>

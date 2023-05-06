@@ -15,6 +15,7 @@ const FilterRating = ({ rating, setRating }) => {
     <div className="card-body show" id="filterStar">
       <div className="form-check">
         <input
+          style={{ cursor: 'pointer' }}
           className="form-check-input"
           type="radio"
           name="flexRadioDefault"
@@ -37,6 +38,7 @@ const FilterRating = ({ rating, setRating }) => {
       </div>
       <div className="form-check">
         <input
+          style={{ cursor: 'pointer' }}
           className="form-check-input"
           type="radio"
           name="flexRadioDefault"
@@ -58,6 +60,7 @@ const FilterRating = ({ rating, setRating }) => {
       </div>
       <div className="form-check">
         <input
+          style={{ cursor: 'pointer' }}
           className="form-check-input"
           type="radio"
           name="flexRadioDefault"
@@ -80,6 +83,7 @@ const FilterRating = ({ rating, setRating }) => {
       </div>
       <div className="form-check">
         <input
+          style={{ cursor: 'pointer' }}
           className="form-check-input"
           type="radio"
           name="flexRadioDefault"
@@ -102,6 +106,7 @@ const FilterRating = ({ rating, setRating }) => {
       </div>
       <div className="form-check">
         <input
+          style={{ cursor: 'pointer' }}
           className="form-check-input"
           type="radio"
           name="flexRadioDefault"

@@ -20,6 +20,7 @@ const FilterPublisher = ({ publisher, setPublisher, publishers }) => {
               <input
                 style={{ cursor: 'pointer' }}
                 type='radio'
+                className='form-check-input'
                 name={result.name}
                 value={result._id}
                 id={result._id}

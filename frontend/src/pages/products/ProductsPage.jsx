@@ -15,6 +15,7 @@ import FilterCategory from '../../components/products/filter/FilterCategory'
 import FilterGenre from '../../components/products/filter/FilterGenre'
 import FilterPublisher from '../../components/products/filter/FilterPublisher'
 import FilterRating from '../../components/products/filter/FilterRating'
+import FilterPrice from '../../components/products/filter/FilterPrice'
 
 const ProductsPage = () => {
   useTitle('Explore our products!')
@@ -25,6 +26,7 @@ const ProductsPage = () => {
   const [publisher, setPublisher] = useState('')
   const [genre, setGenre] = useState('')
   const [rating, setRating] = useState('')
+  const [price, setPrice] = useState(['0', '1000'])
 
   const params = useParams()
   const dispatch = useDispatch()
@@ -38,11 +40,11 @@ const ProductsPage = () => {
   const keyword = params.keyword
 
   useEffect(() => {
-    dispatch(getAllProducts(keyword, pageNumber, sort, category, publisher, genre, rating))
+    dispatch(getAllProducts(keyword, pageNumber, sort, category, publisher, genre, rating, price))
     dispatch(getAllCategories())
     dispatch(getAllGenres())
     dispatch(getAllPublishers())
-  }, [dispatch, keyword, pageNumber, sort, category, publisher, genre, rating])
+  }, [dispatch, keyword, pageNumber, sort, category, publisher, genre, rating, price])
 
   if (loading) return <Spinner />
 
@@ -63,6 +65,7 @@ const ProductsPage = () => {
                   setPublisher('')
                   setGenre('')
                   setRating('')
+                  setPrice([0, 1000])
                 }}
               >
                 All Products
@@ -80,6 +83,7 @@ const ProductsPage = () => {
               publishers={publishers}
             />
             <FilterRating rating={rating} setRating={setRating} />
+            <FilterPrice price={price} setPrice={setPrice} />  
           </div>
           <div className='col-md-9'>
             <div className='row'>

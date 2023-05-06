@@ -12,10 +12,10 @@ import {
   resetError,
 } from '../products/productSlice'
 
-export const getAllProducts = (keyword = '', page = '', sort = '', category = '', publisher = '', genre = '', rating = '') => async (dispatch) => {
+export const getAllProducts = (keyword = '', page = '', sort = '', category = '', publisher = '', genre = '', rating = '', price) => async (dispatch) => {
   dispatch(setLoading(true))
   try {
-    let link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}`
+    let link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&price[gte]=${price[0]}&price[lte]=${price[1]}`
 
     if (rating) link = `/api/products?keyword=${keyword}&page=${page}&sort=${sort}&averageRating=${rating}`
 
