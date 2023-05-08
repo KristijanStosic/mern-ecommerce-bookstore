@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-hot-toast'
-import PasswordInput from '../auth/PasswordInput'
 import { updateUserProfile } from '../../redux/auth/authActions'
+import PasswordInput from '../auth/PasswordInput'
 
 const ChangePasswordForm = () => {
   const [oldPassword, setOldPassword] = useState('')
@@ -14,9 +14,7 @@ const ChangePasswordForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const passwordData = {
-        password
-    }
+    const passwordData = { password }
     
     if (!oldPassword || !password || !newPassword) return toast.error('Password is required')
     if (oldPassword === password) return toast.error('New password cannot be same as old password')
@@ -72,9 +70,9 @@ const ChangePasswordForm = () => {
               return toast.error('Cannot paste into password field')
             }}
           />
-            <button type='submit' className='btn btn-dark'>
-                Submit
-            </button>
+          <button type='submit' className='btn btn-dark'>
+            Submit
+          </button>
         </form>
       </div>
     </div>

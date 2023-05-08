@@ -62,10 +62,10 @@ const CardProductList = ({ product }) => {
               <span><i className='fas fa-truck'></i></span>
                 Free Shipping
             </p>
-            <div className='btn-group d-flex' role='group'>
+            <div className='btn-group d-flex gap-2' role='group'>
               <button
                 type='button'
-                className='btn btn-sm btn-dark'
+                className='btn btn-dark rounded'
                 title='Add to cart'
                 onClick={() => addItemToCart(product._id)}
               >
@@ -73,6 +73,9 @@ const CardProductList = ({ product }) => {
                   <i className='fas fa-cart-plus'></i>
                 </span>
               </button>
+              <Link to={`/product/${product._id}`} className='btn btn-dark rounded'>
+                <i title='View Product' className='fas fa-eye'></i>
+              </Link>
             </div>
           </div>
         </div>

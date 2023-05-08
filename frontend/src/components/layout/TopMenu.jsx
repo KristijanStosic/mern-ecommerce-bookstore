@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const TopMenu = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark p-0'>
-      <div className='container-fluid'>
+      <div className='container-fluid border-bottom border-top border-3 border-warning'>
         <Link className='navbar-brand text-warning fw-semibold' to='/'>
           Bookstore
         </Link>

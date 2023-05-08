@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <>
-      <header className='p-4 border-bottom border-3 border-warning bg-light'>
+      <header className='p-4 bg-light'>
         <div className='d-flex justify-content-between align-items-center'>
           <div className='d-flex justify-content-center align-items-center'>
             <Link to='/' className='text-decoration-none fs-3'>

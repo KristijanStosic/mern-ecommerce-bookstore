@@ -14,7 +14,7 @@ const CreateReviewForm = ({ productId }) => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { productReviews } = useSelector((state) => state.reviews)
+  const { productReviews, loading } = useSelector((state) => state.reviews)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -87,9 +87,17 @@ const CreateReviewForm = ({ productId }) => {
             placeholder='Comment'
             onChange={(e) => setComment(e.target.value)}
           />
-          <button type='submit' className='btn btn-dark mt-3'>
-            Submit
-          </button>
+          {loading ? (
+            <button className='btn btn-dark mt-3' type='button' disabled>
+              <span
+                className='spinner-border spinner-border-sm'
+                role='status'
+                aria-hidden='true'
+              ></span>
+            </button>
+          ) : (
+            <button className='btn btn-dark mt-3'>Submit</button>
+          )}
         </>
       ) : (
         <Alert type='dark'>

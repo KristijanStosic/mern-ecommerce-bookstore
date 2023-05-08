@@ -33,9 +33,10 @@ export const ordersSlice = createSlice({
       state.error = null
     },
     getOrder: (state, action) => {
-      state.order = action.payload
       state.loading = false
       state.error = null
+      state.order = action.payload
+      state.orderSuccessUpdate = false
     },
     getMyOrders: (state, action) => {
       state.loading = false

@@ -59,6 +59,7 @@ export const reviewsSlice = createSlice({
     resetReviews: (state) => {
       state.error = null
       state.loading = false
+      state.productReviews = []
     }
   },
 })

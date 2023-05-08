@@ -35,6 +35,8 @@ export const getSingleProductReviews = (productId) => async (dispatch) => {
 }
 
 export const createNewReview = (reviewData) => async (dispatch, getState) => {
+  dispatch(setLoading(true))
+  
   const { auth: { user } } = getState()
   
   const config = {
@@ -70,12 +72,11 @@ export const deleteReview = (reviewId) => async (dispatch, getState) => {
     dispatch(setError(extractErrorMessage(error)))
   }
 }
-  
-export const resetReviewError = () => async (dispatch) => {
-  dispatch(resetError())
-}
 
 export const resetProductReviews = () => async (dispatch) => {
   dispatch(resetReviews())
 }
   
+export const resetReviewError = () => async (dispatch) => {
+  dispatch(resetError())
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProductById } from '../../redux/products/productActions'
-import { getSingleProductReviews } from '../../redux/reviews/reviewActions'
+import { getSingleProductReviews, resetProductReviews } from '../../redux/reviews/reviewActions'
 import { addToCart } from '../../redux/cart/cartActions'
 import { toast } from 'react-hot-toast'
 import CreateReviewForm from '../../components/forms/create-forms/CreateReviewForm'
@@ -28,6 +28,7 @@ const ProductPage = () => {
   useEffect(() => {
     dispatch(getProductById(productId))
     dispatch(getSingleProductReviews(productId))
+    dispatch(resetProductReviews())
   }, [dispatch, productId])
 
   const increaseQty = () => {

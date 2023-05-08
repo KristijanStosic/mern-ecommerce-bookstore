@@ -13,6 +13,7 @@ import categoryRoutes from './routes/categoryRoutes.js'
 import publisherRoutes from './routes/publisherRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
+import paymentRoutes from './routes/paymentRoutes.js'
 import { notFoundMiddleware, errorHandlerMiddleware } from './middleware/errorHandlerMiddleware.js'
 
 const app = express()
@@ -38,6 +39,7 @@ app.use('/api/products', productRoutes)
 app.use('/api/reviews', reviewRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
+app.use('/api/stripe', paymentRoutes)
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))

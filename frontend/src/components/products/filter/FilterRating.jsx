@@ -4,6 +4,7 @@ const FilterRating = ({ rating, setRating }) => {
   return (
     <div className="card mb-3">
     <div
+      style={{ cursor: 'pointer' }}
       className="card-header fw-bold text-uppercase accordion-icon-button"
       data-bs-toggle="collapse"
       data-bs-target="#filterStar"

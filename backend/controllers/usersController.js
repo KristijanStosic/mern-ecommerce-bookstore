@@ -70,7 +70,7 @@ const updateUser = async (req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 const updateUserProfile = async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, password } = req.body
 
   const user = await User.findById(req.user._id)
 
@@ -79,7 +79,7 @@ const updateUserProfile = async (req, res) => {
   }
 
   user.name = name || user.name
-  user.email = email || user.email
+  //user.email = email || user.email
 
   if (password) {
     user.password = password

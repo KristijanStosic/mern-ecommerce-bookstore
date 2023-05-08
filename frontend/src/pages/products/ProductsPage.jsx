@@ -25,7 +25,6 @@ const ProductsPage = () => {
   const [publisher, setPublisher] = useState('')
   const [genre, setGenre] = useState('')
   const [rating, setRating] = useState('')
-  const [price, setPrice] = useState(['0', '1000'])
 
   const params = useParams()
   const dispatch = useDispatch()
@@ -39,11 +38,11 @@ const ProductsPage = () => {
   const keyword = params.keyword
 
   useEffect(() => {
-    dispatch(getAllProducts(keyword, pageNumber, sort, category, publisher, genre, rating, price))
+    dispatch(getAllProducts(keyword, pageNumber, sort, category, publisher, genre, rating))
     dispatch(getAllCategories())
     dispatch(getAllGenres())
     dispatch(getAllPublishers())
-  }, [dispatch, keyword, pageNumber, sort, category, publisher, genre, rating, price])
+  }, [dispatch, keyword, pageNumber, sort, category, publisher, genre, rating])
 
   if (loading) return <Spinner />
 
@@ -64,7 +63,6 @@ const ProductsPage = () => {
                   setPublisher('')
                   setGenre('')
                   setRating('')
-                  setPrice([0, 1000])
                 }}
               >
                 All Products

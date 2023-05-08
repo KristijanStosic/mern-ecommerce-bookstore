@@ -1,23 +1,20 @@
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { validateEmail } from '../../utils/utils'
 import { useDispatch } from 'react-redux'
 import { updateUserProfile } from '../../redux/auth/authActions'
 
 const ProfileForm = ({ user }) => {
   const [name, setName] = useState(user?.name)
-  const [email, setEmail] = useState(user?.email)
+  const [email] = useState(user?.email)
 
   const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const profileData = { name, email }
+    const profileData = { name }
 
     if (!name) return toast.error('Name is required')
-    if (!email) return toast.error('Email is required')
-    if (!validateEmail(email)) return toast.error('Invalid email')
 
     dispatch(updateUserProfile(profileData))
     toast.success('Profile updated')
@@ -59,7 +56,7 @@ const ProfileForm = ({ user }) => {
             name='email'
             value={email}
             placeholder='Email'
-            onChange={(e) => setEmail(e.target.value)}
+            disabled
           />
           </div>
           <button type='submit' className='btn btn-dark mt-3'>
