@@ -15,7 +15,6 @@ import FilterCategory from '../../components/products/filter/FilterCategory'
 import FilterGenre from '../../components/products/filter/FilterGenre'
 import FilterPublisher from '../../components/products/filter/FilterPublisher'
 import FilterRating from '../../components/products/filter/FilterRating'
-import FilterPrice from '../../components/products/filter/FilterPrice'
 
 const ProductsPage = () => {
   useTitle('Explore our products!')
@@ -83,7 +82,6 @@ const ProductsPage = () => {
               publishers={publishers}
             />
             <FilterRating rating={rating} setRating={setRating} />
-            <FilterPrice price={price} setPrice={setPrice} />  
           </div>
           <div className='col-md-9'>
             <div className='row'>

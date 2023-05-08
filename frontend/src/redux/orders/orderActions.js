@@ -6,6 +6,7 @@ import {
   getOrder,
   getMyOrders,
   //createOrder,
+  addShippingAddress, 
   deliverOrder,
   //updateOrderToPaid,
   orderDelete,
@@ -112,10 +113,15 @@ export const updateOrderToDelivered = (orderId) => async (dispatch, getState) =>
   }
 }
 
-export const resetOrderError = () => async (dispatch) => {
-  dispatch(resetError())
+export const setShippingAddress = (shippingAddressData) => (dispatch) => {
+  dispatch(addShippingAddress(shippingAddressData))
+  localStorage.setItem('shippingAddress', JSON.stringify(shippingAddressData))
 }
 
-export const resetOrders = () => async (dispatch) => {
+export const resetUserOrders = () => async (dispatch) => {
   dispatch(resetMyOrders())
+}
+
+export const resetOrderError = () => async (dispatch) => {
+  dispatch(resetError())
 }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { resetCart } from '../../redux/cart/cartActions'
-import { resetOrders } from '../../redux/orders/orderActions'
+import { removeShippingAddress } from '../../redux/orders/orderSlice'
 import Search from '../apiFeatures/Search'
 
 const Header = () => {
@@ -16,7 +16,7 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout())
     dispatch(resetCart())
-    dispatch(resetOrders())
+    dispatch(removeShippingAddress())
     toast.success('You have been logged out')
     navigate('/')
   }
@@ -41,7 +41,7 @@ const Header = () => {
                 <span>
                   <i className='fas fa-shopping-cart'></i>
                 </span>
-                <div className='position-absolute top-0 start-100 translate-middle badge bg-danger rounded-circle'>
+                <div className='position-absolute top-0 start-100 translate-middle badge bg-warning rounded-circle'>
                   {cart?.length}
                 </div>
               </Link>

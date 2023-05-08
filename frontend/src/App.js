@@ -24,6 +24,8 @@ import OrderDetailsPage from './pages/admin/OrderDetailsPage'
 import ReviewListPage from './pages/admin/ReviewListPage'
 import CartPage from './pages/cart/CartPage'
 import MyOrdersPage from './pages/orders/MyOrdersPage'
+import OrderFailedPage from './pages/orders/OrderFailedPage'
+import CheckoutPage from './pages/cart/CheckoutPage'
 
 const App = () => {
   return (
@@ -40,6 +42,7 @@ const App = () => {
           <Route path='/product/:productId' element={<ProductDetailsPage />} />
 
           <Route path='/cart' element={<CartPage />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
           <Route path='/my-orders' element={<MyOrdersPage />} />
 
           <Route path='/admin-dashboard' element={<AdminDashboardPage />} />
@@ -56,10 +59,12 @@ const App = () => {
           <Route path='/admin/products/search/:keyword/page/:page' element={<ProductListPage />} />
 
           <Route path='/order-success' element={<OrderSuccessPage />} />
+          <Route path='/order-failed' element={<OrderFailedPage />} />
 
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/my-profile' element={<ProfilePage />} />
+
           <Route path='/*' element={<NotFoundPage />} />
         </Routes>
         <Footer />

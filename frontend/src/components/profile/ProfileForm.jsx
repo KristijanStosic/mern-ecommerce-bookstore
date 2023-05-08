@@ -24,7 +24,7 @@ const ProfileForm = ({ user }) => {
   }
 
   return (
-    <div className='card border-primary'>
+    <div className='card border-dark'>
       <h6 className='card-header bg-light'>
         <i className='fas fa-address-book'></i>
         &nbsp; Profile Details
@@ -62,7 +62,7 @@ const ProfileForm = ({ user }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
           </div>
-          <button type='submit' className='btn btn-primary mt-3'>
+          <button type='submit' className='btn btn-dark mt-3'>
               Submit
           </button>
         </form>

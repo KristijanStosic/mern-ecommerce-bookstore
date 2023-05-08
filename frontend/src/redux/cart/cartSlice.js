@@ -55,7 +55,6 @@ export const cartSlice = createSlice({
       localStorage.removeItem('cart')
       state.cart = []
       state.subtotal = 0
-      toast.success('Cart cleared')
     },
   },
 })

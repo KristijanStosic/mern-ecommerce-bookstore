@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserOrders } from '../../redux/orders/orderActions'
+import { getUserOrders, resetUserOrders } from '../../redux/orders/orderActions'
 import { formatDate } from '../../utils/utils'
 import Alert from '../../components/Alert'
 import Spinner from '../../components/Spinner'
@@ -12,6 +12,7 @@ const MyOrdersPage = () => {
 
   useEffect(() => {
     dispatch(getUserOrders())
+    dispatch(resetUserOrders())
   }, [dispatch])
 
   if (loading) return <Spinner />
@@ -30,7 +31,7 @@ const MyOrdersPage = () => {
                     <div className='my-2'>
                       <span className='h4'>Payment Details</span>
                     </div>
-                    <h6 className='text-primary'>Payment method: {order.paymentMethod}</h6>
+                    <h6 className='text-warning'>Payment method: <strong>{order.paymentMethod}</strong></h6>
                     <div className='d-flex'>            
                       <span>Paid: </span>
                       {order.isPaid ? (

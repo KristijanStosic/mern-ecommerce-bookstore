@@ -36,16 +36,23 @@ const CardProductGrid = ({ product }) => {
           <span className='fw-bold h5'>${product.price}</span>
             <Rating averageRating={product.averageRating} numOfReviews={product.numOfReviews} />
         </div>
-        <div className='btn-group d-grid' role='group'>
+        <div className='btn-group d-flex justify-content-between gap-2' role='group'>
           <button
             type='button'
-            className='btn btn-dark'
+            className='btn btn-dark rounded'
             title='Add to cart'
             disabled={product.countInStock <= 0}
             onClick={() => addItemToCart(product._id)}
           >
             <span><i className='fas fa-cart-plus'> </i></span>
           </button>
+          <Link 
+            to={`/product/${product._id}`}
+            className='btn btn-dark rounded'
+            title='View product' 
+            >
+            <span><i className='fas fa-eye'></i></span>
+          </Link>
         </div>
       </div>
     </div>

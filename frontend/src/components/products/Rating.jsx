@@ -62,7 +62,7 @@ const Rating = ({ averageRating, numOfReviews, color }) => {
         ></i>
       </span>
       <span className='text-secondary mx-1'>
-        {numOfReviews && `(${numOfReviews}) ${numOfReviews === 0 ? 'Review' : 'Reviews'}`}
+        {numOfReviews ? `(${numOfReviews}) ${numOfReviews === 1 ? 'Review' : 'Reviews'}` : ''}
       </span>
     </div>
   )

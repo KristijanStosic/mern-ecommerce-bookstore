@@ -133,7 +133,7 @@ const OrderDetailsPage = () => {
                 ) : (
                   ''
                 )}
-                <h6>Items price: ${order?.itemsPrice}</h6>
+                <h6 className='mt-3'>Items price: ${order?.itemsPrice}</h6>
                 <h4 className='card-title'>Total amount of the order: ${order?.totalPrice}</h4>
                 </div>
               </div>

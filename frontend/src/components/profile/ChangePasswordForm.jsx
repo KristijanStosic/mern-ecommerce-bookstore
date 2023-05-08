@@ -11,7 +11,6 @@ const ChangePasswordForm = () => {
 
   const dispatch = useDispatch()
 
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -31,7 +30,7 @@ const ChangePasswordForm = () => {
   }
 
   return (
-    <div className='card border-primary'>
+    <div className='card border-dark'>
       <h6 className='card-header bg-light'>
         <i className='fas fa-key'></i> Change Password
       </h6>
@@ -73,7 +72,7 @@ const ChangePasswordForm = () => {
               return toast.error('Cannot paste into password field')
             }}
           />
-            <button type='submit' className='btn btn-primary'>
+            <button type='submit' className='btn btn-dark'>
                 Submit
             </button>
         </form>

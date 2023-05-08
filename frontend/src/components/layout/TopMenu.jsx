@@ -45,18 +45,8 @@ const TopMenu = () => {
                   <hr className='dropdown-divider' />
                 </li>
                 <li>
-                  <Link className='dropdown-item' to='/checkout'>
-                    Checkout Page
-                  </Link>
-                </li>
-                <li>
                   <Link className='dropdown-item' to='/contact-us'>
                     Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link className='dropdown-item' to='/blog'>
-                    Blog
                   </Link>
                 </li>
                 <li>

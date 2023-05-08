@@ -1,12 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-hot-toast'
 
+const shippingAddress = JSON.parse(localStorage.getItem('shippingAddress'))
+
 export const initialState = {
   loading: false,
   error: null,
   orders: [],
   order: null,
   myOrders: [],
+  shippingAddress: shippingAddress ? shippingAddress : {},
   orderSuccessUpdate: false
 }
 
@@ -16,6 +19,13 @@ export const ordersSlice = createSlice({
   reducers: {
     setLoading: (state) => {
       state.loading = true
+    },
+    addShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload
+    },
+    removeShippingAddress: (state) => {
+      state.loading = false
+      state.shippingAddress = {}
     },
     getOrders: (state, action) => {
       state.orders = action.payload
@@ -28,9 +38,9 @@ export const ordersSlice = createSlice({
       state.error = null
     },
     getMyOrders: (state, action) => {
-      state.myOrders = action.payload
       state.loading = false
       state.error = null
+      state.myOrders = action.payload
     },
     createOrder: (state, action) => {
       state.orders = [...state.orders, action.payload]
@@ -40,9 +50,7 @@ export const ordersSlice = createSlice({
       toast.success(`Order created`)
     },
     updateOrderToPaid: (state, action) => {
-      state.orders = state.orders.map((order) =>
-        order._id === action.payload._id ? action.payload : order
-      )
+      state.orders = state.orders.map((order) => order._id === action.payload._id ? action.payload : order)
       state.loading = false
       state.error = null
       toast.success('Order paid')
@@ -60,11 +68,6 @@ export const ordersSlice = createSlice({
       state.loading = false
       toast.success(`Order is deleted`)
     },
-    resetMyOrders: (state) => {
-      state.myOrders = []
-      state.error = null
-      state.loading = false
-    },
     setError: (state, action) => {
       state.error = action.payload
       state.loading = false
@@ -73,11 +76,17 @@ export const ordersSlice = createSlice({
       state.error = null
       state.loading = false
     },
+    resetMyOrders: (state) => {
+      state.error = null 
+      state.myOrders = []
+    }
   },
 })
 
 export const {
   setLoading,
+  addShippingAddress,
+  removeShippingAddress,
   getOrders,
   getOrder,
   getMyOrders,
