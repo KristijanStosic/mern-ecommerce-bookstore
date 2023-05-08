@@ -5,8 +5,11 @@ import Spinner from '../../components/Spinner'
 import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import OrderItem from '../../components/admin/orders/OrderItem'
+import useTitle from '../../hooks/useTitle'
 
 const OrderListPage = () => {
+  useTitle('Orders Admin Page')
+
   const { orders, loading, error } = useSelector((state) => state.orders)
 
   const dispatch = useDispatch()

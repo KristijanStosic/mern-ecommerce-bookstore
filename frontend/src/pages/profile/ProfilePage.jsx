@@ -5,8 +5,11 @@ import ProfileForm from '../../components/profile/ProfileForm'
 import ChangePasswordForm from '../../components/profile/ChangePasswordForm'
 import Spinner from '../../components/Spinner'
 import Alert from '../../components/Alert'
+import useTitle from '../../hooks/useTitle'
 
 const ProfilePage = () => {
+  useTitle('My Profile')
+
   const dispatch = useDispatch()
 
   const { user, loading, error } = useSelector((state) => state.auth)

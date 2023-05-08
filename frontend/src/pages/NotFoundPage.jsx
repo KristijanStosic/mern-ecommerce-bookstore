@@ -1,6 +1,9 @@
 import Search from '../components/apiFeatures/Search'
+import useTitle from '../hooks/useTitle'
 
 const NotFoundPage = () => {
+  useTitle('Not Found Page')
+  
   return (
       <div className='container text-center p-5'>
         <div className='display-1'>

@@ -57,71 +57,86 @@ const LoginForm = () => {
 
   return (
     <>
-    {error && <Alert type='danger'>{error}</Alert>}
-    <form className='needs-validation' noValidate onSubmit={handleSubmit}>
-    <h4 className='text-center'>Login</h4>
-      <label htmlFor='email'>Email</label>
-      <div className='input-group mb-3'>
-        <span className='input-group-text'>
-        <span><i className='fas fa-envelope'></i></span>
-        </span>
-        <input
-          className='form-control'
-          name='email'
-          id='email'
-          type='text'
-          onChange={onChange}
-          placeholder='Email'
-        />
-      </div>
-      <label htmlFor='password'>Password</label>
-      <div className='input-group mb-3'>
-        <PasswordInput
-          placeholder='Password'
-          name='password'
-          value={password}
-          onChange={onChange}
-          onPaste={(e) => {
-            e.preventDefault()
-            return false
-          }}
-        />
-      </div>
-      <div className='d-grid'>
-      {loading ? (
-            <button className="btn btn-dark" type="button" disabled>
-            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          </button>
+      {error && <Alert type='danger'>{error}</Alert>}
+      <form className='needs-validation' noValidate onSubmit={handleSubmit}>
+        <h4 className='text-center'>Login</h4>
+        <label htmlFor='email'>Email</label>
+        <div className='input-group mb-3'>
+          <span className='input-group-text'>
+            <span>
+              <i className='fas fa-envelope'></i>
+            </span>
+          </span>
+          <input
+            className='form-control'
+            name='email'
+            id='email'
+            type='text'
+            onChange={onChange}
+            placeholder='Email'
+          />
+        </div>
+        <label htmlFor='password'>Password</label>
+        <div className='input-group mb-3'>
+          <PasswordInput
+            placeholder='Password'
+            name='password'
+            value={password}
+            onChange={onChange}
+            onPaste={(e) => {
+              e.preventDefault()
+              return false
+            }}
+          />
+        </div>
+        <div className='d-grid'>
+          {loading ? (
+            <button className='btn btn-dark' type='button' disabled>
+              <span
+                className='spinner-border spinner-border-sm'
+                role='status'
+                aria-hidden='true'
+              ></span>
+            </button>
           ) : (
             <button className='btn btn-dark'>Login</button>
-        )}
-      </div>
-      <div className="d-flex justify-content-center align-items-center mt-2">
-
-      <Link className='text-dark fw-semibold' to='/register' title='Sign Up'>
-        Don't have an account? Register here
-      </Link>
-      </div>
-
-      <div className='clearfix'></div>
-      <hr></hr>
-      <div className='row'>
-        <div className='col- text-center'>
-          <p className='text-muted small'>Or you can join with</p>
+          )}
         </div>
-        <div className='col- text-center'>
-          <Link to='/' className='btn btn-light text-white bg-twitter me-3'>
-            <span><i className='fab fa-twitter'></i></span>
-          </Link>
-          <Link to='/' className='btn btn-light text-white me-3 bg-facebook'>
-          <span><i className='fab fa-facebook'></i></span>
-          </Link>
-          <Link to='/' className='btn btn-light text-white me-3 bg-google'>
-          <span><i className='fab fa-google'></i></span>
+        <div className='d-flex justify-content-center align-items-center mt-2'>
+          <Link
+            className='text-dark fw-semibold'
+            to='/register'
+            title='Sign Up'
+          >
+            Don't have an account? Register here
           </Link>
         </div>
-      </div>
-    </form>
+
+        <div className='clearfix'></div>
+        <hr></hr>
+        <div className='row'>
+          <div className='col- text-center'>
+            <p className='text-muted small'>Or you can join with</p>
+          </div>
+          <div className='col- text-center'>
+            <Link to='/' className='btn btn-light text-white bg-twitter me-3'>
+              <span>
+                <i className='fab fa-twitter'></i>
+              </span>
+            </Link>
+            <Link to='/' className='btn btn-light text-white me-3 bg-facebook'>
+              <span>
+                <i className='fab fa-facebook'></i>
+              </span>
+            </Link>
+            <Link to='/' className='btn btn-light text-white me-3 bg-google'>
+              <span>
+                <i className='fab fa-google'></i>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </form>
     </>
   )
 }

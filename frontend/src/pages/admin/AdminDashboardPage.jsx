@@ -7,12 +7,15 @@ import { getAllGenres } from '../../redux/genres/genreActions'
 import { getAllProducts } from '../../redux/products/productActions'
 import { getAllUsers } from '../../redux/users/userActions'
 import { getAllReviews } from '../../redux/reviews/reviewActions'
+import { getAllOrders } from '../../redux/orders/orderActions'
 
 import Sidebar from '../../components/admin/Sidebar'
 import Spinner from '../../components/Spinner'
-import { getAllOrders } from '../../redux/orders/orderActions'
+import useTitle from '../../hooks/useTitle'
 
 const AdminDashboardPage = () => {
+  useTitle('Admin Dashboard')
+
   const dispatch = useDispatch()
   const { categories, loading } = useSelector((state) => state.categories)
   const { publishers } = useSelector((state) => state.publishers)

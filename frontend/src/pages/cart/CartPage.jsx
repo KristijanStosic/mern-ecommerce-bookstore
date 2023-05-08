@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import useTitle from '../../hooks/useTitle'
@@ -9,6 +8,7 @@ import CartOrderSummary from './CartOrderSummary'
 
 const CartPage = () => {
   useTitle('Cart')
+  
   const { cart, loading, error } = useSelector((state) => state.cart)
 
   if (loading) return <Spinner />

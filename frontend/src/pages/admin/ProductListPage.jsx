@@ -9,8 +9,11 @@ import ProductItem from '../../components/admin/products/ProductItem'
 import CreateProductModal from '../../components/modals/CreateProductModal'
 import Pagination from '../../components/apiFeatures/Pagination'
 import Search from '../../components/apiFeatures/Search'
+import useTitle from '../../hooks/useTitle'
 
 const ProductListPage = () => {
+  useTitle('Product Admin Page')
+
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
 
   const { products, page, pages, loading, error } = useSelector((state) => state.products)

@@ -4,8 +4,11 @@ import { getUserOrders, resetUserOrders } from '../../redux/orders/orderActions'
 import { formatDate } from '../../utils/utils'
 import Alert from '../../components/Alert'
 import Spinner from '../../components/Spinner'
+import useTitle from '../../hooks/useTitle'
 
 const MyOrdersPage = () => {
+  useTitle('My Orders')
+
   const dispatch = useDispatch()
 
   const { myOrders, loading, error } = useSelector((state) => state.orders)

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductById, resetProductError } from '../../redux/products/productActions'
+import { getProductById } from '../../redux/products/productActions'
 import { getSingleProductReviews } from '../../redux/reviews/reviewActions'
 import { addToCart } from '../../redux/cart/cartActions'
 import { toast } from 'react-hot-toast'
@@ -10,6 +10,7 @@ import ProductReviews from '../../components/products/ProductReviews'
 import Rating from '../../components/products/Rating'
 import Spinner from '../../components/Spinner'
 import Alert from '../../components/Alert'
+import useTitle from '../../hooks/useTitle'
 
 const ProductPage = () => {
   const [quantity, setQuantity] = useState(1)
@@ -17,10 +18,12 @@ const ProductPage = () => {
   const dispatch = useDispatch()
 
   const { productId } = useParams()
+
   const { product, loading, error } = useSelector((state) => state.products)
   const { productReviews } = useSelector((state) => state.reviews)
-
   const { cart } = useSelector((state) => state.cart)
+
+  useTitle(product && product?.name)
 
   useEffect(() => {
     dispatch(getProductById(productId))

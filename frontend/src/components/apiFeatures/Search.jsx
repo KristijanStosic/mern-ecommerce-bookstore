@@ -8,6 +8,7 @@ const Search = ({ isAdmin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    
     if (keyword.trim()) {
       if (isAdmin) {
         navigate(`/admin/products/search/${keyword}`)

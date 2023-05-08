@@ -5,8 +5,11 @@ import Spinner from '../../components/Spinner'
 import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import ReviewItem from '../../components/admin/reviews/ReviewItem'
+import useTitle from '../../hooks/useTitle'
 
 const ReviewListPage = () => {
+  useTitle('Review Admin Page')
+
   const { reviews, loading, error } = useSelector((state) => state.reviews)
 
   const dispatch = useDispatch()

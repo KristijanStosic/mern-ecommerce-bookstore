@@ -26,7 +26,6 @@ const PasswordInput = ({ placeholder, value, onChange, name, onPaste }) => {
           <span className='input-group-text' onClick={togglePassword}>
           {showPassword ? <span><i className='fas fa-eye'></i></span> : <span><i className='fas fa-eye-slash'></i></span>}
           </span>
-
       </div>
     </>
   )

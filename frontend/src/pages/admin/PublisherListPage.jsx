@@ -6,11 +6,15 @@ import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import PublisherItem from '../../components/admin/publishers/PublisherItem'
 import CreateCPGModal from '../../components/modals/CreateCPGModal'
+import useTitle from '../../hooks/useTitle'
 
 const PublisherListPage = () => {
+  useTitle('Publisher Admin Page')
+
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
 
   const dispatch = useDispatch()
+
   const { publishers, loading, error } = useSelector((state) => state.publishers)
 
   useEffect(() => {

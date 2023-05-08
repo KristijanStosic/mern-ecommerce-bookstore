@@ -6,11 +6,15 @@ import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import GenreItem from '../../components/admin/genres/GenreItem'
 import CreateCPGModal from '../../components/modals/CreateCPGModal'
+import useTitle from '../../hooks/useTitle'
 
 const GenreListPage = () => {
+  useTitle('Genre Admin Page')
+
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
 
   const dispatch = useDispatch()
+
   const { genres, loading, error } = useSelector((state) => state.genres)
 
   useEffect(() => {

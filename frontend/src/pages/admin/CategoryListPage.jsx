@@ -6,13 +6,16 @@ import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import CategoryItem from '../../components/admin/categories/CategoryItem'
 import CreateCPGModal from '../../components/modals/CreateCPGModal'
+import useTitle from '../../hooks/useTitle'
 
 const CategoryListPage = () => {
+  useTitle('Category Admin Page')
+
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
+
   const dispatch = useDispatch()
-  const { categories, loading, error } = useSelector(
-    (state) => state.categories
-  )
+  
+  const { categories, loading, error } = useSelector((state) => state.categories)
 
   useEffect(() => {
     dispatch(getAllCategories())

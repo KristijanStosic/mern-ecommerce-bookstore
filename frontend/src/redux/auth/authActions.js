@@ -10,14 +10,15 @@ import {
 } from '../auth/authSlice'
 import { extractErrorMessage } from '../../utils/utils'
 
-const config = {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-}
-
 export const login = (userData) => async (dispatch) => {
   dispatch(setLoading(true))
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }
+
   try {
     const { data } = await axios.post('/api/auth/login', userData, config)
     dispatch(userLogin(data))
@@ -38,6 +39,13 @@ export const logout = () => (dispatch) => {
 
 export const register = (userData) => async (dispatch) => {
   setLoading(true)
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }
+
   try {
     const { data } = await axios.post('/api/auth/register', userData, config)
     dispatch(userLogin(data))
@@ -48,6 +56,8 @@ export const register = (userData) => async (dispatch) => {
 }
 
 export const getUserProfile = () => async (dispatch, getState) => {
+  dispatch(setLoading(true))
+
   const { auth: { user } } = getState()
 
   const config = {

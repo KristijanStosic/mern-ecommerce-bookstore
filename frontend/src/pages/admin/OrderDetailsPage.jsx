@@ -5,8 +5,11 @@ import { formatDate } from '../../utils/utils'
 import { getOrderById, updateOrderToDelivered } from '../../redux/orders/orderActions'
 import Alert from '../../components/Alert'
 import Spinner from '../../components/Spinner'
+import useTitle from '../../hooks/useTitle'
 
 const OrderDetailsPage = () => {
+  useTitle('Order Details Page')
+
   const dispatch = useDispatch()
   const params = useParams()
 

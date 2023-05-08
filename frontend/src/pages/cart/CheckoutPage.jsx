@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux'
 import { useLocation, Navigate } from 'react-router-dom'
 import ShippingInformation from './ShippingInformation'
 import CheckoutOrderSummary from './CheckoutOrderSummary'
+import useTitle from '../../hooks/useTitle'
 
 const CheckoutPage = () => {
+  useTitle('Checkout')
+
   const location = useLocation()
   const { user } = useSelector((state) => state.auth)
 

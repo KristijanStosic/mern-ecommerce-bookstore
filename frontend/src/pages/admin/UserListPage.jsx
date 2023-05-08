@@ -5,8 +5,11 @@ import Spinner from '../../components/Spinner'
 import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import UserItem from '../../components/admin/users/UserItem'
+import useTitle from '../../hooks/useTitle'
 
 const UserListPage = () => {
+  useTitle('User Admin Page')
+
   const { users, loading, error } = useSelector((state) => state.users)
 
   const dispatch = useDispatch()
