@@ -7,13 +7,14 @@ import {
   getMyOrders,
   //createOrder,
   addShippingAddress, 
+  removeShippingAddress,
   deliverOrder,
   //updateOrderToPaid,
   orderDelete,
   setLoading,
   setError,
   resetError,
-  resetMyOrders
+  resetMyOrders,
 } from '../orders/orderSlice'
 
 export const getAllOrders = () => async (dispatch, getState) => {
@@ -116,6 +117,10 @@ export const updateOrderToDelivered = (orderId) => async (dispatch, getState) =>
 export const setShippingAddress = (shippingAddressData) => (dispatch) => {
   dispatch(addShippingAddress(shippingAddressData))
   localStorage.setItem('shippingAddress', JSON.stringify(shippingAddressData))
+}
+
+export const clearShippingAddress = () => (dispatch) => {
+  dispatch(removeShippingAddress())
 }
 
 export const resetUserOrders = () => async (dispatch) => {

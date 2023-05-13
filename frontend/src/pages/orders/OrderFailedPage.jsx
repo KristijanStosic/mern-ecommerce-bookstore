@@ -4,6 +4,7 @@ import { logout } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { resetCart } from '../../redux/cart/cartActions'
 import useTitle from '../../hooks/useTitle'
+import { clearShippingAddress } from '../../redux/orders/orderActions'
 
 const OrderFailedPage = () => {
   useTitle('Payment Failed!')
@@ -14,6 +15,7 @@ const OrderFailedPage = () => {
   const onLogout = () => {
     dispatch(logout())
     dispatch(resetCart())
+    dispatch(clearShippingAddress())
     toast.success('You have been logged out')
     navigate('/')
   }

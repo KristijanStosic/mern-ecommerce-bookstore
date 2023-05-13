@@ -11,12 +11,12 @@ const ShippingInformation = () => {
   const countriesList = Object.values(countries)
   const [buttonLoading, setButtonLoading] = useState(false)
 
-  const [name, setName] = useState(shippingAddress?.name)
-  const [address, setAddress] = useState(shippingAddress?.address)
-  const [city, setCity] = useState(shippingAddress?.city)
-  const [phoneNumber, setPhoneNumber] = useState(shippingAddress?.phoneNumber)
-  const [postalCode, setPostalCode] = useState(shippingAddress?.postalCode)
-  const [country, setCountry] = useState(shippingAddress?.country)
+  const [name, setName] = useState(shippingAddress?.name || '')
+  const [address, setAddress] = useState(shippingAddress?.address || '')
+  const [city, setCity] = useState(shippingAddress?.city || '')
+  const [phoneNumber, setPhoneNumber] = useState(shippingAddress?.phoneNumber || '')
+  const [postalCode, setPostalCode] = useState(shippingAddress?.postalCode || '')
+  const [country, setCountry] = useState(shippingAddress?.country || '')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()

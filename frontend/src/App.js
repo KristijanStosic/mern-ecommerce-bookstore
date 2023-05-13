@@ -26,6 +26,7 @@ import CartPage from './pages/cart/CartPage'
 import MyOrdersPage from './pages/orders/MyOrdersPage'
 import OrderFailedPage from './pages/orders/OrderFailedPage'
 import CheckoutPage from './pages/cart/CheckoutPage'
+import PaymentPage from './pages/Payment/PaymentPage'
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
           <Route path='/cart' element={<CartPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
           <Route path='/my-orders' element={<MyOrdersPage />} />
+          <Route path='/payment' element={<PaymentPage />} />
 
           <Route path='/admin-dashboard' element={<AdminDashboardPage />} />
           <Route path='/admin/categories' element={<CategoryListPage />} />

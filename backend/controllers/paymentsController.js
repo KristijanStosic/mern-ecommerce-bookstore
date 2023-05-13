@@ -1,19 +1,30 @@
-import Publisher from '../models/Publisher.js'
+import Stripe from 'stripe';
 
-// @desc    Get publishers
-// @route   GET /api/publishers
-// @access  Public
-const getPublishers = async (req, res) => {
-  const publishers = await Publisher.find({})
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-  // If no publishers
-  if (!publishers?.length) {
-    return res.status(404).json({ message: 'No publishers' })
-  }
+const createPaymentIntent = async (req, res) => {
+  const { amount, email, name } = req.body
 
-  res.status(200).json(publishers)
+  const customer = await stripe.customers.create({
+    name: name,
+    email: email
+  })
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: amount * 100,
+    currency: "usd",
+    customer: customer.id,
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
 }
 
 export {
-  getPublishers,
+  createPaymentIntent,
 }

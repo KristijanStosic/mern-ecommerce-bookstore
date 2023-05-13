@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { resetCart } from '../../redux/cart/cartActions'
-import { removeShippingAddress } from '../../redux/orders/orderSlice'
+import { clearShippingAddress } from '../../redux/orders/orderActions'
 import Search from '../apiFeatures/Search'
 
 const Header = () => {
@@ -16,7 +16,7 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout())
     dispatch(resetCart())
-    dispatch(removeShippingAddress())
+    dispatch(clearShippingAddress())
     toast.success('You have been logged out')
     navigate('/')
   }

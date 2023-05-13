@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { resetCart } from '../../redux/cart/cartActions'
+import { clearShippingAddress } from '../../redux/orders/orderActions'
 import useTitle from '../../hooks/useTitle'
 
 const OrderSuccessPage = () => {
@@ -14,6 +15,7 @@ const OrderSuccessPage = () => {
   const onLogout = () => {
     dispatch(logout())
     dispatch(resetCart())
+    dispatch(clearShippingAddress())
     toast.success('You have been logged out')
     navigate('/')
   }
