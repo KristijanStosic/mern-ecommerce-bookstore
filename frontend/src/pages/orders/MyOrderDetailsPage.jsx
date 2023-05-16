@@ -44,7 +44,6 @@ const MyOrderDetailsPage = () => {
                   <p><strong>Delivered: </strong> 
                   {myOrder?.isDelivered ? <i className='fas fa-check text-success'></i> : <i className='fas fa-times text-danger'></i>}
                   </p>
-                  <p><strong>Order ID: </strong> {myOrder?._id}</p>
                   <p><strong>Order date: </strong> {formatDate(myOrder?.createdAt)}</p>
                   <p><strong>Payment Method: </strong> {myOrder?.paymentMethod}</p>
                   <p><strong>Delivery: </strong> <span className='badge bg-success'>FREE</span> in Serbia</p>
