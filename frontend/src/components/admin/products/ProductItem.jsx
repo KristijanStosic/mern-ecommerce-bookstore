@@ -14,7 +14,7 @@ const ProductItem = ({ product }) => {
         <img className='img-fluid rounded' width='75px' height='75px' src={product.image} alt={product.name} />
       </td>
       <td className='align-middle text-wrap fw-semibold'>
-        <Link className='text-decoration-none text-dark' to={`/product/${product._id}`}>{product.name}
+        <Link className='text-decoration-none text-dark' to={`/product/${product._id}`}>  {product.name}
         </Link>
       </td>
       <td className='align-middle'>{product.author}</td>
@@ -32,19 +32,19 @@ const ProductItem = ({ product }) => {
       <td style={{ cursor: 'pointer' }} className='align-middle'>
         <i
           className='fas fa-pencil-alt text-dark'
-          onClick={() => setIsOpenUpdateModal(true)}
-        ></i>
+          onClick={() => setIsOpenUpdateModal(true)}>
+        </i>
         <i
           className='fas fa-trash text-danger mx-3'
-          onClick={() => setIsOpenDeleteModal(true)}
-        ></i>
+          onClick={() => setIsOpenDeleteModal(true)}>
+        </i>
       </td>
 
       {isOpenUpdateModal && (
         <UpdateProductModal
           isOpen={isOpenUpdateModal}
           onClose={setIsOpenUpdateModal}
-          itemToUpdate={product}
+          productToUpdate={product}
         />
       )}
 

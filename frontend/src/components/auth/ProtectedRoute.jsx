@@ -1,19 +1,17 @@
-import { useLocation, Navigate, Outlet } from "react-router-dom"
+import { useLocation, Navigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
-const ProtectedRoute = ({ isAdmin }) => {
+const ProtectedRoute = ({ children }) => {
   const { user } = useSelector((state) => state.auth)
-
   const location = useLocation()
 
-
   return (
-    user.isAdmin === isAdmin
-      ? <Outlet />
-      : user 
-        ? <Navigate to='/unauthorized' state={{ from: location }} replace />
-        : <Navigate to='/login' state={{ from: location }} replace />
-  )
+    !user && !user?.isAdmin
+        ? <Navigate to="/login" state={{ from: location }} replace />
+        : user || user.isAdmin
+            ? children
+            : <Navigate to="/unauthorized" state={{ from: location }} replace />
+);
 }
 
 export default ProtectedRoute

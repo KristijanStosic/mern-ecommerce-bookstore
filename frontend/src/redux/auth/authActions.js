@@ -37,7 +37,7 @@ export const logout = () => (dispatch) => {
   dispatch(userLogout())
 }
 
-export const register = (userData) => async (dispatch) => {
+export const register = (registerData) => async (dispatch) => {
   setLoading(true)
 
   const config = {
@@ -47,7 +47,7 @@ export const register = (userData) => async (dispatch) => {
   }
 
   try {
-    const { data } = await axios.post('/api/auth/register', userData, config)
+    const { data } = await axios.post('/api/auth/register', registerData, config)
     dispatch(userLogin(data))
     localStorage.setItem('user', JSON.stringify(data))
   } catch (error) {

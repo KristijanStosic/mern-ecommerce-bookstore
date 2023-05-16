@@ -21,6 +21,7 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useDispatch()
+
   const redirect = '/products'
 
   const onChange = (e) => {
@@ -32,13 +33,15 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    
+    const loginData = { email, password}
 
     if (!email) return toast.error('Email is required')
     if (!validateEmail(email)) return toast.error('Email invalid')
     if (!password) return toast.error('Password is required')
     if (password.length <= 5) return toast.error('Password must be at least 8 characters')
 
-    dispatch(login({ email, password }))
+    dispatch(login(loginData))
     setTimeout(() => {
       dispatch(resetErrorState())
     }, 3500)
@@ -48,7 +51,7 @@ const LoginForm = () => {
     if (user) {
       toast.success('Logged in successfully!')
       if (location.state?.from) {
-        navigate(location.state.from)
+        navigate(location.state?.from)
       } else {
         navigate(redirect)
       }

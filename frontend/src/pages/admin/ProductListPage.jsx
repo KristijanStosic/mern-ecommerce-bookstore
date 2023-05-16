@@ -46,7 +46,7 @@ const ProductListPage = () => {
                 <h1 className='text-dark'>All Products</h1>
               </div>
               <div className="d-flex justify-content-end align-items-center">
-              <Search isAdmin={true} />
+              <Search role='admin' />
               <button
                 className='btn btn-success ms-2'
                 onClick={() => setIsOpenCreateModal(true)}
@@ -78,7 +78,7 @@ const ProductListPage = () => {
                   ))}
               </tbody>
             </table>
-            <Pagination page={page} pages={pages} isAdmin={true} />
+            <Pagination page={page} pages={pages} role='admin' />
           </>
         </div>
       </div>

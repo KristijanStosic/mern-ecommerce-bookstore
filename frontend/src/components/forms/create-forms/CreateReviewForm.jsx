@@ -23,7 +23,7 @@ const CreateReviewForm = ({ productId }) => {
       title,
       comment,
       rating,
-      product: productId,
+      product: productId
     }
 
     if (!title) return toast.error('Title is required')
@@ -108,10 +108,6 @@ const CreateReviewForm = ({ productId }) => {
       )}
     </form>
   )
-}
-
-CreateReviewForm.defaultProps = {
-  color: '#f8e825',
 }
 
 export default CreateReviewForm

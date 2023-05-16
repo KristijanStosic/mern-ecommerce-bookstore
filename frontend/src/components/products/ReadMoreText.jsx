@@ -11,7 +11,11 @@ const ReadMoreText = ({ children }) => {
   return (
     <p className='text-dark small'>
       {readMore && readMore ? text.slice(0, 300) : text}
-      <span onClick={toggleReadMore} className='text-danger' style={{ cursor: 'pointer'}}>
+      <span
+        onClick={toggleReadMore}
+        className='text-danger'
+        style={{ cursor: 'pointer' }}
+      >
         {readMore ? ' [...read more]' : ' [show less]'}
       </span>
     </p>

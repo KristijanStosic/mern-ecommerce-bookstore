@@ -7,7 +7,6 @@ import productReducer from './products/productSlice'
 import userReducer from './users/userSlice'
 import reviewReducer from './reviews/reviewSlice'
 import authReducer from './auth/authSlice'
-import modalReducer from './modal/modalSlice'
 import cartReducer from './cart/cartSlice'
 
 export const store = configureStore({
@@ -20,7 +19,6 @@ export const store = configureStore({
     users: userReducer,
     orders: orderReducer,
     reviews: reviewReducer,
-    cart: cartReducer,
-    modal: modalReducer
-  },
+    cart: cartReducer
+  }
 })

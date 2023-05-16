@@ -19,7 +19,8 @@ const ReviewItem = ({ review }) => {
                 className='fas fa-trash-alt text-danger'
                 style={{ cursor: 'pointer' }}
                 onClick={() => setIsOpenDeleteModal(true)}
-              ></i>
+              >
+              </i>
             </span>
           </div>
         </div>
@@ -29,9 +30,11 @@ const ReviewItem = ({ review }) => {
             <span className='h6'>Product: {review?.product.name}</span>
           </div>
           <p>Posted by: {review?.user.name}</p>
+
           <p className='fw-bold h6 text-muted'>
             Date: {formatDate(review?.createdAt)}
           </p>
+
           <div className='card-footer'>
             <span>
               <strong>Title: </strong>

@@ -27,6 +27,9 @@ import MyOrdersPage from './pages/orders/MyOrdersPage'
 import OrderFailedPage from './pages/orders/OrderFailedPage'
 import CheckoutPage from './pages/cart/CheckoutPage'
 import PaymentPage from './pages/Payment/PaymentPage'
+import OrderSummaryPage from './pages/cart/OrderSummaryPage'
+import MyOrderDetailsPage from './pages/orders/MyOrderDetailsPage'
+import ProtectedRoute from './components/auth/ProtectedRoute'
 
 const App = () => {
   return (
@@ -36,6 +39,7 @@ const App = () => {
         <ToastMessage />
         <Routes>
           <Route path='/' element={<ProductsPage />} />
+
           <Route path='/products' element={<ProductsPage />} />
           <Route path='/products/search/:keyword' element={<ProductsPage />} />
           <Route path='/products/page/:page' element={<ProductsPage />} />
@@ -44,8 +48,10 @@ const App = () => {
 
           <Route path='/cart' element={<CartPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
-          <Route path='/my-orders' element={<MyOrdersPage />} />
+          <Route path='/order-summary' element={<OrderSummaryPage />} />
           <Route path='/payment' element={<PaymentPage />} />
+          <Route path='/my-orders' element={<MyOrdersPage />} />
+          <Route path='/my-order/:orderId' element={<MyOrderDetailsPage />} />
 
           <Route path='/admin-dashboard' element={<AdminDashboardPage />} />
           <Route path='/admin/categories' element={<CategoryListPage />} />
@@ -65,7 +71,10 @@ const App = () => {
 
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
-          <Route path='/my-profile' element={<ProfilePage />} />
+          
+          <Route path='/my-profile' element={<ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>} />
 
           <Route path='/*' element={<NotFoundPage />} />
         </Routes>

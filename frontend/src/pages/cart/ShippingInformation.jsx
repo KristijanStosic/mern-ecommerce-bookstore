@@ -21,7 +21,7 @@ const ShippingInformation = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const shippingAddressHandler = (e) => {
+  const createShippingAddressHandler = (e) => {
     e.preventDefault()
 
     const shippingAddressData = {
@@ -45,13 +45,13 @@ const ShippingInformation = () => {
     setButtonLoading(true)
 
     setTimeout(() => {
-      navigate('/payment')
+      navigate('/order-summary')
     }, 800)
   }
 
   return (
     <>
-      <form onSubmit={shippingAddressHandler}>
+      <form onSubmit={createShippingAddressHandler}>
         <div className='card'>
           <div className='card-header'>
             <i className='fas fa-truck'></i> Shipping Infomation
@@ -139,7 +139,7 @@ const ShippingInformation = () => {
                   </button>
                 ) : (
                   <button className='btn btn-dark' type='submit'>
-                    Go to Payment
+                    Go to Order Summary
                   </button>
                 )}
               </div>

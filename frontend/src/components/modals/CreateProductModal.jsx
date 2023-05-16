@@ -17,10 +17,7 @@ const CreateProductModal = ({ isOpen, onClose }) => {
         <CreateProductForm onClose={onClose} />
       </Modal.Body>
       <Modal.Footer>
-        <button
-          className='btn btn-danger'
-          onClick={() => onClose(false)}
-        >
+        <button className='btn btn-danger' onClick={() => onClose(false)}>
           Cancel
         </button>
       </Modal.Footer>

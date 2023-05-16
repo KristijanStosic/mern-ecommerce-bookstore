@@ -28,14 +28,16 @@ const ProfileForm = ({ user }) => {
       </h6>
       <div className='card-body'>
         <form onSubmit={handleSubmit}>
-          <label htmlFor='name' className='fw-semibold'>Name</label>
+          <label htmlFor='name' className='fw-semibold'>
+            Name
+          </label>
           <div className='input-group mb-3'>
             <span className='input-group-text'>
               <span>
                 <i className='fas fa-user'></i>
               </span>
             </span>
-          <input
+            <input
               className='form-control'
               name='name'
               value={name}
@@ -44,23 +46,25 @@ const ProfileForm = ({ user }) => {
             />
           </div>
 
-          <label htmlFor='email' className='fw-semibold'>Email</label>
+          <label htmlFor='email' className='fw-semibold'>
+            Email
+          </label>
           <div className='input-group mb-3'>
             <span className='input-group-text'>
               <span>
                 <i className='fas fa-envelope'></i>
               </span>
             </span>
-          <input
-            className='form-control'
-            name='email'
-            value={email}
-            placeholder='Email'
-            disabled
-          />
+            <input
+              className='form-control'
+              name='email'
+              value={email}
+              placeholder='Email'
+              disabled
+            />
           </div>
           <button type='submit' className='btn btn-dark mt-3'>
-              Submit
+            Submit
           </button>
         </form>
       </div>

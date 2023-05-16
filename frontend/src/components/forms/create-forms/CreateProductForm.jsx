@@ -59,21 +59,21 @@ const CreateProductForm = ({ onClose }) => {
     formData.append('image', file)
     setImageUploading(true)
     try {
-        if (!file) return toast.error('File not exist')
-        if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') return toast.error('File format is incorrect, please choose image')
-        if (file.size > 1024 * 1024) return toast.error('Size to large')
+      if (!file) return toast.error('File not exist')
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') return toast.error('File format is incorrect, please choose image')
+      if (file.size > 1024 * 1024) return toast.error('Size to large')
 
-        const config = {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          }
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         }
+      }
 
-        const { data } = await axios.post('/api/upload', formData, config)
+      const { data } = await axios.post('/api/upload', formData, config)
 
-        setImage(data)
-        setImagePreview(URL.createObjectURL(file))
-        setImageUploading(false)
+      setImage(data)
+      setImagePreview(URL.createObjectURL(file))
+      setImageUploading(false)
     } catch (error) {
       setImage('')
       setImagePreview('')
@@ -187,10 +187,20 @@ const CreateProductForm = ({ onClose }) => {
         </select>
         <div className="mb-4 mt-2">
           <label htmlFor="image" className="form-label">Choose image</label>
-          <input className="form-control" type="file" id="image" accept="image/*" onChange={uploadImageHandler} />
+          <input 
+            className="form-control" 
+            type="file" 
+            id="image" 
+            accept="image/*" 
+            onChange={uploadImageHandler} 
+          />
           <div className="border border-2 rounded w-50 mt-2">
             {image ? (
-              <img style={{ maxWidth: '100%', height: '100%'}} src={imagePreview === null ? '' : imagePreview} alt='' />
+              <img 
+                style={{ maxWidth: '100%', height: '100%'}} 
+                src={imagePreview === null ? '' : imagePreview} 
+                alt='' 
+              />
             ) : (
               <p className='text-center text-muted'>Product image will appear here!</p>
             )}

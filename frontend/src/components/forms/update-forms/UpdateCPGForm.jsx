@@ -18,11 +18,11 @@ const UpdateCPGForm = ({ itemToUpdate, updateAction, onClose }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className='container-fluid'>
-        <label htmlFor='categoryName'>Name</label>
+        <label htmlFor='name'>Name</label>
         <input
           className='form-control'
-          name='categoryName'
-          id='categoryName'
+          name='name'
+          id='name'
           type='text'
           value={name}
           onChange={(e) => setName(e.target.value)}

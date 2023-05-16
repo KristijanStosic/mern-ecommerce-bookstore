@@ -8,7 +8,7 @@ import CartOrderSummary from './CartOrderSummary'
 
 const CartPage = () => {
   useTitle('Cart')
-  
+
   const { cart, loading, error } = useSelector((state) => state.cart)
 
   if (loading) return <Spinner />
@@ -19,8 +19,9 @@ const CartPage = () => {
       {cart.length <= 0 ? (
         <div className='m-2 p-2'>
           <Alert type='danger'>
-          Cart is empty! <Link to='/products'>Click here to see our products</Link>
-        </Alert>
+            Cart is empty!{' '}
+            <Link to='/products'>Click here to see our products</Link>
+          </Alert>
         </div>
       ) : (
         <>
@@ -44,20 +45,20 @@ const CartPage = () => {
               <div className='col-md-3'>
                 <CartOrderSummary />
                 <div className='mt-3'>
-                    <div className='d-flex justify-content-center'>
-                      <div className='d-flex flex-column'>
-                        <hr />
-                        <span className='text-center'>or</span>
-                        <hr />
-                        <Link to='/' className='btn btn-secondary'>
-                          Continue shopping
-                        </Link>
-                      </div>
+                  <div className='d-flex justify-content-center'>
+                    <div className='d-flex flex-column'>
+                      <hr />
+                      <span className='text-center'>or</span>
+                      <hr />
+                      <Link to='/' className='btn btn-secondary'>
+                        Continue shopping
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
           <div className='bg-light border-top p-4'>
             <div className='container'>
               <h6>Payment and refund policy</h6>

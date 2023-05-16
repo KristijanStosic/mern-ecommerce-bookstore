@@ -3,7 +3,6 @@ import { extractErrorMessage } from '../../utils/utils'
 
 import {
   getReviews,
-  //getReview,
   getProductReviews,
   createReview,
   reviewDelete,

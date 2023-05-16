@@ -21,7 +21,12 @@ const CardProductGrid = ({ product }) => {
   return (
     <div className='card'>
       <Link to={`/product/${product._id}`}>
-        <img src={product?.image} className='card-img-top' alt={product.name} style={{ width: '100%', height: '25vw', objectFit: 'cover'}} />
+        <img 
+          className='card-img-top' 
+          src={product?.image} 
+          alt={product.name} s
+          style={{ width: '100%', height: '25vw', objectFit: 'cover'}} 
+        />
       </Link>
       {product.isNewProduct && (
         <span className='badge bg-success position-absolute mt-2 ms-2'>
@@ -44,7 +49,7 @@ const CardProductGrid = ({ product }) => {
             disabled={product.countInStock <= 0}
             onClick={() => addItemToCart(product._id)}
           >
-            <span><i className='fas fa-cart-plus'> </i></span>
+            <span><i className='fas fa-cart-plus'></i></span>
           </button>
           <Link 
             to={`/product/${product._id}`}

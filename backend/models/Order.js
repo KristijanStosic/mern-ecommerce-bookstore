@@ -26,15 +26,12 @@ const orderItemSchema = new mongoose.Schema({
 
 const orderSchema = new mongoose.Schema(
   {
-    itemsPrice: {
-      type: Number,
-    },
     totalPrice: {
       type: Number,
     },
     isPaid: {
       type: Boolean,
-      default: false,
+      default: false
     },
     paidAt: {
       type: Date,
@@ -51,18 +48,12 @@ const orderSchema = new mongoose.Schema(
       default: 'Stripe'
     },
     paymentDetails: {
-      orderId: { type: String },
-      payerId: { type: String },
-      status: { type: String },
-    },
-    paymentResult: {
       id: { type: String },
-      status: { type: String },
-      update_time: { type: String },
-      email_address: { type: String },
-    },
-    paymentInfo: {
-      type: Object,
+      object: { type: String },
+      amount: { type: Number },
+      currency: { type: String },
+      customerId: { type: String },
+      status: { type: String }
     },
     orderItems: [orderItemSchema],
     shippingAddress: {

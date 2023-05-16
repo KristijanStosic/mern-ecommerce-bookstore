@@ -41,9 +41,7 @@ const ProductPage = () => {
 
   const addItemToCart = (productId) => {
     if (cart.some((cartItem) => cartItem.productId === productId)) {
-      toast.error(
-        'This item is already in your cart. Go to your cart to change the amount'
-      )
+      toast.error('This item is already in your cart. Go to your cart to change the amount')
     } else {
       dispatch(addToCart(productId, quantity))
       toast.success('Item has been added to your cart')

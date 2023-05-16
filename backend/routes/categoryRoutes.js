@@ -1,5 +1,11 @@
-import express from 'express' 
-import { getCategories, createCategory, getCategoryById, updateCategory, deleteCategory } from '../controllers/categoriesController.js'
+import express from 'express'
+import {
+  getCategories,
+  createCategory,
+  getCategoryById,
+  updateCategory,
+  deleteCategory,
+} from '../controllers/categoriesController.js'
 import { authenticate, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()

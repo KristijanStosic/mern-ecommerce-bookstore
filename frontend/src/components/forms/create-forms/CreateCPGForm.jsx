@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-hot-toast'
 
@@ -19,11 +19,11 @@ const CreateCPGForm = ({ createAction, type, onClose }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className='container-fluid'>
-        <label htmlFor='categoryName'>Name</label>
+        <label htmlFor='name'>Name</label>
         <input
           className='form-control'
-          name='categoryName'
-          id='categoryName'
+          name='name'
+          id='name'
           type='text'
           value={name}
           onChange={(e) => setName(e.target.value)}

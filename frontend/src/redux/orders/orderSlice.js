@@ -8,6 +8,7 @@ export const initialState = {
   error: null,
   orders: [],
   order: null,
+  myOrder: null,
   myOrders: [],
   shippingAddress: shippingAddress ? shippingAddress : {},
   orderSuccessUpdate: false
@@ -38,6 +39,11 @@ export const ordersSlice = createSlice({
       state.order = action.payload
       state.orderSuccessUpdate = false
     },
+    getMyOrder: (state, action) => {
+      state.loading = false
+      state.error = null
+      state.myOrder = action.payload
+    },
     getMyOrders: (state, action) => {
       state.loading = false
       state.error = null
@@ -45,16 +51,10 @@ export const ordersSlice = createSlice({
     },
     createOrder: (state, action) => {
       state.orders = [...state.orders, action.payload]
+      state.order = action.payload
       //state.orders.push(action.payload)
       state.loading = false
       state.error = null
-      toast.success(`Order created`)
-    },
-    updateOrderToPaid: (state, action) => {
-      state.orders = state.orders.map((order) => order._id === action.payload._id ? action.payload : order)
-      state.loading = false
-      state.error = null
-      toast.success('Order paid')
     },
     deliverOrder: (state, action) => {
       state.orders = state.orders.map((order) => order._id === action.payload._id ? action.payload : order)
@@ -91,9 +91,9 @@ export const {
   getOrders,
   getOrder,
   getMyOrders,
+  getMyOrder,
   createOrder,
   deliverOrder,
-  updateOrderToPaid,
   orderDelete,
   setError,
   resetError,

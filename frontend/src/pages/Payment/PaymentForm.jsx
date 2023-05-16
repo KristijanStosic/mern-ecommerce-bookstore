@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  PaymentElement,
-  useStripe,
-  useElements,
-} from '@stripe/react-stripe-js'
+import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { toast } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 
@@ -105,11 +101,11 @@ export default function PaymentForm() {
       >
         <span id='button-text'>
           {isLoading ? (
-            <div className='spinner-border text-light' role='status'>
-              <span className='visually-hidden'>Loading...</span>
-            </div>
+              <div className='spinner-border text-light'>
+                <span className='visually-hidden'>Loading...</span>
+              </div>
           ) : (
-            `Pay Now - $${subtotal}`
+            `Pay now - $${subtotal}`
           )}
         </span>
       </button>

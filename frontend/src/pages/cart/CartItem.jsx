@@ -25,18 +25,10 @@ const CartItem = ({ cartItem }) => {
         <table className='table table-image'>
           <thead className='text-center'>
             <tr>
-              <th scope='col'>
-                IMAGE
-              </th>
-              <th scope='col'>
-                NAME
-              </th>
-              <th scope='col'>
-                QUANTITY
-              </th>
-              <th scope='col'>
-                PRICE
-              </th>
+              <th scope='col'>IMAGE</th>
+              <th scope='col'>NAME</th>
+              <th scope='col'>QUANTITY</th>
+              <th scope='col'>PRICE</th>
             </tr>
           </thead>
           <tbody>

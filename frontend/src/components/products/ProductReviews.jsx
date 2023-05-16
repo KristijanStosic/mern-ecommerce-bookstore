@@ -22,9 +22,11 @@ const ProductReviews = ({ productReview }) => {
               <i className='fw-bold'>{formatDate(productReview?.createdAt)}</i>
             </span>
           </div>
-          <div className="d-flex justify-content-start align-items-center">
-            <span className='text-muted'>Comment: {productReview?.comment}</span>
-        </div>
+          <div className='d-flex justify-content-start align-items-center'>
+            <span className='text-muted'>
+              Comment: {productReview?.comment}
+            </span>
+          </div>
         </div>
       </div>
     </>

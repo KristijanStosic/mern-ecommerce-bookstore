@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useLocation, Navigate } from 'react-router-dom'
 import ShippingInformation from './ShippingInformation'
-import CheckoutOrderSummary from './CheckoutOrderSummary'
 import useTitle from '../../hooks/useTitle'
 
 const CheckoutPage = () => {
@@ -15,11 +14,8 @@ const CheckoutPage = () => {
       <div className='container'>
         <h1 className='display-6 mt-3'>Checkout</h1>
         <div className='row'>
-          <div className='col-md-6 mb-3'>
+          <div className='col-md-12 mb-3'>
             <ShippingInformation />
-          </div>
-          <div className='col-md-6 mb-3'>
-            <CheckoutOrderSummary />
           </div>
         </div>
       </div>

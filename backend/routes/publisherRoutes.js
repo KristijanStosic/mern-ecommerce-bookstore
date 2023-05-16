@@ -1,5 +1,11 @@
-import express from 'express' 
-import { getPublishers, createPublisher, getPublisherById, updatePublisher, deletePublisher } from '../controllers/publishersController.js'
+import express from 'express'
+import {
+  getPublishers,
+  createPublisher,
+  getPublisherById,
+  updatePublisher,
+  deletePublisher,
+} from '../controllers/publishersController.js'
 import { authenticate, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()

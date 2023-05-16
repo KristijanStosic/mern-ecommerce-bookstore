@@ -120,11 +120,11 @@ const OrderDetailsPage = () => {
                 ) : (
                   <Alert type='success'>Paid: {formatDate(order.paidAt)}</Alert>
                 )}
-                {!order?.isDelivered ? (
+                {!order?.isDelivered && order?.isPaid ? (
                   <Alert type='danger'>Not Delivered Yet</Alert>
                 ) : (
                   <Alert type='success'>
-                    Delivered: {formatDate(order.deliveredAt)}
+                    Delivered: {formatDate(order?.deliveredAt)}
                   </Alert>
                 )}
                 {!order?.isDelivered ? (

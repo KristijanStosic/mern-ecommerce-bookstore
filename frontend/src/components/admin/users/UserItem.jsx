@@ -10,20 +10,21 @@ const UserItem = ({ user }) => {
 
   return (
     <>
-      <td className='align-middle fw-semibold'>{user.name}</td>
-      <td className='align-middle'>{user.email}</td>
+      <td className='align-middle fw-semibold'>{user?.name}</td>
+      <td className='align-middle'>{user?.email}</td>
       <td className='align-middle'>
-        {user.isAdmin  
+        {user?.isAdmin  
               ? <i className='fas fa-check text-success'></i> 
               : <i className='fas fa-times text-danger'></i>
         }
       </td>
-      <td className='align-middle'>{formatDate(user.createdAt)}</td>
+      <td className='align-middle'>{formatDate(user?.createdAt)}</td>
       <td style={{ cursor: 'pointer' }} className='align-middle'>
         <i
           className='fas fa-pencil-alt text-dark'
           onClick={() => setIsOpenUpdateModal(true)}
-        ></i>
+        >  
+        </i>
         <i 
           hidden={user.isAdmin}
           className='fas fa-trash text-danger mx-3'
@@ -35,7 +36,7 @@ const UserItem = ({ user }) => {
         <UpdateUserModal
           isOpen={isOpenUpdateModal}
           onClose={setIsOpenUpdateModal}
-          itemToUpdate={user}
+          userToUpdate={user}
         />
       )}
 

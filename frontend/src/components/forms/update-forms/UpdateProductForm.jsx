@@ -8,22 +8,22 @@ import { getAllGenres } from '../../../redux/genres/genreActions'
 import axios from 'axios'
 import Spinner from '../../Spinner'
 
-const UpdateProductForm = ({ itemToUpdate, onClose }) => {
+const UpdateProductForm = ({ productToUpdate, onClose }) => {
   const { categories} = useSelector((state) => state.categories)
   const { publishers } = useSelector((state) => state.publishers)
   const { genres } = useSelector((state) => state.genres)
 
-  const [name, setName] = useState(itemToUpdate?.name)
-  const [image, setImage] = useState(itemToUpdate?.image)
-  const [author, setAuthor] = useState(itemToUpdate?.author)
-  const [description, setDescription] = useState(itemToUpdate?.description)
-  const [price, setPrice] = useState(itemToUpdate?.price)
-  const [countInStock, setCountInStock] = useState(itemToUpdate?.countInStock)
-  const [isNewProduct, setIsNewProduct] = useState(itemToUpdate?.isNewProduct)
-  const [genre, setGenre] = useState(itemToUpdate?.genre._id)
-  const [category, setCategory] = useState(itemToUpdate?.category._id)
-  const [publisher, setPublisher] = useState(itemToUpdate?.publisher._id)
-  const [imagePreview, setImagePreview] = useState(itemToUpdate?.image)
+  const [name, setName] = useState(productToUpdate?.name)
+  const [image, setImage] = useState(productToUpdate?.image)
+  const [author, setAuthor] = useState(productToUpdate?.author)
+  const [description, setDescription] = useState(productToUpdate?.description)
+  const [price, setPrice] = useState(productToUpdate?.price)
+  const [countInStock, setCountInStock] = useState(productToUpdate?.countInStock)
+  const [isNewProduct, setIsNewProduct] = useState(productToUpdate?.isNewProduct)
+  const [genre, setGenre] = useState(productToUpdate?.genre._id)
+  const [category, setCategory] = useState(productToUpdate?.category._id)
+  const [publisher, setPublisher] = useState(productToUpdate?.publisher._id)
+  const [imagePreview, setImagePreview] = useState(productToUpdate?.image)
   const [imageUploading, setImageUploading] = useState(false)
 
   const dispatch = useDispatch()
@@ -41,7 +41,7 @@ const UpdateProductForm = ({ itemToUpdate, onClose }) => {
       name, image, author, description, price, countInStock, isNewProduct, genre, category, publisher
     }
     
-    dispatch(updateProduct(itemToUpdate._id, productData))
+    dispatch(updateProduct(productToUpdate._id, productData))
     onClose(false)
   }
 
@@ -148,8 +148,8 @@ const UpdateProductForm = ({ itemToUpdate, onClose }) => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value={itemToUpdate?.category._id}>
-            {itemToUpdate?.category.name}
+          <option value={productToUpdate?.category._id}>
+            {productToUpdate?.category.name}
           </option>
           {categories && categories.map((category) => (
             <option key={category._id} value={category._id}>{category.name}</option>
@@ -162,8 +162,8 @@ const UpdateProductForm = ({ itemToUpdate, onClose }) => {
           value={publisher}
           onChange={(e) => setPublisher(e.target.value)}
         >
-          <option value={itemToUpdate?.publisher._id}>
-            {itemToUpdate?.publisher.name}
+          <option value={productToUpdate?.publisher._id}>
+            {productToUpdate?.publisher.name}
           </option>
           {publishers && publishers.map((publisher) => (
             <option key={publisher._id} value={publisher._id}>{publisher.name}</option>
@@ -176,8 +176,8 @@ const UpdateProductForm = ({ itemToUpdate, onClose }) => {
           value={genre}
           onChange={(e) => setGenre(e.target.value)}
         >
-          <option value={itemToUpdate?.genre._id}>
-            {itemToUpdate?.genre.name}
+          <option value={productToUpdate?.genre._id}>
+            {productToUpdate?.genre.name}
           </option>
           {genres && genres.map((genre) => (
             <option key={genre._id} value={genre._id}>{genre.name}</option>
@@ -190,10 +190,15 @@ const UpdateProductForm = ({ itemToUpdate, onClose }) => {
             type="file" 
             id="image" 
             accept="image/*" 
-            onChange={uploadImageHandler} />
+            onChange={uploadImageHandler} 
+          />
           <div className="border border-2 rounded w-50 mt-2">
             {image ? (
-              <img style={{ maxWidth: '100%', height: '100%'}} src={imagePreview === null ? '' : imagePreview} alt='' />
+              <img 
+                style={{ maxWidth: '100%', height: '100%'}} 
+                src={imagePreview === null ? '' : imagePreview} 
+                alt='' 
+              />
             ) : (
               <p className='text-center text-muted'>Product image will appear here!</p>
             )}

@@ -11,7 +11,9 @@ export const initialState = {
   loading: false,
   error: null,
   cart: JSON.parse(localStorage.getItem('cart')) ?? [],
-  subtotal: localStorage.getItem('cart') ? calculateSubtotal(JSON.parse(localStorage.getItem('cart'))) : 0,
+  subtotal: localStorage.getItem('cart') 
+  ? calculateSubtotal(JSON.parse(localStorage.getItem('cart')))
+  : 0
 }
 
 const updateLocalStorage = (cart) => {
@@ -27,10 +29,14 @@ export const cartSlice = createSlice({
       state.loading = true
     },
     cartItemAdd: (state, action) => {
-      const existingItem = state.cart.find((item) => item.productId === action.payload.productId)
+      const existingItem = state.cart.find(
+        (item) => item.productId === action.payload.productId
+      )
 
       if (existingItem) {
-        state.cart = state.cart.map((item) => (item.productId === existingItem.productId ? action.payload : item))
+        state.cart = state.cart.map((item) =>
+          item.productId === existingItem.productId ? action.payload : item
+        )
       } else {
         state.cart = [...state.cart, action.payload]
       }
@@ -40,7 +46,9 @@ export const cartSlice = createSlice({
       updateLocalStorage(state.cart)
     },
     cartItemRemove: (state, action) => {
-      state.cart = [...state.cart].filter((item) => item.productId !== action.payload)
+      state.cart = [...state.cart].filter(
+        (item) => item.productId !== action.payload
+      )
       state.loading = false
       state.error = null
       state.subtotal = calculateSubtotal(state.cart)
@@ -53,13 +61,21 @@ export const cartSlice = createSlice({
     },
     clearCart: (state) => {
       localStorage.removeItem('cart')
+      toast.success('Cart cleared')
       state.cart = []
       state.subtotal = 0
     },
   },
 })
 
-export const { setLoading, setError, cartItemAdd, cartItemRemove, setExpressShipping, clearCart } = cartSlice.actions
+export const {
+  setLoading,
+  setError,
+  cartItemAdd,
+  cartItemRemove,
+  setExpressShipping,
+  clearCart,
+} = cartSlice.actions
 
 export default cartSlice.reducer
 

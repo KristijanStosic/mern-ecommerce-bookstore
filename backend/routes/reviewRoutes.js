@@ -1,5 +1,12 @@
 import express from 'express'
-import { createReview, deleteReview, getProductReviews, getReview, getReviews, updateReview } from '../controllers/reviewsController.js'
+import {
+  createReview,
+  deleteReview,
+  getProductReviews,
+  getReview,
+  getReviews,
+  updateReview,
+} from '../controllers/reviewsController.js'
 import { authenticate, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()

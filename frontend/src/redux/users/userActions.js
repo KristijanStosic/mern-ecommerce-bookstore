@@ -13,6 +13,7 @@ import {
 
 export const getAllUsers = () => async (dispatch, getState) => {
   dispatch(setLoading(true))
+
   const { auth: { user } } = getState()
 
   const config = {
@@ -31,6 +32,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
 
 export const getUserById = (userId) => async (dispatch, getState) => {
   dispatch(setLoading(true))
+
   const { auth: { user } } = getState()
 
   const config = {

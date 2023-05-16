@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateUser } from '../../../redux/users/userActions'
 
-const UpdateUserForm = ({ itemToUpdate, onClose }) => {
-  const [name, setName] = useState(itemToUpdate?.name)
-  const [email, setEmail] = useState(itemToUpdate?.email)
-  const [isAdmin, setIsAdmin] = useState(itemToUpdate?.isAdmin)
+const UpdateUserForm = ({ userToUpdate, onClose }) => {
+  const [name, setName] = useState(userToUpdate?.name)
+  const [email, setEmail] = useState(userToUpdate?.email)
+  const [isAdmin, setIsAdmin] = useState(userToUpdate?.isAdmin)
 
   const dispatch = useDispatch()
 
@@ -16,7 +16,7 @@ const UpdateUserForm = ({ itemToUpdate, onClose }) => {
       name, email, isAdmin
     }
 
-    dispatch(updateUser(itemToUpdate._id, userData))
+    dispatch(updateUser(userToUpdate._id, userData))
     onClose(false)
   }
 

@@ -50,6 +50,7 @@ const AdminDashboardPage = () => {
   return (
     <>
       <div className='row m-0'>
+
         <div className='col-12 col-md-2 p-0' >
           <Sidebar />
         </div>
@@ -235,7 +236,6 @@ const AdminDashboardPage = () => {
                   </div>
                 </div>
               </div>
-              
             </>
           )}
         </div>

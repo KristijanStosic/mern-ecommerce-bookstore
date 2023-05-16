@@ -5,15 +5,16 @@ import Product from '../models/Product.js'
 // @route   POST /api/orders
 // @access  Public
 const createOrder = async (req, res) => {
-  let { orderItems, shippingAddress, itemsPrice, totalPrice, paymentDetails } = req.body
+  let { orderItems, shippingAddress, totalPrice } = req.body
 
   if (!orderItems || orderItems.length < 1)
     return res.status(400).json({ message: 'No order items' })
 
   orderItems.forEach(async (item) => {
     const product = await Product.findOne({ _id: item.product })
+    
     if (!product) {
-      return  res.status(404).json({ message: 'Product not found' })
+      return res.status(404).json({ message: 'Product not found' })
     } else if (item.quantity > product.countInStock) {
       return res.status(400).json({ message: 'You cannot order more than available' })
     }
@@ -26,8 +27,6 @@ const createOrder = async (req, res) => {
   const order = await Order.create({
     orderItems,
     shippingAddress,
-    paymentDetails,
-    itemsPrice,
     totalPrice,
     user: req.user._id,
   })
@@ -39,7 +38,7 @@ const createOrder = async (req, res) => {
 // @route GET /api/orders
 // @access Private/Admin
 const getOrders = async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'name email')
+  const orders = await Order.find({}).populate('user', 'name email').select('-paymentDetails')
 
   if (!orders?.length) return res.status(404).json({ message: 'No orders' })
 
@@ -50,7 +49,18 @@ const getOrders = async (req, res) => {
 // @route   GET /api/orders/:id
 // @access  Private/Admin
 const getOrder = async (req, res) => {
-  const order = await Order.findById(req.params.id).populate('user', 'name email')
+  const order = await Order.findById(req.params.id).populate('user', 'name email').select('-paymentDetails')
+
+  if (!order) return res.status(404).json({ message: 'Order not found' })
+
+  res.status(200).json(order)
+}
+
+// @desc    Get my order
+// @route   GET /api/my-order/:id
+// @access  Private/Admin
+const getMyOrder = async (req, res) => {
+  const order = await Order.findById(req.params.id).populate('user','name email').select('-paymentDetails')
 
   if (!order) return res.status(404).json({ message: 'Order not found' })
 
@@ -60,17 +70,28 @@ const getOrder = async (req, res) => {
 // @desc    Update order to paid
 // @route   GET /api/orders/:id/pay
 // @access  Private
-const updateOrderToPaid = async (req, res) => {
-  const order = await Order.findById(req.params.id)
+const updateOrderToPaid = async (order, data) => {
+  if (order) {
+    const orderToPaid = await Order.findOne({ _id: order._id })
 
-  if (!order) return res.status(404).json({ message: 'Order not found' })
-
-  order.isPaid = true
-  order.paidAt = Date.now()
-
-  const updatedOrder = await order.save()
-
-  res.status(200).json(updatedOrder)
+    if (!orderToPaid) return res.status(404).json({ message: 'Order not found'})
+  
+    orderToPaid.isPaid = true 
+    orderToPaid.paidAt = Date.now()
+    orderToPaid.paymentDetails = {
+      id: data.id,
+      object: data.object,
+      amount: data.amount / 100,
+      status: data.status,
+      currency: data.currency,
+      customerId: data.customer,
+      status: data.status
+    }
+  
+    await orderToPaid.save()
+  } else {
+    throw new Error('Order not found')
+  }
 }
 
 // @desc    Update order to delivered
@@ -104,16 +125,25 @@ const deleteOrder = async (req, res) => {
   return res.status(200).json(order)
 }
 
-
 // @desc    Get logged in user orders
 // @route   GET /api/orders/my-orders
 // @access  Private
 const getMyOrders = async (req, res) => {
-    const orders = await Order.find({ user: req.user._id })
+  const orders = await Order.find({ user: req.user._id }).select('-paymentDetails')
 
-    if (!orders?.length) return res.status(404).json({ message: 'You have no orders yet' })
+  if (!orders?.length)
+    return res.status(404).json({ message: 'You have no orders yet' })
 
-    res.status(200).json(orders)
+  res.status(200).json(orders)
 }
 
-export { createOrder, getMyOrders, getOrders, getOrder, updateOrderToPaid, updateOrderToDelivered, deleteOrder }
+export {
+  createOrder,
+  getMyOrders,
+  getOrders,
+  getOrder,
+  getMyOrder,
+  updateOrderToPaid,
+  updateOrderToDelivered,
+  deleteOrder,
+}

@@ -1,5 +1,11 @@
 import express from 'express'
-import { getGenres, createGenre, getGenreById, updateGenre, deleteGenre} from '../controllers/genresController.js'
+import {
+  getGenres,
+  createGenre,
+  getGenreById,
+  updateGenre,
+  deleteGenre,
+} from '../controllers/genresController.js'
 import { authenticate, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()

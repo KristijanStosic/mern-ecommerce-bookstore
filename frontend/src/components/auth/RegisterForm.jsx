@@ -20,9 +20,10 @@ const RegisterForm = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
   const redirect = '/products'
 
-  const { loading, error, user } = useSelector((state) => state.auth)
+  const { user, loading, error } = useSelector((state) => state.auth)
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -34,10 +35,10 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    const userData = {
+    const registerData = {
       name,
       email,
-      password,
+      password
     }
 
     if (!name) return toast.error('Name is required')
@@ -47,7 +48,7 @@ const RegisterForm = () => {
     if (password !== confirmPassword) return toast.error('Passwords not match')
     if (password.length <= 7) return toast.error('Password must be at least 8 characters')
 
-    dispatch(register(userData))
+    dispatch(register(registerData))
     setTimeout(() => {
       dispatch(resetErrorState())
     }, 3500)
@@ -109,7 +110,7 @@ const RegisterForm = () => {
             onChange={onChange}
             onPaste={(e) => {
               e.preventDefault()
-              return false
+              return toast.error('Cannot paste into password field')
             }}
           />
         </div>
@@ -122,7 +123,7 @@ const RegisterForm = () => {
             onChange={onChange}
             onPaste={(e) => {
               e.preventDefault()
-              return false
+              return toast.error('Cannot paste into password field')
             }}
           />
         </div>
@@ -139,13 +140,16 @@ const RegisterForm = () => {
             <button className='btn btn-dark'>Register</button>
           )}
         </div>
+
         <div className='d-flex justify-content-center align-items-center mt-2'>
           <Link className='text-dark fw-semibold' to='/login'>
             Already have an account? Login here
           </Link>
         </div>
+
         <div className='clearfix'></div>
         <hr></hr>
+
         <div className='row'>
           <div className='col- text-center'>
             <p className='text-muted small'>Or you can join with</p>

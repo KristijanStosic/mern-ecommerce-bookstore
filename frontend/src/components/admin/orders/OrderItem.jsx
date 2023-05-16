@@ -11,30 +11,33 @@ const OrderItem = ({ order }) => {
     <>
       <td className='align-middle'>{formatDate(order.createdAt)}</td>
       <td className='align-middle text-wrap fw-semibold'>{order.shippingAddress.name}</td>
-      <td className='align-middle'>{order.user.email}</td>
+      <td className='align-middle'>{order?.user.email}</td>
       <td className='align-middle'>
-        {order.isPaid  
+        {order?.isPaid  
               ? <i className='fas fa-check text-success'></i> 
               : <i className='fas fa-times text-danger'></i>
         }
       </td>
       <td className='align-middle'>
-        {order.isDelivered  
+        {order?.isDelivered  
               ? <i className='fas fa-check text-success'></i> 
               : <i className='fas fa-times text-danger'></i>
         }
       </td>
-      <td className='align-middle fw-semibold'>${order.totalPrice}</td>
+      <td className='align-middle fw-semibold'>${order?.totalPrice}</td>
       <td style={{ cursor: 'pointer' }} className='align-middle'>
         <Link to={`/admin/order/${order._id}`}>
-          <i className='fas fa-eye text-primary' data-bs-toggle="tooltip" title='View Order'></i>
+          <i 
+            className='fas fa-eye text-primary' 
+            data-bs-toggle="tooltip" 
+            title='View Order'>
+          </i>
         </Link>
-        <i 
-          data-bs-toggle="tooltip" title='Delete Order'
-          hidden={order.isAdmin}
-          className='fas fa-trash text-danger mx-3'
-          onClick={() => setIsOpenDeleteModal(true)}
-        ></i>
+          <i 
+            data-bs-toggle="tooltip" title='Delete Order'
+            className='fas fa-trash text-danger mx-3'
+            onClick={() => setIsOpenDeleteModal(true)}>
+          </i>
       </td>
 
       {isOpenDeleteModal && (

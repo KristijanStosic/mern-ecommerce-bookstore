@@ -18,16 +18,24 @@ import { notFoundMiddleware, errorHandlerMiddleware } from './middleware/errorHa
 
 const app = express()
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  if (req.originalUrl === '/api/stripe/webhook') {
+    next() 
+  } else {
+    express.json()(req, res, next)
+  }
+})
+
+//app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
 if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'))
+  app.use(morgan('dev'))
 }
 
 app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Hello from Ecommerce App' })
+  res.status(200).json({ message: 'Hello from Ecommerce App' })
 })
 
 app.use('/api/auth', authRoutes)

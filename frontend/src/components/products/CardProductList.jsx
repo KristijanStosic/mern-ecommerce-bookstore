@@ -12,7 +12,8 @@ const CardProductList = ({ product }) => {
 
   const addItemToCart = (productId) => {
     if (cart.some((cartItem) => cartItem.productId === productId)) {
-      toast.error('This item is already in your cart. Go to your cart to change the amount')
+      toast.error('This item is already in your cart. Go to your cart to change the amount'
+      )
     } else {
       dispatch(addToCart(productId, 1))
       toast.success('Item has been added to your cart')
@@ -25,8 +26,8 @@ const CardProductList = ({ product }) => {
         <div className='col-md-3 text-center'>
           <Link to={`/product/${product._id}`}>
             <img
-              src={product?.image}
               className='img-fluid'
+              src={product?.image}
               alt={product?.name}
             />
           </Link>
@@ -49,7 +50,6 @@ const CardProductList = ({ product }) => {
               averageRating={product?.averageRating}
               numOfReviews={product?.numOfReviews}
             />
-
             <ReadMoreText>{product?.description}</ReadMoreText>
           </div>
         </div>
@@ -59,8 +59,10 @@ const CardProductList = ({ product }) => {
               <span className='fw-bold h5'>${product?.price}</span>
             </div>
             <p className='text-success small mb-2'>
-              <span><i className='fas fa-truck'></i></span>
-                Free Shipping
+              <span>
+                <i className='fas fa-truck'></i>
+              </span>
+              Free Shipping
             </p>
             <div className='btn-group d-flex gap-2' role='group'>
               <button
@@ -73,7 +75,10 @@ const CardProductList = ({ product }) => {
                   <i className='fas fa-cart-plus'></i>
                 </span>
               </button>
-              <Link to={`/product/${product._id}`} className='btn btn-dark rounded'>
+              <Link
+                to={`/product/${product._id}`}
+                className='btn btn-dark rounded'
+              >
                 <i title='View Product' className='fas fa-eye'></i>
               </Link>
             </div>

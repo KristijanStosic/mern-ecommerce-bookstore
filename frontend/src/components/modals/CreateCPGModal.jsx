@@ -14,13 +14,14 @@ const CreateCPGModal = ({ isOpen, onClose, type, createAction }) => {
         <Modal.Title>Create {type}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <CreateCPGForm createAction={createAction} type={type} onClose={onClose} />
+        <CreateCPGForm
+          createAction={createAction}
+          type={type}
+          onClose={onClose}
+        />
       </Modal.Body>
       <Modal.Footer>
-        <button
-          className='btn btn-danger'
-          onClick={() => onClose(false)}
-        >
+        <button className='btn btn-danger' onClick={() => onClose(false)}>
           Cancel
         </button>
       </Modal.Footer>

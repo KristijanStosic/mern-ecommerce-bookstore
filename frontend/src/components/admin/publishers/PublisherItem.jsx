@@ -11,8 +11,14 @@ const PublisherItem = ({ publisher }) => {
     <>
       <td>{publisher?.name}</td>
       <td style={{ cursor: 'pointer' }}>
-          <i className='fas fa-pencil-alt text-dark' onClick={() => setIsOpenUpdateModal(true)}></i>
-        <i className='fas fa-trash text-danger mx-3' onClick={() => setIsOpenDeleteModal(true)}></i>
+        <i 
+          className='fas fa-pencil-alt text-dark' 
+          onClick={() => setIsOpenUpdateModal(true)}>
+        </i>
+        <i 
+          className='fas fa-trash text-danger mx-3' 
+          onClick={() => setIsOpenDeleteModal(true)}>
+        </i>
       </td>
 
       {isOpenUpdateModal && (
@@ -33,7 +39,6 @@ const PublisherItem = ({ publisher }) => {
           itemToDelete={publisher}
         />
       )}
-
     </>
   )
 }
