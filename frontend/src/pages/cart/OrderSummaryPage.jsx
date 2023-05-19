@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createNewOrder } from '../../redux/orders/orderActions.js'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 
 const OrderSummaryPage = () => {
   const [buttonLoading, setButtonLoading] = useState(false)
   const { cart, subtotal } = useSelector((state) => state.cart)
-  const { shippingAddress } = useSelector((state) => state.orders)
+  const { shippingAddress, error } = useSelector((state) => state.orders)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -19,6 +20,8 @@ const OrderSummaryPage = () => {
       shippingAddress,
       totalPrice: Number(subtotal)
     }
+
+    if (error) return toast.error(error)
 
     setButtonLoading(true)
 

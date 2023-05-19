@@ -6,16 +6,21 @@ import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import ReviewItem from '../../components/admin/reviews/ReviewItem'
 import useTitle from '../../hooks/useTitle'
+import { useNavigate } from 'react-router-dom'
 
 const ReviewListPage = () => {
   useTitle('Review Admin Page')
 
   const { reviews, loading, error } = useSelector((state) => state.reviews)
+  const { user } = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if (!user.isAdmin) navigate('/')
     dispatch(getAllReviews())
+    // eslint-disable-next-line
   }, [dispatch])
 
   if (loading) return <Spinner />

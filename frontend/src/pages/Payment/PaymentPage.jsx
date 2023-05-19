@@ -43,7 +43,7 @@ export default function PaymentPage() {
     appearance,
   }
 
-  return user && order ? (
+  return order ? (
     <div className='d-flex justify-content-center align-items-center align-content-center h-100 w-100 my-3'>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>

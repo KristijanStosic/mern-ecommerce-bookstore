@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -47,34 +47,50 @@ const App = () => {
           <Route path='/product/:productId' element={<ProductDetailsPage />} />
 
           <Route path='/cart' element={<CartPage />} />
-          <Route path='/checkout' element={<CheckoutPage />} />
-          <Route path='/order-summary' element={<OrderSummaryPage />} />
-          <Route path='/payment' element={<PaymentPage />} />
-          <Route path='/my-orders' element={<MyOrdersPage />} />
-          <Route path='/my-order/:orderId' element={<MyOrderDetailsPage />} />
 
-          <Route path='/admin-dashboard' element={<AdminDashboardPage />} />
-          <Route path='/admin/categories' element={<CategoryListPage />} />
-          <Route path='/admin/publishers' element={<PublisherListPage />} />
-          <Route path='/admin/genres' element={<GenreListPage />} />
-          <Route path='/admin/orders' element={<OrderListPage />} />
-          <Route path='/admin/order/:orderId' element={<OrderDetailsPage />} />
-          <Route path='/admin/reviews' element={<ReviewListPage />} />
-          <Route path='/admin/users' element={<UserListPage />} />
-          <Route path='/admin/products' element={<ProductListPage />} />
-          <Route path='/admin/products/page/:page' element={<ProductListPage />} />
-          <Route path='/admin/products/search/:keyword' element={<ProductListPage />} />
-          <Route path='/admin/products/search/:keyword/page/:page' element={<ProductListPage />} />
+          <Route path='/checkout' element={<ProtectedRoute> <CheckoutPage /> </ProtectedRoute>} />
 
-          <Route path='/order-success' element={<OrderSuccessPage />} />
-          <Route path='/order-failed' element={<OrderFailedPage />} />
+          <Route path='/order-summary' element={<ProtectedRoute> <OrderSummaryPage /> </ProtectedRoute>} />
+
+          <Route path='/payment' element={<ProtectedRoute> <PaymentPage /> </ProtectedRoute>} />
+
+          <Route path='/my-orders' element={<ProtectedRoute> <MyOrdersPage /> </ProtectedRoute>} />
+          
+          <Route path='/my-order/:orderId' element={<ProtectedRoute> <MyOrderDetailsPage /> </ProtectedRoute>} />
+
+          <Route path='/order-success' element={<ProtectedRoute> <OrderSuccessPage /> </ProtectedRoute>} />
+          
+          <Route path='/order-failed' element={<ProtectedRoute> <OrderFailedPage /> </ProtectedRoute>} />
+
+          {/* Admin Routes */}
+          <Route path='/admin-dashboard' element={<ProtectedRoute> <AdminDashboardPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/categories' element={<ProtectedRoute> <CategoryListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/publishers' element={<ProtectedRoute> <PublisherListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/genres' element={<ProtectedRoute> <GenreListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/orders' element={<ProtectedRoute> <OrderListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/order/:orderId' element={<ProtectedRoute> <OrderDetailsPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/reviews' element={<ProtectedRoute> <ReviewListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/users' element={<ProtectedRoute> <UserListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/products' element={<ProtectedRoute> <ProductListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/products/page/:page' element={<ProtectedRoute> <ProductListPage /> </ProtectedRoute>} />
+
+          <Route path='/admin/products/search/:keyword' element={<ProtectedRoute> <ProductListPage /> </ProtectedRoute>} />
+          <Route path='/admin/products/search/:keyword/page/:page' element={<ProtectedRoute> <ProductListPage /> 
+          </ProtectedRoute>} />
 
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
           
-          <Route path='/my-profile' element={<ProtectedRoute>
-            <ProfilePage />
-          </ProtectedRoute>} />
+          <Route path='/my-profile' element={<ProtectedRoute> <ProfilePage /> </ProtectedRoute>} />
 
           <Route path='/*' element={<NotFoundPage />} />
         </Routes>

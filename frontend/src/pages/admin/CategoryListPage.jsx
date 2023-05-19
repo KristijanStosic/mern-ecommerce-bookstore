@@ -7,6 +7,7 @@ import Alert from '../../components/Alert'
 import CategoryItem from '../../components/admin/categories/CategoryItem'
 import CreateCPGModal from '../../components/modals/CreateCPGModal'
 import useTitle from '../../hooks/useTitle'
+import { useNavigate } from 'react-router-dom'
 
 const CategoryListPage = () => {
   useTitle('Category Admin Page')
@@ -14,11 +15,15 @@ const CategoryListPage = () => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   
   const { categories, loading, error } = useSelector((state) => state.categories)
+  const { user } = useSelector((state) => state.auth)
 
   useEffect(() => {
+    if (!user.isAdmin) navigate('/')
     dispatch(getAllCategories())
+    // eslint-disable-next-line
   }, [dispatch])
 
   if (loading) return <Spinner />

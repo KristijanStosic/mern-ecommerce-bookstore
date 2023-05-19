@@ -7,6 +7,7 @@ import Alert from '../../components/Alert'
 import PublisherItem from '../../components/admin/publishers/PublisherItem'
 import CreateCPGModal from '../../components/modals/CreateCPGModal'
 import useTitle from '../../hooks/useTitle'
+import { useNavigate } from 'react-router-dom'
 
 const PublisherListPage = () => {
   useTitle('Publisher Admin Page')
@@ -14,11 +15,15 @@ const PublisherListPage = () => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { publishers, loading, error } = useSelector((state) => state.publishers)
+  const { user } = useSelector((state) => state.auth)
 
   useEffect(() => {
+    if (!user.isAdmin) navigate('/')
     dispatch(getAllPublishers())
+    // eslint-disable-next-line
   }, [dispatch])
 
   if (loading) return <Spinner />

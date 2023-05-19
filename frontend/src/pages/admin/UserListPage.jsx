@@ -6,16 +6,21 @@ import Sidebar from '../../components/admin/Sidebar'
 import Alert from '../../components/Alert'
 import UserItem from '../../components/admin/users/UserItem'
 import useTitle from '../../hooks/useTitle'
+import { useNavigate } from 'react-router-dom'
 
 const UserListPage = () => {
   useTitle('User Admin Page')
 
   const { users, loading, error } = useSelector((state) => state.users)
+  const { user } = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if (!user.isAdmin) navigate('/')
     dispatch(getAllUsers())
+    // eslint-disable-next-line
   }, [dispatch])
 
   if (loading) return <Spinner />

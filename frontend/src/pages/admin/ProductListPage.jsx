@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getAllProducts } from '../../redux/products/productActions'
 import Spinner from '../../components/Spinner'
 import Sidebar from '../../components/admin/Sidebar'
@@ -17,15 +17,19 @@ const ProductListPage = () => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
 
   const { products, page, pages, loading, error } = useSelector((state) => state.products)
+  const { user } = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
   const params = useParams()
+  const navigate = useNavigate()
 
   const pageNumber = params.page || 1
   const keyword = params.keyword
 
   useEffect(() => {
+    if (!user.isAdmin) navigate('/')
     dispatch(getAllProducts(keyword, pageNumber, ''))
+    // eslint-disable-next-line
   }, [dispatch, keyword, pageNumber])
 
   if (loading) return <Spinner />

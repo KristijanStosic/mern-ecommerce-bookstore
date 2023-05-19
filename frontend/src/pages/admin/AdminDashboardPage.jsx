@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllCategories } from '../../redux/categories/categoryActions'
@@ -17,6 +17,9 @@ const AdminDashboardPage = () => {
   useTitle('Admin Dashboard')
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { user } = useSelector((state) => state.auth)
   const { categories, loading } = useSelector((state) => state.categories)
   const { publishers } = useSelector((state) => state.publishers)
   const { genres } = useSelector((state) => state.genres)
@@ -38,6 +41,7 @@ const AdminDashboardPage = () => {
   ))
 
   useEffect(() => {
+    if(!user.isAdmin) navigate('/')
     dispatch(getAllCategories())
     dispatch(getAllPublishers())
     dispatch(getAllGenres())
@@ -45,6 +49,7 @@ const AdminDashboardPage = () => {
     dispatch(getAllUsers())
     dispatch(getAllOrders())
     dispatch(getAllReviews())
+    // eslint-disable-next-line
   }, [dispatch])
 
   return (

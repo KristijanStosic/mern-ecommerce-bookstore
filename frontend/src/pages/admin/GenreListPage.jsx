@@ -7,6 +7,7 @@ import Alert from '../../components/Alert'
 import GenreItem from '../../components/admin/genres/GenreItem'
 import CreateCPGModal from '../../components/modals/CreateCPGModal'
 import useTitle from '../../hooks/useTitle'
+import { useNavigate } from 'react-router-dom'
 
 const GenreListPage = () => {
   useTitle('Genre Admin Page')
@@ -14,11 +15,15 @@ const GenreListPage = () => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { genres, loading, error } = useSelector((state) => state.genres)
+  const { user } = useSelector((state) => state.auth)
 
   useEffect(() => {
+    if (!user.isAdmin) navigate('/')
     dispatch(getAllGenres())
+    // eslint-disable-next-line
   }, [dispatch])
 
   if (loading) return <Spinner />

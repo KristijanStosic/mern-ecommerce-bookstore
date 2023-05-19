@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatDate } from '../../utils/utils'
 import { getOrderById, updateOrderToDelivered } from '../../redux/orders/orderActions'
@@ -12,13 +12,17 @@ const OrderDetailsPage = () => {
 
   const dispatch = useDispatch()
   const params = useParams()
+  const navigate = useNavigate()
 
   const { order, loading, error, orderSuccessUpdate } = useSelector((state) => state.orders)
+  const { user } = useSelector((state) => state.auth)
 
   const orderId = params.orderId
 
   useEffect(() => {
+    if (!user.isAdmin) navigate('/')
     dispatch(getOrderById(orderId))
+    // eslint-disable-next-line
   }, [dispatch, orderId, orderSuccessUpdate])
 
   const handleDeliverOrder = () => {
