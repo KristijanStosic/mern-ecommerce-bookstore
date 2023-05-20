@@ -75,6 +75,7 @@ const LoginForm = () => {
             name='email'
             id='email'
             type='text'
+            value={email}
             onChange={onChange}
             placeholder='Email'
           />
@@ -102,14 +103,14 @@ const LoginForm = () => {
               ></span>
             </button>
           ) : (
-            <button className='btn btn-dark'>Login</button>
+            <button className='btn btn-dark' type='submit'>Login</button>
           )}
         </div>
         <div className='d-flex justify-content-center align-items-center mt-2'>
           <Link
             className='text-dark fw-semibold'
             to='/register'
-            title='Sign Up'
+            title='Register'
           >
             Don't have an account? Register here
           </Link>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { register, resetErrorState } from '../../redux/auth/authActions'
 import { toast } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
@@ -20,6 +20,7 @@ const RegisterForm = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const location = useLocation()
 
   const redirect = '/products'
 
@@ -56,10 +57,14 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (user) {
-      navigate(redirect)
       toast.success(`Account created. Welcome aboard ${user.name}`)
+      if (location?.state.from) {
+        navigate(location.state?.from)
+      }
+    } else {
+      navigate(redirect)
     }
-  }, [dispatch, user, error, navigate])
+  }, [dispatch, user, error, navigate, location.state])
 
   return (
     <>
@@ -77,7 +82,7 @@ const RegisterForm = () => {
             name='name'
             id='name'
             type='text'
-            label='Your name'
+            value={name}
             placeholder='Name'
             className='form-control'
             onChange={onChange}
@@ -95,7 +100,7 @@ const RegisterForm = () => {
             name='email'
             id='email'
             type='text'
-            label='Your email'
+            value={email}
             placeholder='Email'
             className='form-control'
             onChange={onChange}
