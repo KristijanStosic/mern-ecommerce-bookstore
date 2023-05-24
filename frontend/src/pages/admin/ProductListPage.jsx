@@ -82,7 +82,7 @@ const ProductListPage = () => {
                   ))}
               </tbody>
             </table>
-            <Pagination page={page} pages={pages} role='admin' />
+            <Pagination page={page} pages={pages} isAdmin={true} />
           </>
         </div>
       </div>
